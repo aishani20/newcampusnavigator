@@ -1,8 +1,9 @@
 import React from 'react'
 import Navbar from '../components/common/Navbar/Navbar'
+import PostCardSection from '../components/core/UserHome/PostCardSection'
 import Footer from '../components/common/Footer'
-import LoginForm from '../components/core/LoginPage/LoginForm'
-const Login = () => {
+
+const Home = () => {
   return (
     <div className='h-screen'>
         <div >
@@ -10,7 +11,7 @@ const Login = () => {
                 <Navbar />
             </div>
             <div>
-                <LoginForm />
+                <PostCardSection />
             </div>
             <div>
                 <Footer/>
@@ -20,4 +21,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Home
