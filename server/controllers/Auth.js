@@ -2,7 +2,8 @@ const User = require("../models/User");
 const OTP = require("../models/OTP");
 const otpGenerator = require("../utils/otpGenerator");
 const bcrypt = require("bcrypt");
-
+const jwt = require("jsonwebtoken");
+require("dotenv").config();
 exports.signup = async (req, res) => {
   try {
     const { firstName, lastName, email, password, confirmPassword } = req.body;
@@ -40,7 +41,6 @@ exports.signup = async (req, res) => {
       await newOtp.save();
     }
 
-   
     return res.json({
       success: true,
       message: "OTP has been sent to your email id",
@@ -57,20 +57,13 @@ exports.signup = async (req, res) => {
 };
 
 exports.verifyOtp = async (req, res) => {
-  const { 
-    firstName,
-    lastName,
-    email,
-    password,
-    otp
-   } = req.body;
+  const { firstName, lastName, email, password, otp } = req.body;
   const user = await OTP.findOne({ email });
   if (user.otp !== otp) {
     return res.status(400).json({
       success: false,
-      message: "Invalid OTP entered. Please try again"
+      message: "Invalid OTP entered. Please try again",
     });
-    
   }
   await OTP.findOneAndDelete({ email });
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -85,37 +78,52 @@ exports.verifyOtp = async (req, res) => {
     success: true,
     message: "Account created successfully",
   });
-
 };
 
 exports.login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    
-    if(!email || !password){
+
+    if (!email || !password) {
       return res.json({
-        success:false,
-        message:"All fields are required"
-      })
+        success: false,
+        message: "All fields are required",
+      });
     }
 
-    const user = await User.findOne({email});
-    if(!user){
+    const user = await User.findOne({ email });
+    if (!user) {
       return res.json({
-        success:false,
-        message:"Sign up first"
-      })
+        success: false,
+        message: "Sign up first",
+      });
     }
-    if(!await bcrypt.compare(password,user.password)){
+    if (!(await bcrypt.compare(password, user.password))) {
       return res.json({
-        success:flase,
-        message:"Invalid Password"
+        success: flase,
+        message: "Invalid Password",
+      });
+    }
+    if (await bcrypt.compare(password, user.password)) {
+      const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+        expiresIn: "24h",
+      });
+      user.token = token;
+
+      const options = {
+        expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+        httpOnly: true,
+      }
+      res.cookie('token',token,options).json({
+        message: true,
+        token: token,
+        message: "Logged in successfully"
       })
     }
     return res.status(200).json({
-      success:true,
-      message:"Logged in successfully"
-    })
+      success: true,
+      message: "Logged in successfully",
+    });
   } catch (e) {
     console.error(e);
     res.status(500).json({
