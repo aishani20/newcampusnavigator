@@ -1,7 +1,12 @@
 import React, { useState } from "react";
-
+import {toast} from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import {  useDispatch } from "react-redux";
+import { setToken } from "../../../slices/authSlice";
 const LoginForm = () => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const dispatch = useDispatch();  
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -25,10 +30,27 @@ const LoginForm = () => {
             headers:{
                 "Content-Type":"application/json"
             },
+            credentials: 'include',
             body:JSON.stringify(formData)
         })
         const data = await response.json();
         console.log(data);
+        
+        
+        if(data.success){
+            
+
+            navigate("/home");
+            console.log("If data.success then navigate to home page");
+        }
+        
+        if(data.token){
+          toast.success("Login Successful");
+          dispatch(setToken(data.token));
+          navigate("/home");
+          console.log("If token then navigate to home page");
+        }
+
         
     }catch(err){
       console.log(err);
