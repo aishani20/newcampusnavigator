@@ -1,48 +1,46 @@
-import React, { useContext } from "react";
-import { SignupContext } from "../../../context/SignupContext";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {  useSelector } from "react-redux";
 
 const VerifyEmailForm = () => {
+  const { signupData } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate(); // for navigation
 
-  const SignupData = useContext(SignupContext);
+  const [otp, setOtp] = useState("");
 
-  const setUserForm = SignupData.setUserForm;
-  const userForm = SignupData.userForm;
+  console.log("signup data in store", signupData);
 
   function changeHandler(event) {
     const { value } = event.target;
-    setUserForm((prev) => {
+    setOtp((prev) => {
       return {
         ...prev,
         otp: value,
       };
     });
-    console.log(userForm.formData);
-    console.log(userForm.otp);
+    console.log(signupData);
+    console.log(otp);
     // console.log(backendUrl);
   }
   async function submitHandler(event) {
     event.preventDefault();
     try {
-      const newFormData = {
-        ...userForm.formData,
-        otp: userForm.otp,
+      const updatedSignupData = {
+        ...signupData,
+        otp: otp.otp,
       };
-        
       const response = await fetch(`${backendUrl}/verify-email`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newFormData),
+        body: JSON.stringify(updatedSignupData),
       });
       const data = await response.json();
-      if(data.success){
-        navigate('/home');
-      }
-      else{
+      if (data.success) {
+        navigate("/home");
+      } else {
         alert("Invalid OTP. Please try again.");
       }
       console.log(data);
@@ -60,7 +58,7 @@ const VerifyEmailForm = () => {
             type="text"
             name="otp"
             onChange={changeHandler}
-            value={userForm.otp}
+            value={otp.otp}
             className="border h-[46px] w-full my-2"
           />
         </label>

@@ -1,57 +1,73 @@
-import React, { useContext } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { SignupContext } from "../../../context/SignupContext";
+import { useDispatch } from "react-redux";
+import { toast } from "react-hot-toast"
+import { setSignupData } from "../../../slices/authSlice";
 
 const SignupForm = () => {
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || "http://localhost:3001/api/v1";
-
+  const backendUrl =
+    process.env.REACT_APP_BACKEND_URL || "http://localhost:3001/api/v1";
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const SignupData = useContext(SignupContext);
 
-  const setUserForm = SignupData.setUserForm;
-  const userForm = SignupData.userForm;
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  useEffect(() => {
+    console.log("signupData", formData);
+  }, [formData]);
+
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setUserForm((prev) => {
+    setFormData((prev) => {
       return {
         ...prev,
-        formData: {
-          ...prev.formData,
-          [name]: value,
-        },
+        [name]: value,
       };
     });
-    console.log("SignupData", SignupData.userForm);
   };
 
   const submitHandler = async (event) => {
     try {
       if (
-        !userForm.formData.firstName ||
-        !userForm.formData.lastName ||
-        !userForm.formData.email ||
-        !userForm.formData.password ||
-        !userForm.formData.confirmPassword
+        !formData.firstName ||
+        !formData.lastName ||
+        !formData.email ||
+        !formData.password ||
+        !formData.confirmPassword
       ) {
-        alert("Please fill all the fields");
+        toast.error("Please fill all the fields");
         return;
       }
-      if (userForm.formData.password !== userForm.formData.confirmPassword) {
-        alert("Passwords do not match");
+      if (formData.password !== formData.confirmPassword) {
+        toast.error("Passwords Do Not Match")
         return;
       }
-
+      dispatch(setSignupData(formData));
       event.preventDefault();
       const response = await fetch(`${backendUrl}/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(userForm.formData),
+        body: JSON.stringify(formData),
       });
-      navigate("/verify-email");
-      const data = response.json();
-      console.log(data);
+      const data = await response.json();
+
+      if(data.success === "true"){
+        navigate("/verify-email");
+        
+      }
+      else{
+        console.log("Checking this statement");
+        toast.error("Account already exists with this email id");
+        return; 
+      }
+      
     } catch (err) {
       console.error(err);
       console.log("Error in signup submit handler");
@@ -68,7 +84,7 @@ const SignupForm = () => {
               type="text"
               name="firstName"
               onChange={changeHandler}
-              value={userForm.formData.firstName}
+              value={formData.firstName}
               className="border h-[56px]"
             />
           </label>
@@ -78,7 +94,7 @@ const SignupForm = () => {
               type="text"
               name="lastName"
               onChange={changeHandler}
-              value={userForm.formData.lastName}
+              value={formData.lastName}
               className="border h-[56px]"
             />
           </label>
@@ -89,7 +105,7 @@ const SignupForm = () => {
             type="email"
             name="email"
             onChange={changeHandler}
-            value={userForm.formData.email}
+            value={formData.email}
             className="border h-[56px] w-full"
           />
         </label>
@@ -100,7 +116,7 @@ const SignupForm = () => {
             name="password"
             className="border h-[56px] w-full"
             onChange={changeHandler}
-            value={userForm.formData.password}
+            value={formData.password}
           />
         </label>
         <label>
@@ -110,7 +126,7 @@ const SignupForm = () => {
             name="confirmPassword"
             className="border h-[56px] w-full"
             onChange={changeHandler}
-            value={userForm.formData.confirmPassword}
+            value={formData.confirmPassword}
           />
         </label>
         <div

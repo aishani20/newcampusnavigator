@@ -1,23 +1,13 @@
-import React from 'react'
-import Navbar from '../components/common/Navbar/Navbar'
-import Footer from '../components/common/Footer'
-import LoginForm from '../components/core/LoginPage/LoginForm'
+import React from "react";
+import LoginForm from "../components/core/Auth/LoginForm";
 const Login = () => {
   return (
-    <div className='h-screen'>
-        <div >
-            <div>
-                <Navbar />
-            </div>
-            <div>
-                <LoginForm />
-            </div>
-            <div>
-                <Footer/>
-            </div>
-        </div>
+    <div className="h-screen">
+      <div>
+        <LoginForm />
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
