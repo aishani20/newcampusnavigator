@@ -57,10 +57,10 @@ const SignupForm = () => {
         body: JSON.stringify(formData),
       });
       const data = await response.json();
-
-      if(data.success === "true"){
+      console.log(data);
+      if(data.success === true){
+        toast.success("OTP has been sent to your email id");
         navigate("/verify-email");
-        
       }
       else{
         console.log("Checking this statement");
