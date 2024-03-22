@@ -100,7 +100,7 @@ exports.login = async (req, res) => {
     }
     if (!(await bcrypt.compare(password, user.password))) {
       return res.json({
-        success: flase,
+        success: "false",
         message: "Invalid Password",
       });
     }
@@ -112,18 +112,14 @@ exports.login = async (req, res) => {
 
       const options = {
         expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
-        httpOnly: true,
+        // httpOnly: true,
       }
-      res.cookie('token',token,options).json({
-        message: true,
+      return res.cookie('token',token,options).json({
+        success: true,
         token: token,
         message: "Logged in successfully"
       })
     }
-    return res.status(200).json({
-      success: true,
-      message: "Logged in successfully",
-    });
   } catch (e) {
     console.error(e);
     res.status(500).json({
