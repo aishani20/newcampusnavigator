@@ -9,7 +9,7 @@ import Home from "./pages/Home";
 
 import OpenRoute from "./components/core/Auth/OpenRoute";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
-import Navbar from "./components/common/Navbar/Navbar";
+import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 
 function App() {
