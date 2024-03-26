@@ -16,7 +16,7 @@ const Navbar = () => {
     setShow(!show);
   }
   return (
-    <div className="flex justify-between max-w-[1292px] mx-auto my-[42px] items-center">
+    <div className="flex justify-between border-b pt-8 pb-4">
       <Link to={`${token === null ? "/":"/home"}`}>
         <div className="relative montserrat h-[47.7px]">
           <div className="flex item-center h-[47.7px] absolute gap-[2px]">
@@ -33,6 +33,7 @@ const Navbar = () => {
 
       {token !== null && (
         <div className="flex items-center gap-4 relative">
+          <Link to='/insights'>Insights</Link>
           <Link
             to="/predict"
             className="text-[#3652DD] border-2 border-[#3652DD] text-[18px] px-[15px] py-[17px] rounded-[4px]"
@@ -49,12 +50,12 @@ const Navbar = () => {
               show === false ? "hidden" : ""
             }`}
           >
-            <p>Profile</p>
-            <p>Setting</p>
-            <p className={`flex items-center gap-1`}>
+            <span>Profile</span>
+            <span>Setting</span>
+            <span className={`flex items-center gap-1`}>
               <p>Signout</p>
               <VscSignOut />
-            </p>
+            </span>
           </div>
         </div>
       )}
