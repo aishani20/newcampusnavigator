@@ -11,6 +11,7 @@ import OpenRoute from "./components/core/Auth/OpenRoute";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -56,6 +57,14 @@ function App() {
             element={
               <PrivateRoute>
                 <Insights />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/:username"
+            element={
+              <PrivateRoute>
+                <UserProfile />
               </PrivateRoute>
             }
           />
