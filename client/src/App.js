@@ -12,6 +12,7 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import UserProfile from "./pages/UserProfile";
+import Academics from "./pages/Academics";
 
 function App() {
   return (
@@ -65,6 +66,14 @@ function App() {
             element={
               <PrivateRoute>
                 <UserProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/academics"
+            element={
+              <PrivateRoute>
+                <Academics />
               </PrivateRoute>
             }
           />

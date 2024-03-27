@@ -34,6 +34,7 @@ const Navbar = () => {
       {token !== null && (
         <div className="flex items-center gap-4 relative">
           <Link to='/insights'>Insights</Link>
+          <Link to='/academics'>Academics</Link>
           <Link
             to="/predict"
             className="text-[#3652DD] border-2 border-[#3652DD] text-[18px] px-[15px] py-[17px] rounded-[4px]"
