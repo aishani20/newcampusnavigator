@@ -26,6 +26,9 @@ app.use('/api/v1',userRoute);
 const predictRoute = require('./routes/Predict');
 app.use('/api/v1',predictRoute);
 
+const insightsRoute = require('./routes/Insights');
+app.use('/api/v1',insightsRoute);    
+
 
 app.get('/', (req, res) => {
     res.send('Welcome to CampusNavigator');
