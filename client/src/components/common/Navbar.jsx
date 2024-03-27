@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Logo from "../../assests/LogoImage.png";
-import CurvedLine from "../../assests/curveUnderline.svg";
+// import Logo from "../../assests/LogoImage.png";
+// import CurvedLine from "../../assests/curveUnderline.svg";
+import CompleteLogo from "../../assests/completeLogo.png";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -16,55 +17,69 @@ const Navbar = () => {
     setShow(!show);
   }
   return (
-    <div className="flex justify-between border-b pt-8 pb-4">
-      <Link to={`${token === null ? "/":"/home"}`}>
-        <div className="relative montserrat h-[47.7px]">
-          <div className="flex item-center h-[47.7px] absolute gap-[2px]">
-            <img src={Logo} alt="Logo" width="43px" />
-            <div className="text-[34.62px] font-bold">
-              Campus<span className="text-[#3652DD]">Navigator</span>
-            </div>
-          </div>
-          <div className="absolute top-[27px] w-[363px]">
-            <img src={CurvedLine} alt="CurvedLine" />
-          </div>
+    <div className="border-b-2 pt-8 pb-4 flex justify-between items-center">
+      <Link to={`${token === null ? "/" : "/home"}`} className="">
+        <div className="relative flex items-center max-w-80">
+          <img src={CompleteLogo} alt="Logo" className="" />
         </div>
       </Link>
 
       {token !== null && (
-        <div className="flex items-center gap-4 relative">
-          <Link to='/insights'>Insights</Link>
-          <Link to='/academics'>Academics</Link>
-          <Link
-            to="/predict"
-            className="text-[#3652DD] border-2 border-[#3652DD] text-[18px] px-[15px] py-[17px] rounded-[4px]"
-          >
-            Check Your Success
-          </Link>
-          <VscBell className="w-6 h-6" />
-          <VscAccount
-            className="w-6 h-6 cursor-pointer"
-            onClick={classChangeHandler}
-          />
-          <div
-            className={`border p-2 rounded absolute top-7 shadow-sm right-0 ${
-              show === false ? "hidden" : ""
-            }`}
-          >
-            <span>Profile</span>
-            <span>Setting</span>
-            <span className={`flex items-center gap-1`}>
-              <p>Signout</p>
-              <VscSignOut />
-            </span>
+        <>
+          <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-lg">
+            <Link
+              to="/insights"
+              className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+                location.pathname === "/insights" &&
+                "underline underline-offset-8 decoration-4 decoration-blue-500"
+              }`}
+            >
+              Insights
+            </Link>
+            <Link
+              to="/academics"
+              className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+                location.pathname === "/academics" &&
+                "underline underline-offset-8 decoration-4 decoration-blue-500"
+              }`}
+            >
+              Academics
+            </Link>
           </div>
-        </div>
+
+          <div className="flex items-center gap-6">
+            <Link
+              to="/predict"
+              className="text-[#3652DD] border-2 border-[#3652DD] text-[16px] px-[13px] py-[15px] rounded-[4px]"
+            >
+              Check Your Success
+            </Link>
+            <div className="flex gap-3">
+              <VscBell className="w-6 h-6" />
+              <VscAccount
+                className="w-6 h-6 cursor-pointer"
+                onClick={classChangeHandler}
+              />
+              {
+                <div className={`border p-2 rounded shadow-sm hidden`}>
+                  <span>Profile</span>
+                  <span>Setting</span>
+                  <span className={`flex items-center gap-1`}>
+                    <p>Signout</p>
+                    <VscSignOut />
+                  </span>
+                </div>
+              }
+            </div>
+          </div>
+        </>
       )}
+
       {token === null && (
         <div className="flex w-[440px] justify-between items-center">
           <Link
             to="/predict"
-            className="text-[#3652DD] border-2 border-[#3652DD] text-[18px] px-[15px] py-[17px] rounded-[4px]"
+            className="text-[#3652DD] border-2 border-[#3652DD] text-[16px] px-[13px] py-[15px] rounded-[4px]"
           >
             Check Your Success
           </Link>
