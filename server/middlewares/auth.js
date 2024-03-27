@@ -12,7 +12,7 @@ exports.auth = async (req, res, next) => {
     // console.log("Token extraction");
     
     if (!token) {
-      res.json({
+      return res.json({
         success: false,
         message: "Token is missing",
       });
@@ -20,6 +20,8 @@ exports.auth = async (req, res, next) => {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      console.log(decoded);
+      req.user = decoded;
     } catch (e) {
       console.error(e);
       res.status(500).json({
