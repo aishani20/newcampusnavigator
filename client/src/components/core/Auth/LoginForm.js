@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import {toast} from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
-import {  useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
+import {Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { setToken } from "../../../slices/authSlice";
+
 const LoginForm = () => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  const dispatch = useDispatch();  
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
@@ -22,65 +23,64 @@ const LoginForm = () => {
     console.log(formData);
     console.log(backendUrl);
   }
-  async function submitHandler(event){
+  async function submitHandler(event) {
     event.preventDefault();
-    try{
-        const response = await fetch(`${backendUrl}/login`,{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
-            },
-            credentials: 'include',
-            body:JSON.stringify(formData)
-        })
-        const data = await response.json();
-        console.log(data);
-        
-        
-        if(data.success){
-            
+    try {
+      const response = await fetch(`${backendUrl}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
+      const data = await response.json();
+      console.log(data);
 
-            navigate("/home");
-            console.log("If data.success then navigate to home page");
-        }
-        
-        if(data.token){
-          toast.success("Login Successful");
-          dispatch(setToken(data.token));
-          navigate("/home");
-          console.log("If token then navigate to home page");
-        }
+      if (data.success) {
+        navigate("/home");
+        console.log("If data.success then navigate to home page");
+      }
 
-        
-    }catch(err){
+      if (data.token) {
+        toast.success("Login Successful");
+        dispatch(setToken(data.token));
+        navigate("/home");
+        console.log("If token then navigate to home page");
+      }
+    } catch (err) {
       console.log(err);
     }
   }
   return (
-    <div className="border   w-[500px] mx-auto rounded-[32px] flex flex-col items-center">
-      <div className="text-[32px] text-[#333333] my-[20px]">LOGIN</div>
-      <form className="flex flex-col gap-3 text-[16px] w-[80%]">
-        <label>
-          <p>Email Address</p>
+    <div className="border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md">
+      <div className="text-3xl text-gray-700 font-semibold mb-6">LOGIN</div>
+      <form className="flex flex-col gap-4 w-full">
+        <label className="flex flex-col w-80">
+          <p className="text-gray-700 mb-1">Email Address</p>
           <input
             type="email"
             name="email"
             onChange={changeHandler}
             value={formData.email}
-            className="border h-[56px] w-full"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
           />
         </label>
-        <label>
-          <p>Password</p>
+        <label className="flex flex-col">
+          <p className="text-gray-700">Password</p>
           <input
             type="password"
             name="password"
-            className="border h-[56px] w-full"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
             onChange={changeHandler}
             value={formData.password}
           />
         </label>
-        <div className="text-[20px] rounded-[32px] bg-[#aaaaaa] text-white text-center my-[24px] py-[21px]" onClick={submitHandler}>
+        <Link to="/forgot-password" className="self-end text-[12px] cursor-pointer">Forgot Password?</Link>
+        <div
+          className="bg-[#3652DD] text-white rounded-lg py-3 text-lg hover:bg-[#2f48c6] transition-colors duration-300 text-center cursor-pointer"
+          onClick={submitHandler}
+        >
           Log in
         </div>
       </form>
