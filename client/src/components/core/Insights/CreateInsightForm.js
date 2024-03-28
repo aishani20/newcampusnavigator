@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-const InsightsForm = () => {
+import toast from "react-hot-toast";
+
+import { SlClose } from "react-icons/sl";
+const InsightsForm = ({setShowModal}) => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,6 +26,7 @@ const InsightsForm = () => {
 
   async function submitHandler(event) {
     try {
+      event.preventDefault();
       console.log(formData);
       const response = await fetch(`${backendUrl}/createInsight`, {
         method: "POST",
@@ -34,20 +38,27 @@ const InsightsForm = () => {
       });
       const data = await response.json();
       console.log(data);
+      
       navigate("/insights");
+      setShowModal(false);
+      toast.success("Insight created successfully");
     } catch (err) {
       console.log(err);
     }
   }
 
   return (
-    <div className="flex mx-auto justify-center bg-white  p-9">
-      <form className="border p-12">
-        <div>
-          <label>
+    <div className="flex justify-center items-center h-screen">
+      <form className="bg-white p-8 rounded-lg shadow-md">
+        <div className="flex justify-between">
+          <h2 className="text-xl font-bold mb-4">Create an Insight</h2>
+          <SlClose className="cursor-pointer transition-transform duration-300 transform hover:rotate-90 text-gray-500" onClick={() => setShowModal(false)}   />
+        </div>
+        <div className="mb-4">
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Applied Role:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="text"
               name="appliedRole"
               value={formData.appliedRole}
@@ -57,10 +68,10 @@ const InsightsForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Applied Company:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="text"
               name="appliedCompany"
               value={formData.appliedCompany}
@@ -70,10 +81,10 @@ const InsightsForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Rounds:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="number"
               name="rounds"
               value={formData.rounds}
@@ -83,10 +94,10 @@ const InsightsForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Package:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="number"
               name="package"
               value={formData.package}
@@ -96,10 +107,10 @@ const InsightsForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Interview Questions:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="text"
               name="interviewQuestions"
               value={formData.interviewQuestions}
@@ -109,10 +120,10 @@ const InsightsForm = () => {
           </label>
         </div>
         <div>
-          <label>
+          <label className="block text-gray-700 text-sm font-bold mb-2">
             Interview Process:
             <input
-              className="border m-1"
+              className="border rounded p-2 w-full"
               type="text"
               name="interviewProcess"
               value={formData.interviewProcess}
@@ -121,7 +132,10 @@ const InsightsForm = () => {
             />
           </label>
         </div>
-        <button className="border bg-slate-200" onClick={submitHandler}>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={submitHandler}
+        >
           Submit
         </button>
       </form>

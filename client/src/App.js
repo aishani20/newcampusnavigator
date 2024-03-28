@@ -12,6 +12,8 @@ import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import UserProfile from "./pages/UserProfile";
+import Academics from "./pages/Academics";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -25,6 +27,14 @@ function App() {
             element={
               <OpenRoute>
                 <Login />
+              </OpenRoute>
+            }
+          />
+          <Route
+            path="/forgot-password"
+            element={
+              <OpenRoute>
+                <ResetPassword />
               </OpenRoute>
             }
           />
@@ -60,11 +70,20 @@ function App() {
               </PrivateRoute>
             }
           />
+          
           <Route
             path="/:username"
             element={
               <PrivateRoute>
                 <UserProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/academics"
+            element={
+              <PrivateRoute>
+                <Academics />
               </PrivateRoute>
             }
           />

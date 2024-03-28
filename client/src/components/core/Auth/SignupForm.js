@@ -74,63 +74,63 @@ const SignupForm = () => {
     }
   };
   return (
-    <div className="border w-[500px] mx-auto rounded-[32px] flex flex-col items-center">
-      <div className="text-[32px] text-[#333333] my-[20px]">SIGNUP</div>
-      <form className="flex flex-col gap-3 text-[16px] w-[80%]">
-        <div className="flex justify-between">
-          <label>
+    <div className="border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md">
+      <div className="text-3xl text-gray-700 font-semibold mb-6">SIGNUP</div>
+      <form className="flex flex-col gap-3 text-[16px] w-full">
+        <div className="flex gap-2">
+          <label className="flex flex-col">
             <p>First Name</p>
             <input
               type="text"
               name="firstName"
               onChange={changeHandler}
               value={formData.firstName}
-              className="border h-[56px]"
+              className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
             />
           </label>
-          <label>
+          <label className="flex flex-col">
             <p>Last Name</p>
             <input
               type="text"
               name="lastName"
               onChange={changeHandler}
               value={formData.lastName}
-              className="border h-[56px]"
+              className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
             />
           </label>
         </div>
-        <label>
+        <label className="flex flex-col">
           <p>Email Address</p>
           <input
             type="email"
             name="email"
             onChange={changeHandler}
             value={formData.email}
-            className="border h-[56px] w-full"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
           />
         </label>
-        <label>
+        <label className="flex flex-col">
           <p>Password</p>
           <input
             type="password"
             name="password"
-            className="border h-[56px] w-full"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
             onChange={changeHandler}
             value={formData.password}
           />
         </label>
-        <label>
+        <label className="flex flex-col">
           <p>Confirm Password</p>
           <input
             type="password"
             name="confirmPassword"
-            className="border h-[56px] w-full"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
             onChange={changeHandler}
             value={formData.confirmPassword}
           />
         </label>
         <div
-          className="text-[20px] rounded-[32px] bg-[#aaaaaa] text-white text-center my-[24px] py-[21px] cursor-pointer"
+          className="bg-[#3652DD] text-white rounded-lg py-3 text-lg hover:bg-[#2f48c6] transition-colors duration-300 text-center cursor-pointer"
           onClick={submitHandler}
         >
           Sign up
