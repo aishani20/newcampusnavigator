@@ -14,6 +14,7 @@ import Footer from "./components/common/Footer";
 import UserProfile from "./pages/UserProfile";
 import Academics from "./pages/Academics";
 import ResetPassword from "./pages/ResetPassword";
+import NotFound from "./pages/NotFound";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotFound />} />
           <Route
             path="/login"
             element={
