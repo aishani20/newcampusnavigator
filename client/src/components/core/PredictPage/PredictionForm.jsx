@@ -23,6 +23,7 @@ const PredictionForm = () => {
     const { name, value } = event.target;
     console.log("This is event.[name] ", name, value);
     console.log("This is backend url",backendUrl);
+    console.log("This is formdata",formData);
 
 
     setFormData((prev) => {
@@ -79,7 +80,7 @@ const PredictionForm = () => {
               name="CGPA_Till_sixth"
               className="border"
               onChange={changeHandler}
-              value={formData.cgpa}
+              value={formData.CGPA_Till_sixth}
             />
           </label>
           <label>
@@ -91,7 +92,7 @@ const PredictionForm = () => {
               name="sixth_Sem_SGPA"
               className="border"
               onChange={changeHandler}
-              value={formData.sgpa}
+              value={formData.sixth_Sem_SGPA}
             />
           </label>
           <label>
@@ -103,7 +104,7 @@ const PredictionForm = () => {
               name="twelfth_percentage"
               className="border"
               onChange={changeHandler}
-              value={formData.percentage12}
+              value={formData.twelfth_percentage}
             />
           </label>
           <label>
@@ -115,7 +116,7 @@ const PredictionForm = () => {
               name="tenth_percentage"
               className="border"
               onChange={changeHandler}
-              value={formData.percentage10}
+              value={formData.tenth_percentage}
             />
           </label>
         </div>
