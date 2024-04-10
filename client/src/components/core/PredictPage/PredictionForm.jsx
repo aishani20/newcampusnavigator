@@ -83,7 +83,6 @@ const PredictionForm = () => {
               className="border border-gray-300 rounded-md p-2 w-full"
               onChange={changeHandler}
               value={formData.twelfth_percentage}
-              value={formData.twelfth_percentage}
             />
           </div>
           <div className="space-y-2">
@@ -94,7 +93,6 @@ const PredictionForm = () => {
               name="tenth_percentage"
               className="border border-gray-300 rounded-md p-2 w-full"
               onChange={changeHandler}
-              value={formData.tenth_percentage}
               value={formData.tenth_percentage}
             />
           </div>
