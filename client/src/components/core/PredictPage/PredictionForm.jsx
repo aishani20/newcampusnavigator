@@ -16,12 +16,21 @@ const PredictionForm = () => {
 
   const changeHandler = (event) => {
     const { name, value } = event.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: name === "Skills" ? [...prev.Skills, value] : value,
-    }));
+    if (name === "Skills") {
+      const alreadySelected = formData.Skills.includes(value);
+      if (!alreadySelected) {
+        setFormData((prev) => ({
+          ...prev,
+          Skills: [...prev.Skills, value],
+        }));
+      }
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
   };
-
   const unselectSkillHandler = (index) => {
     setFormData((prev) => ({
       ...prev,
@@ -206,5 +215,6 @@ const PredictionForm = () => {
     </div>
   );
 };
-
 export default PredictionForm;
+
+
