@@ -72,7 +72,7 @@ function App() {
           />
           
           <Route
-            path="/:username"
+            path="/abtyagi15"
             element={
               <PrivateRoute>
                 <UserProfile />
@@ -88,7 +88,7 @@ function App() {
             }
           />
           <Route
-            path="/home"
+            path="/blogs"
             element={
               <PrivateRoute>
                 <UserHome />
