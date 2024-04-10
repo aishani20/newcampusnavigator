@@ -38,14 +38,14 @@ const LoginForm = () => {
       console.log(data);
 
       if (data.success) {
-        navigate("/home");
+        navigate("/");
         console.log("If data.success then navigate to home page");
       }
 
       if (data.token) {
         toast.success("Login Successful");
         dispatch(setToken(data.token));
-        navigate("/home");
+        navigate("/");
         console.log("If token then navigate to home page");
       }
     } catch (err) {

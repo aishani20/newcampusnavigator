@@ -18,7 +18,7 @@ const Navbar = () => {
   }
   return (
     <div className="border-b-2 pt-8 pb-4 flex justify-between items-center">
-      <Link to={`${token === null ? "/" : "/home"}`} className="">
+      <Link to="/">
         <div className="relative flex items-center max-w-80">
           <img src={CompleteLogo} alt="Logo" className="" />
         </div>
@@ -27,6 +27,15 @@ const Navbar = () => {
       {token !== null && (
         <>
           <div className="flex flex-col gap-2 md:flex-row md:gap-4 text-lg">
+            <Link
+              to="/blogs"
+              className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+                location.pathname === "/blogs" &&
+                "underline underline-offset-8 decoration-4 decoration-blue-500"
+              }`}
+            >
+              Blogs
+            </Link>
             <Link
               to="/insights"
               className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
