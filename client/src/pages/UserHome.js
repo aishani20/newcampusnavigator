@@ -3,7 +3,7 @@ import PostCardSection from "../components/core/UserHome/PostCardSection";
 
 const Home = () => {
   return (
-    <div className="h-screen">
+    <div>
       <div>
         <PostCardSection />
       </div>
