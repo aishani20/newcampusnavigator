@@ -1,23 +1,31 @@
 import React from "react";
-import HeroImage from "../../../assests/HeroImage.png";
-import HumanInChair from "../../../assests/HumanChair.png";
+import laptopImage from "../../../assests/laptopFrame.png";
 const HeroSection = () => {
   return (
-    <div className="h-[543px] flex items-center justify-center relative text-white">
-      <div className="max-w-[1292px] max-h-[375px] absolute bg-[#3785FA]">
-        <img src={HeroImage} alt="background" className="w-full h-full "/>
+    <section className="flex justify-center items-center py-12">
+      <div>
+        <h1>Join us to get insights</h1>
+        <h2>Share your insights</h2>
+        {/* Add any additional buttons or text here */}
       </div>
-      <div className="absolute flex items-center justify-center">
-        <div className="w-[40%] flex">
-          <img src={HumanInChair} alt="HumanInChair" className="mx-auto" />
-        </div>
-        <div className="w-[40%] flex flex-col items-start gap-[26px]">
-          <div className="text-[34px] font-bold ">Alumini Form</div>
-          <div className="text-[22px]">Share Your Entrepreneurial Journey Story and Inspire All Fellow and Upcoming Alumnis! </div>
-          <div className="text-[20px] font-bold py-[15px] bg-[#2D235A] text-white w-[231.03px] text-center rounded-[4px]">Share Your Experience</div>
+
+      <div className="md:w-1/2 relative mt-8 md:mt-0">
+        <img src={laptopImage} alt="Laptop Frame" className="w-full" />
+        <div className="absolute inset-11 flex items-center justify-center">
+          <iframe
+            width="90%"
+            height="100%"
+            src="https://www.youtube.com/embed/0yw-z6f7Mb4?autoplay=1&mute=1"
+            title="Video Frame"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+            autoPlay
+          >
+          </iframe>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
