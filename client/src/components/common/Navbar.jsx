@@ -44,7 +44,7 @@ const Navbar = () => {
         token === null ? "md:grid-cols-4 " : ""
       }`}
     >
-      <Link to="/" className="col-start-1 col-end-4">
+      <Link to="/" className={`col-start-1 col-end-7 ${token === null ? "lg:col-end-4 md:col-end-5 sm:col-end-6 " : "sm:col-end-6 md:col-end-5 lg:col-end-4"}`}>
         <div className="relative flex items-center max-w-80 ">
           <img src={CompleteLogo} alt="Logo" className="" />
         </div>
@@ -52,7 +52,7 @@ const Navbar = () => {
 
       {token !== null && (
         <div
-          className={`md:flex gap-2  md:flex-row md:gap-4 text-lg justify-center col-start-5 lg:col-end-9 md:col-end-10 ${
+          className={`sm:flex gap-2 md:flex-row md:gap-4 text-lg justify-center sm:col-start-7 sm:col-end-10 md:col-start-5 lg:col-end-9 md:col-end-10 ${
             showMenu === true
               ? "flex flex-col items-center absolute justify-center col-start-3 col-end-4 z-30 top-20"
               : "hidden"
@@ -91,8 +91,8 @@ const Navbar = () => {
         </div>
       )}
       <div
-        className={`text-[#3652DD]  flex items-center justify-center  transition duration-300 ease-in-out 
-                    transform hover:scale-105 lg:col-start-9 md:col-start-10 col-end-12 ${
+        className={`text-[#3652DD]  md:flex items-center justify-center  transition duration-300 ease-in-out 
+                    transform hover:scale-105 ${token === null ? "lg:col-start-9 md:col-start-10 col-end-12" : "lg:col-start-9 md:col-start-10 col-end-12 hidden"} ${
                       showMenu === true ? "hidden sm:block" : "md:flex hidden"
                     }`}
       >
@@ -107,14 +107,14 @@ const Navbar = () => {
       </div>
 
       {token !== null && (
-        <div className="flex gap-3 relative  justify-end items-center md:col-start-12 md:col-end-13">
+        <div className="flex gap-3 relative  justify-end items-center sm:col-start-11 sm:col-end-12 md:col-start-12 md:col-end-13 col-start-11 col-end-12">
           <VscBell
-            className={`w-6 h-6 cursor-pointer self-end sm:block ${
+            className={`w-6 h-6 cursor-pointer sm:block ${
               showMenu === true ? "" : ""
             }`}
           />
           <VscAccount
-            className={`w-6 h-6 cursor-pointer sm:block ${
+            className={`w-6 h-6 cursor-pointer md:block ${
               showMenu ? "col-start-3 col-end-4" : "hidden"
             }`}
             onClick={() => {
@@ -146,27 +146,27 @@ const Navbar = () => {
           className="flex justify-end col-start-12 col-end-13 md:ml-12"
         >
           <div
-            className={`text-[18px] bg-[#3652DD] px-[30px] py-[17px] text-white rounded-[4px] sm:block ${
-              showMenu === true ? "" : "hidden"
-            } `}
+            className={`text-[18px] bg-[#3652DD] px-[30px] py-[17px] text-white rounded-[4px] sm:block  `}
           >
             {location.pathname === "/login" ? "SIGNUP" : "LOGIN"}
           </div>
         </Link>
       )}
-      <div
-        className={`flex md:hidden ${
-          showMenu === true ? "justify-center" : "justify-end"
-        } relative`}
-      >
-        <GiHamburgerMenu
-          onClick={menuToggleHandler}
-          className="cursor-pointer  z-40"
-        />
-        {showMenu === true && (
-          <div className="absolute top-0 left-0 bg-white border border-3 h-screen w-screen flex justify-center items-center z-20"></div>
-        )}
-      </div>
+      {token !== null && (
+        <div
+          className={`flex md:hidden col-start-12 col-end-13 ${
+            showMenu === true ? "justify-center" : "justify-end"
+          } relative`}
+        >
+          <GiHamburgerMenu
+            onClick={menuToggleHandler}
+            className="cursor-pointer  z-40"
+          />
+          {showMenu === true && (
+            <div className="absolute top-0 left-0 bg-white border border-3 h-screen w-screen flex justify-center items-center z-20"></div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
