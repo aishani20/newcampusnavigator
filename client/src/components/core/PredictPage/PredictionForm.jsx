@@ -3,6 +3,7 @@ import skillsData from "../../../assests/data/data.json";
 import { IoCloseSharp } from "react-icons/io5";
 
 const PredictionForm = () => {
+  const predictionUrl = process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL;
   const [formData, setFormData] = useState({
     Branch: "",
     Gender: "",
@@ -28,7 +29,7 @@ const PredictionForm = () => {
         }));
         const { key } = event.target;
         console.log("key", key);
-        setSkills((prev) => prev.filter((skill) => skill.name !==  value));
+        setSkills((prev) => prev.filter((skill) => skill.name !== value));
       }
     } else {
       setFormData((prev) => ({
@@ -49,16 +50,13 @@ const PredictionForm = () => {
     event.preventDefault();
     console.log(formData);
     try {
-      const response = await fetch(
-        process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(predictionUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
       const data = await response.json();
       console.log(data);
     } catch (err) {
