@@ -67,12 +67,12 @@ const PredictionForm = () => {
   };
 
   return (
-    <div className="mx-auto max-w-[650px] p-4 bg-white shadow-md rounded-lg">
+    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:my-16 my-20">
       <h1 className="text-3xl font-bold text-center mb-4">
         Make Your Prediction
       </h1>
-      <form className="space-y-4" onSubmit={submitHandler}>
-        <div className="grid grid-cols-2 gap-4">
+      <form className="space-y-4 md:px-5 sm:px-3 px-2" onSubmit={submitHandler}>
+        <div className="grid md:grid-cols-2 grid-col-1 gap-4">
           <div className="space-y-2">
             <label htmlFor="CGPA_Till_sixth" className="text-sm block">
               CGPA Till Sixth Semester
