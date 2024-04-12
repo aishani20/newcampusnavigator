@@ -2,6 +2,9 @@ import React from "react";
 import Logo from "../../assests/LogoImage.png";
 import CurvedLine from "../../assests/curveUnderline.svg";
 import ForwardArrow from "../../assests/ForwardArrow.svg";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -17,30 +20,34 @@ const Footer = () => {
           <img src={CurvedLine} alt="CurvedLine" />
         </div>
       </div>
-      <div className="flex justify-between my-[23px] items-center">
-        <div className="flex flex-col gap-[10px]">
+      <div className="grid md:grid-cols-2 grid-rows-2">
+        <div className="flex flex-col">
           <b>+91 9340204054</b>
           <div>abtyagi150702@gmail.com</div>
         </div>
-        <div className="bg-[#3652DD] flex items-center rounded-[10px] text-white px-[42px] justify-around w-[800px]">
-          <div className="text-[18px] font-bold py-[37px]">
+        <div className="bg-[#3652DD] flex md:flex-row flex-col md:items-center rounded-[10px] 
+                      text-white px-[42px] md:justify-around items-start ">
+          <div className="text-[18px] font-bold">
             Subscribe to Our Newsletter
           </div>
-          <div className="bg-white flex justify-between rounded-[6px] w-[416px]">
-            <div className="text-[14px] py-16px text-[#0A142F] py-[12.16px] pl-[24px]">
-              Email Address
-            </div>
+          <div className="bg-white flex justify-between rounded-[6px] ">
+            <div className="text-[14px]  text-[#0A142F]">Email Address</div>
             <img
               src={ForwardArrow}
               alt="ForwardArrow"
-              className=" bg-[#D6D6D6] py-[12.16px] px-[35px] rounded-r-[6px]"
+              className=" bg-[#D6D6D6] rounded-r-[6px]"
             />
           </div>
         </div>
       </div>
-      <hr className="border" />
-      <div className="flex justify-between mt-[20px] items-center">
-        <div>Social Media</div>
+      <hr className="border my-4" />
+      <div className="flex md:flex-row flex-col items-center md:justify-between md:items-center">
+        <div className="flex items-center gap-3">
+          <span>Social Media</span>
+          <span className="flex">
+            <FaInstagramSquare /> <FaSquareXTwitter /> <FaLinkedin />
+          </span>
+        </div>
         <div className="flex gap-4">
           <span>A product of</span>
           <img src={Logo} alt="Logo" className="w-[26.16px]" />
