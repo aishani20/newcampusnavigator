@@ -10,7 +10,7 @@ const Predict = () => {
       <div>
         <PredictForm setPredictionResult={setPredictionResult}/>
       </div>
-      <div className={`max-w-[650px] w-full p-4 bg-white border shadow-md rounded-lg md:mb-16 mb-20 mt-2 ${loading && "space-y-4 bg-slate-400 animate-pulse "}`}>
+      <div className={`max-w-[650px] w-full p-4 bg-white border shadow-md rounded-lg md:mb-16 mb-20 mt-2 ${loading && "space-y-4 bg-slate-500 animate-pulse "}`}>
       {
         !loading && `Output: ${predictionResult}` 
       }
