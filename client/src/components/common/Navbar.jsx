@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { VscBell } from "react-icons/vsc";
 import { VscAccount } from "react-icons/vsc";
 import { VscSignOut } from "react-icons/vsc";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { setToken } from "../../slices/authSlice";
 import { useDispatch } from "react-redux";
@@ -44,7 +45,14 @@ const Navbar = () => {
         token === null ? "md:grid-cols-4 " : ""
       }`}
     >
-      <Link to="/" className={`col-start-1 col-end-7 ${token === null ? "lg:col-end-4 md:col-end-5 sm:col-end-6 " : "sm:col-end-6 md:col-end-5 lg:col-end-4"}`}>
+      <Link
+        to="/"
+        className={`col-start-1 col-end-7 ${
+          token === null
+            ? "lg:col-end-4 md:col-end-5 sm:col-end-6 "
+            : "sm:col-end-6 md:col-end-5 lg:col-end-4"
+        }`}
+      >
         <div className="relative flex items-center max-w-80 ">
           <img src={CompleteLogo} alt="Logo" className="" />
         </div>
@@ -52,11 +60,12 @@ const Navbar = () => {
 
       {token !== null && (
         <div
-          className={`sm:flex gap-2 md:flex-row md:gap-4 text-lg justify-center sm:col-start-7 sm:col-end-10 md:col-start-5 lg:col-end-9 md:col-end-10 ${
-            showMenu === true
-              ? "flex flex-col items-center absolute justify-center col-start-3 col-end-4 z-30 top-20"
-              : "hidden"
-          }`}
+          className={`sm:flex gap-2 sm:flex-row md:gap-4 text-lg justify-center sm:col-start-7 sm:col-end-10 
+                    md:col-start-5 lg:col-end-9 md:col-end-10 ${
+                      showMenu === true
+                        ? "flex flex-col absolute sm:static col-start-12 col-end-13 z-30 top-[12rem] right-40"
+                        : "hidden"
+                    }`}
         >
           <Link
             to="/blogs"
@@ -92,9 +101,15 @@ const Navbar = () => {
       )}
       <div
         className={`text-[#3652DD]  md:flex items-center justify-center  transition duration-300 ease-in-out 
-                    transform hover:scale-105 ${token === null ? "lg:col-start-9 md:col-start-10 col-end-12" : "lg:col-start-9 md:col-start-10 col-end-12 hidden"} ${
-                      showMenu === true ? "hidden sm:block" : "md:flex hidden"
-                    }`}
+                    transform hover:scale-105 ${
+                      token === null
+                        ? "lg:col-start-9 md:col-start-10 col-end-12"
+                        : "lg:col-start-9 md:col-start-10 col-end-12"
+                    } ${
+          showMenu === true
+            ? "block sm:block absolute md:static sm:right-[-2.5rem] -right-5 top-80 sm:top-40 z-30"
+            : "md:flex hidden"
+        }`}
       >
         <Link
           to="/predict"
@@ -102,7 +117,11 @@ const Navbar = () => {
           className="flex items-center justify-center text-lg px-4 py-2 font-semibold border-2 border-[#3652DD]  rounded-md"
         >
           <img src={predictionImage} alt="Logo" className="w-7 h-7 mr-2" />
-          <span className="lg:block hidden">Check Your Success</span>
+          <span
+            className={`lg:block md:hidden ${showMenu === true ? "block" : ""}`}
+          >
+            Check Your Success
+          </span>
         </Link>
       </div>
 
@@ -115,7 +134,7 @@ const Navbar = () => {
           />
           <VscAccount
             className={`w-6 h-6 cursor-pointer md:block ${
-              showMenu ? "col-start-3 col-end-4" : "hidden"
+              showMenu === true ? "hidden" : "hidden"
             }`}
             onClick={() => {
               setShowMenu(false);
@@ -155,15 +174,36 @@ const Navbar = () => {
       {token !== null && (
         <div
           className={`flex md:hidden col-start-12 col-end-13 ${
-            showMenu === true ? "justify-center" : "justify-end"
+            showMenu === true ? "justify-center " : "justify-end"
           } relative`}
         >
-          <GiHamburgerMenu
-            onClick={menuToggleHandler}
-            className="cursor-pointer  z-40"
-          />
+          <div onClick={menuToggleHandler}>
+            {showMenu === false ? (
+              <GiHamburgerMenu
+                className={`cursor-pointer w-7 h-7  ${
+                  showMenu && "bg-gray-400 p-1"
+                } z-40 `}
+              />
+            ) : (
+              <AiOutlineClose
+                className={`cursor-pointer w-8 h-8  ${
+                  showMenu && "bg-gray-400 p-1"
+                } z-40 `}
+              />
+            )}
+          </div>
+
           {showMenu === true && (
-            <div className="absolute top-0 left-0 bg-white border border-3 h-screen w-screen flex justify-center items-center z-20"></div>
+            <div className="absolute sm:top-10 top-[45px] right-0 bg-white border border-3 w-64 min-h-screen gap-2 z-20 ">
+              <div className="flex items-center gap-3 p-5">
+                <VscAccount className="w-8 h-8" />
+                <div className="flex flex-col">
+                  <span className="text-blue-700">@abtyagi15</span>
+                  <span>Abhishek Tyagi</span>
+                </div>
+              </div>
+              <hr className="w-full" />
+            </div>
           )}
         </div>
       )}
