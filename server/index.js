@@ -30,8 +30,8 @@ const insightsRoute = require('./routes/Insights');
 app.use('/api/v1',insightsRoute);    
 
 
-app.get('/', (req, res) => {
-    res.send('Welcome to CampusNavigator');
+app.get('/api/v1', (req, res) => {
+    res.json({message: "Welcome to the CampusNavigator!"});
 })
 
 app.listen(PORT, () => {
