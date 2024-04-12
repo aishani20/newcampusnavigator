@@ -15,8 +15,21 @@ import UserProfile from "./pages/UserProfile";
 import Academics from "./pages/Academics";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
+import { useEffect } from "react";
 
 function App() {
+  
+  useEffect(() => {
+    async function fetchData() {
+      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}`,{
+        method: "GET",
+        credentials: "include"
+      })
+      const data = await res.json();
+      console.log("This is get request",data);
+    }
+    fetchData();
+  },[]);
   return (
     <div className="min-h-screen flex flex-col">
       <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full">
@@ -72,7 +85,7 @@ function App() {
               </PrivateRoute>
             }
           />
-          
+
           <Route
             path="/abtyagi15"
             element={
