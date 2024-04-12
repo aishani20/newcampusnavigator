@@ -18,11 +18,11 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <div className="w-screen h-screen flex flex-col overflow-x-hidden">
-      <div className="xl:w-[1200px] lg:w-[1000px] mx-auto">
+    <div className="min-h-screen flex flex-col">
+      <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route exact path="/" element={<Home />} />
           <Route path="*" element={<NotFound />} />
           <Route
             path="/login"

@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 // import Logo from "../../assests/LogoImage.png";
 // import CurvedLine from "../../assests/curveUnderline.svg";
 import CompleteLogo from "../../assests/completeLogo.png";
+import predictionImage from "../../assests/prediction.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -39,19 +40,19 @@ const Navbar = () => {
   }
   return (
     <div
-      className={`border-b-2 pt-8 pb-4 grid md:grid-cols-3 grid-cols-3 items-center relative ${
+      className={`border-b-2 pt-8 pb-4 grid grid-cols-12 items-center relative ${
         token === null ? "md:grid-cols-4 " : ""
       }`}
     >
-      <Link to="/">
-        <div className="relative flex items-center max-w-80">
+      <Link to="/" className="col-start-1 col-end-4">
+        <div className="relative flex items-center max-w-80 ">
           <img src={CompleteLogo} alt="Logo" className="" />
         </div>
       </Link>
 
       {token !== null && (
         <div
-          className={`md:flex gap-2  md:flex-row md:gap-4 text-lg justify-center ${
+          className={`md:flex gap-2  md:flex-row md:gap-4 text-lg justify-center col-start-5 lg:col-end-9 md:col-end-10 ${
             showMenu === true
               ? "flex flex-col items-center absolute justify-center col-start-3 col-end-4 z-30 top-20"
               : "hidden"
@@ -89,53 +90,60 @@ const Navbar = () => {
           </Link>
         </div>
       )}
-
-      <div className="flex justify-end items-center gap-6">
+      <div
+        className={`text-[#3652DD]  flex items-center justify-center  transition duration-300 ease-in-out 
+                    transform hover:scale-105 lg:col-start-9 md:col-start-10 col-end-12 ${
+                      showMenu === true ? "hidden sm:block" : "md:flex hidden"
+                    }`}
+      >
         <Link
           to="/predict"
           onClick={() => setShowMenu(false)}
-          className={`text-[#3652DD] border-2 border-[#3652DD] text-[16px] px-[13px] py-[15px] rounded-[4px] sm:block ${
-            showMenu === true ? "" : "hidden"
-          }`}
+          className="flex items-center justify-center text-lg px-4 py-2 font-semibold border-2 border-[#3652DD]  rounded-md"
         >
-          Check Your Success
+          <img src={predictionImage} alt="Logo" className="w-7 h-7 mr-2" />
+          <span className="lg:block hidden">Check Your Success</span>
         </Link>
-        {token !== null && (
-          <div className="flex gap-3">
-            <VscBell
-              className={`w-6 h-6 cursor-pointer sm:block ${
-                showMenu === true ? "" : ""
-              }`}
-            />
-            <VscAccount
-              className={`w-6 h-6 cursor-pointer sm:block ${
-                showMenu ? "col-start-3 col-end-4" : "hidden"
-              }`}
-              onClick={() => {
-                setShowMenu(false);
-                classChangeHandler();
-              }}
-            />
-            {show && (
-              <div className={`flex flex-col border p-2 rounded shadow-sm`}>
-                <span>Profile</span>
-                <span>Setting</span>
-                <span
-                  className={`flex items-center gap-1 cursor-pointer`}
-                  onClick={signoutHanlder}
-                >
-                  <p>Signout</p>
-                  <VscSignOut />
-                </span>
-              </div>
-            )}
-          </div>
-        )}
       </div>
+
+      {token !== null && (
+        <div className="flex gap-3 relative  justify-end items-center md:col-start-12 md:col-end-13">
+          <VscBell
+            className={`w-6 h-6 cursor-pointer self-end sm:block ${
+              showMenu === true ? "" : ""
+            }`}
+          />
+          <VscAccount
+            className={`w-6 h-6 cursor-pointer sm:block ${
+              showMenu ? "col-start-3 col-end-4" : "hidden"
+            }`}
+            onClick={() => {
+              setShowMenu(false);
+              classChangeHandler();
+            }}
+          />
+          {show && (
+            <div
+              className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white`}
+            >
+              <span>Profile</span>
+              <span>Setting</span>
+              <span
+                className={`flex items-center gap-1 cursor-pointer`}
+                onClick={signoutHanlder}
+              >
+                <p>Signout</p>
+                <VscSignOut />
+              </span>
+            </div>
+          )}
+        </div>
+      )}
+
       {token === null && (
         <Link
           to={location.pathname === "/login" ? "/signup" : "/login"}
-          className="flex justify-end cols-start-4 cols-end-5"
+          className="flex justify-end col-start-12 col-end-13 md:ml-12"
         >
           <div
             className={`text-[18px] bg-[#3652DD] px-[30px] py-[17px] text-white rounded-[4px] sm:block ${
@@ -146,7 +154,11 @@ const Navbar = () => {
           </div>
         </Link>
       )}
-      <div className="flex md:hidden justify-center relative">
+      <div
+        className={`flex md:hidden ${
+          showMenu === true ? "justify-center" : "justify-end"
+        } relative`}
+      >
         <GiHamburgerMenu
           onClick={menuToggleHandler}
           className="cursor-pointer  z-40"
