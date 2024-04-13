@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../../slices/authSlice";
 
 import { SlClose } from "react-icons/sl";
-const InsightsForm = ({setShowModal}) => {
+const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -23,36 +26,50 @@ const InsightsForm = ({setShowModal}) => {
     }));
     console.log("Handle change", formData);
   };
+  const dispatch = useDispatch();
+  const submitHandler = async (event) => {
+    event.preventDefault();
+    dispatch(setLoading(true));
 
-  async function submitHandler(event) {
     try {
-      event.preventDefault();
-      console.log(formData);
-      const response = await fetch(`${backendUrl}/createInsight`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
-        body: JSON.stringify(formData),
+      const response = await axios.post(`${backendUrl}/createInsight`, formData, {
+        withCredentials: true,
       });
-      const data = await response.json();
-      console.log(data);
-      
-      navigate("/insights");
+
+      const data = response.data;
+
+      if (data.success) {
+        setIsNewInsight(true);
+        toast.success("Insight created successfully");
+        setFormData({
+          appliedRole: "",
+          appliedCompany: "",
+          rounds: "",
+          package: "",
+          interviewQuestions: "",
+          interviewProcess: "",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating insight:", error);
+    } finally {
+      setTimeout(() => {
+        dispatch(setLoading(false));
+      }, 1000);
       setShowModal(false);
-      toast.success("Insight created successfully");
-    } catch (err) {
-      console.log(err);
+      navigate("/insights");
     }
-  }
+  };
 
   return (
     <div className="flex justify-center items-center h-screen">
       <form className="bg-white p-8 rounded-lg shadow-md">
         <div className="flex justify-between">
           <h2 className="text-xl font-bold mb-4">Create an Insight</h2>
-          <SlClose className="cursor-pointer transition-transform duration-300 transform hover:rotate-90 text-gray-500" onClick={() => setShowModal(false)}   />
+          <SlClose
+            className="cursor-pointer transition-transform duration-300 transform hover:rotate-90 text-gray-500"
+            onClick={() => setShowModal(false)}
+          />
         </div>
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">

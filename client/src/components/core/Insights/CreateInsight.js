@@ -2,9 +2,12 @@ import React, { useState } from "react";
 import { FaPlus } from "react-icons/fa6";
 import InsightForm from "./CreateInsightForm";
 
-const CreateInsight = () => {
+const CreateInsight = ({setAllInsights,setIsNewInsight}) => {
   const [showModal, setShowModal] = useState(false);
-
+  // const [insightChange,setInsightChange] = useState(false);
+  // useEffect(()=>{
+  //   setInsightChange((prev)=>!prev);
+  // },[allInsights]);
   const modalHandler = () => {
     setShowModal((prev) => !prev);
   };
@@ -12,7 +15,7 @@ const CreateInsight = () => {
   return (
     <div>
       <div
-        className={`border flex gap-1 items-center p-2 rounded cursor-pointer`}
+        className={`border flex gap-1 items-center p-2 rounded cursor-pointer `}
         onClick={modalHandler}
       >
         <FaPlus className="text-blue-500" />
@@ -22,7 +25,7 @@ const CreateInsight = () => {
         <div className="absolute inset-0 flex justify-center items-center">
           <div className="bg-black bg-opacity-50 absolute inset-0" />
           <div className="absolute z-10">
-            <InsightForm setShowModal={setShowModal}/>
+            <InsightForm setShowModal={setShowModal} setAllInsights={setAllInsights} setIsNewInsight={setIsNewInsight}/>
           </div>
         </div>
       )}
