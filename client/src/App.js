@@ -13,6 +13,10 @@ import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
 import UserProfile from "./pages/UserProfile";
 import Academics from "./pages/Academics";
+import ProgrammingBooks from "./components/core/Academics/ProgrammingBooks";
+import QuestionPaper from "./components/core/Academics/QuestionPaper";
+import Notes from "./components/core/Academics/Notes";
+import SemesterBooks from "./components/core/Academics/SemesterBooks";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
@@ -94,6 +98,38 @@ function App() {
             element={
               <PrivateRoute>
                 <Academics />
+              </PrivateRoute>
+            }
+          />
+           <Route
+            path="/academics/programming-books"
+            element={
+              <PrivateRoute>
+                <ProgrammingBooks />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/academics/pyq"
+            element={
+              <PrivateRoute>
+                <QuestionPaper />
+              </PrivateRoute>
+            }
+            />
+            <Route
+            path="/academics/notes"
+            element={
+              <PrivateRoute>
+                <Notes />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/academics/semester-books"
+            element={
+              <PrivateRoute>
+                <SemesterBooks />
               </PrivateRoute>
             }
           />
