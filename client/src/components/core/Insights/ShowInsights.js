@@ -26,9 +26,10 @@ const ShowInsights = ({
       } catch (error) {
         console.error("Error fetching insights:", error);
       } finally {
-        setTimeout(() => {
-          dispatch(setLoading(false));
-        }, 3000);
+        // setTimeout(() => {
+        //   dispatch(setLoading(false));
+        // }, 3000);
+        dispatch(setLoading(false));
       }
     };
 
