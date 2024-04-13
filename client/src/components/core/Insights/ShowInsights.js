@@ -1,40 +1,58 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import InsightCard from "./InsightCard";
+import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { setLoading } from "../../../slices/authSlice";
 
-const ShowInsights = () => {
+const ShowInsights = ({
+  allInsights,
+  setAllInsights,
+  isNewInsight,
+  showLoader,
+}) => {
+  const { loading } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  const [insights, setInsights] = useState([]);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    async function getInsights() {
-      const response = await fetch(`${backendUrl}/getAllInsights`, {
-        method: "GET",
-        credentials: "include",
-      });
-      const data = await response.json();
-      const insightsArray = data.insights;
-      console.log(
-        "Insights recieved from backend",
-        insightsArray[0],
-        typeof insightsArray
-      );
+    const fetchData = async () => {
+      dispatch(setLoading(true));
+      try {
+        const response = await axios.get(`${backendUrl}/getAllInsights`, {
+          withCredentials: true,
+        });
+        const data = response.data;
+        const insightsArray = data.insights.reverse();
+        setAllInsights(insightsArray);
+      } catch (error) {
+        console.error("Error fetching insights:", error);
+      } finally {
+        setTimeout(() => {
+          dispatch(setLoading(false));
+        }, 1000);
+      }
+    };
 
-      setInsights(insightsArray);
-    }
-    getInsights();
-  }, [backendUrl]);
-  // const newInsightArray = Object.values(insights);
-  // console.log("Insights", insights,typeof(newInsightArray[0]);
+    fetchData();
+  }, [backendUrl, dispatch, setAllInsights,isNewInsight]);
+  console.log("Showing all insights", allInsights);
+  console.log("Checking the loading in show insight ", loading);
+
   return (
-    <div>
-    {
-      Object.values(insights).map((insight) => {
-        return (
-          <InsightCard key={insight._id} insight={insight} />
-        )
-      })
-    }
-    </div>
+    <>
+      {showLoader && loading ? (
+        <div className="w-full  h-96 ">
+          <div className="animate-pulse border w-[700px] mx-auto h-96">
+            Loading....
+          </div>
+        </div>
+      ) : (
+        <div>
+          {Object.values(allInsights).map((insight, index) => {
+            return <InsightCard key={index} insight={insight} allInsights />;
+          })}
+        </div>
+      )}
+    </>
   );
 };
 

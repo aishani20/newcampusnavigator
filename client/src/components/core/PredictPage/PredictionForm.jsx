@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import skillsData from "../../../assests/data/data.json";
 import { IoCloseSharp } from "react-icons/io5";
 
-const PredictionForm = () => {
+import { useDispatch } from "react-redux";
+import { setLoading } from "../../../slices/authSlice";
+
+const PredictionForm = ({ setPredictionResult }) => {
+  const predictionUrl = process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL;
   const [formData, setFormData] = useState({
     Branch: "",
     Gender: "",
@@ -28,7 +32,7 @@ const PredictionForm = () => {
         }));
         const { key } = event.target;
         console.log("key", key);
-        setSkills((prev) => prev.filter((skill) => skill.name !==  value));
+        setSkills((prev) => prev.filter((skill) => skill.name !== value));
       }
     } else {
       setFormData((prev) => ({
@@ -44,22 +48,23 @@ const PredictionForm = () => {
     }));
     setSkills((prev) => [...prev, { name: formData.Skills[index] }]);
   };
-
+  const dispatch = useDispatch();
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log(formData);
     try {
-      const response = await fetch(
-        process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }
-      );
+      const response = await fetch(predictionUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+        credentials: "include",
+      });
       const data = await response.json();
+      const result = data.result;
+      setPredictionResult(result);
+      dispatch(setLoading(false));
       console.log(data);
     } catch (err) {
       console.log(err);
@@ -67,12 +72,18 @@ const PredictionForm = () => {
   };
 
   return (
-    <div className="mx-auto max-w-[650px] p-4 bg-white shadow-md rounded-lg">
+    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16">
       <h1 className="text-3xl font-bold text-center mb-4">
         Make Your Prediction
       </h1>
-      <form className="space-y-4" onSubmit={submitHandler}>
-        <div className="grid grid-cols-2 gap-4">
+      <form
+        className="space-y-4 md:px-5 sm:px-3 px-2"
+        onSubmit={(e) => {
+          submitHandler(e);
+          dispatch(setLoading(true));
+        }}
+      >
+        <div className="grid md:grid-cols-2 grid-col-1 gap-4">
           <div className="space-y-2">
             <label htmlFor="CGPA_Till_sixth" className="text-sm block">
               CGPA Till Sixth Semester
