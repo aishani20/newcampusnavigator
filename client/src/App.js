@@ -15,6 +15,8 @@ import UserProfile from "./pages/UserProfile";
 import Academics from "./pages/Academics";
 import ProgrammingBooks from "./components/core/Academics/ProgrammingBooks";
 import QuestionPaper from "./components/core/Academics/QuestionPaper";
+import Notes from "./components/core/Academics/Notes";
+import SemesterBooks from "./components/core/Academics/SemesterBooks";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
@@ -108,13 +110,29 @@ function App() {
             }
           />
           <Route
-            path="/academics/question-paper"
+            path="/academics/pyq"
             element={
               <PrivateRoute>
                 <QuestionPaper />
               </PrivateRoute>
             }
             />
+            <Route
+            path="/academics/notes"
+            element={
+              <PrivateRoute>
+                <Notes />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/academics/semester-books"
+            element={
+              <PrivateRoute>
+                <SemesterBooks />
+              </PrivateRoute>
+            }
+          />
           <Route
             path="/blogs"
             element={

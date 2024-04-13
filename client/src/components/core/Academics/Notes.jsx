@@ -5,7 +5,7 @@ const QuestionPaper = () => {
     const crumbs = [
       { text: 'Home', link: '/' },
       { text: 'Academics', link: '/academics' },
-      { text: 'PYQ', link: '/academics/pyq' },
+      { text: 'Notes', link: '/academics/notes' },
     ];
   
   
