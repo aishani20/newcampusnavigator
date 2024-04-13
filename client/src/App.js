@@ -16,20 +16,15 @@ import Academics from "./pages/Academics";
 import ResetPassword from "./pages/ResetPassword";
 import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
+import axios from "axios";
 
 function App() {
-  
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}`,{
-        method: "GET",
-        credentials: "include"
-      })
-      const data = await res.json();
-      console.log("This is get request",data);
-    }
-    fetchData();
-  },[]);
+    axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}`)
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full">

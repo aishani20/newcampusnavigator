@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {  useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
 
 const VerifyEmailForm = () => {
   const { signupData } = useSelector((state) => state.auth);
@@ -39,7 +40,8 @@ const VerifyEmailForm = () => {
       });
       const data = await response.json();
       if (data.success) {
-        navigate("/home");
+        navigate("/");
+        toast.success("Account created, login to access");
       } else {
         alert("Invalid OTP. Please try again.");
       }
