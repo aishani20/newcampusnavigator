@@ -1,22 +1,34 @@
-import React from "react";
-import {Link} from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { SlLike } from "react-icons/sl";
 import { SlShareAlt } from "react-icons/sl";
 import { LiaCommentAlt } from "react-icons/lia";
 import { BsThreeDots } from "react-icons/bs";
 import { VscAccount } from "react-icons/vsc";
 import TimeDiffCalculator from "../../../utils/TimeDiffCalculator";
-const InsightCard = ({ insight }) => {
+
+import { useSelector, useDispatch } from "react-redux";
+// import { setLoading } from "../../../slices/authSlice";
+
+const InsightCard = ({ insight, allInsights }) => {
   const createdDate = new Date(insight.createdAt);
   const currentDate = new Date();
   const authoredTime = TimeDiffCalculator(currentDate, createdDate);
-  
-  
+
+  const { loading } = useSelector((state) => state.auth);
+  // const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(setLoading(false));
+  // },[allInsights,loading]);
+
   return (
     <div>
       <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm hover:bg-gray-100">
         <div className="items-center mb-4 flex">
-          <Link to={`/username`}><VscAccount className="w-10 h-10 rounded-md object-cover mr-2" /></Link>
+          <Link to={`/username`}>
+            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2" />
+          </Link>
           <div className="flex flex-col w-full">
             <div className="font-bold text-lg">
               <span>{insight.appliedRole}</span> -{" "}
@@ -42,7 +54,8 @@ const InsightCard = ({ insight }) => {
         <div className="mb-6">
           <div className="flex gap-20">
             <div className="mb-2">
-              Total No. of round : <span className="font-bold">{insight.rounds}</span>
+              Total No. of round :{" "}
+              <span className="font-bold">{insight.rounds}</span>
             </div>
             <div className="mb-2">
               Approx Package offered(LPA) :{" "}
@@ -77,6 +90,6 @@ const InsightCard = ({ insight }) => {
       </div>
     </div>
   );
-  };
+};
 
 export default InsightCard;
