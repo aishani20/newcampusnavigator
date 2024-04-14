@@ -29,47 +29,51 @@ const LoginForm = () => {
   }
   async function submitHandler(event) {
     event.preventDefault();
+
+    // Check if email and password are provided
     if (!formData.email || !formData.password) {
       setMessage("Please fill all the fields");
       return;
     }
+
     try {
+      // Send login request to the backend
       const response = await axios.post(`${backendUrl}/login`, formData, {
         headers: {
           "Content-Type": "application/json",
         },
         withCredentials: true,
       });
+
       const data = response.data;
       console.log(data);
 
-      if(data.success === false) {
-        setMessage(data.message);
+      // Handle response from the server
+      if (!data.success) {
+        setMessage(data.message); // Display error message from the server
         return;
       }
 
-      if (data && data.success===true) {
-        setLoading(true);
-        navigate("/");
-        console.log("If data.success then navigate to home page");
-      }
-
-      if (data && data.token) {
-        toast.success("Login Successful");
-        dispatch(setToken(data.token));
-        navigate("/");
-        console.log("If token then navigate to home page");
+      // Login successful
+      dispatch(setLoading(true)); // Set loading state
+      navigate("/"); // Navigate to home page
+      if (data.token) {
+        toast.success("Login Successful"); // Show success toast
+        dispatch(setToken(data.token)); // Set user token in Redux store
       }
     } catch (err) {
-      console.log(err);
+      console.log(err); // Log any errors
     }
   }
+
   return (
     <div className="m-20 border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md px-8 sm:px-6">
       <div className="text-3xl text-gray-700 font-semibold mb-6">LOGIN</div>
-      {message && (<div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
-        {message}
-      </div>)}
+      {message && (
+        <div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
+          {message}
+        </div>
+      )}
       <form className="flex flex-col gap-4 w-full">
         <label className="flex flex-col md:w-80">
           <p className="text-gray-700 mb-1">Email Address</p>
