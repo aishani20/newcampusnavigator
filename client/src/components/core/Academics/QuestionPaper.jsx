@@ -7,8 +7,7 @@
 //       { text: 'Academics', link: '/academics' },
 //       { text: 'PYQ', link: '/academics/pyq' },
 //     ];
-  
-  
+
 //   const [selectedYear, setSelectedYear] = useState('');
 //   const [uploadedFiles, setUploadedFiles] = useState([]);
 
@@ -76,9 +75,9 @@
 //             className="hidden"
 //           />
 //         </div>
-        
+
 //           Upload
-        
+
 //       </form>
 //       <h2 className="text-xl">Uploaded Files:</h2>
 //       <ul className="pl-0">
@@ -93,20 +92,18 @@
 
 // export default QuestionPaper;
 
-
-
-import React, { useState } from 'react';
-import Breadcrumbs from '../../common/Breadcrumbs';
+import React, { useState } from "react";
+import Breadcrumbs from "../../common/Breadcrumbs";
 
 const QuestionPaper = () => {
   const crumbs = [
-    { text: 'Home', link: '/' },
-    { text: 'Academics', link: '/academics' },
-    { text: 'PYQ', link: '/academics/pyq' },
+    { text: "Home", link: "/" },
+    { text: "Academics", link: "/academics" },
+    { text: "PYQ", link: "/academics/pyq" },
   ];
 
-  const [selectedYear, setSelectedYear] = useState('');
-  const [selectedBranch, setSelectedBranch] = useState('');
+  const [selectedYear, setSelectedYear] = useState("");
+  const [selectedBranch, setSelectedBranch] = useState("");
   const [uploadedFiles, setUploadedFiles] = useState([]);
 
   const handleYearSelection = (year) => {
@@ -125,72 +122,93 @@ const QuestionPaper = () => {
   const handleFileSubmit = (event) => {
     event.preventDefault();
     // Add logic here to handle file submission, e.g., send files to server
-    console.log('Files uploaded:', uploadedFiles);
+    console.log("Files uploaded:", uploadedFiles);
   };
 
   return (
-    <div className="h-screen">
+    <div className="h-screen ">
       <div>
         <Breadcrumbs crumbs={crumbs} />
       </div>
       <div className="max-w-screen-lg mx-auto p-8">
-        <h1 className="text-3xl font-bold mb-4">Previous Year Question Papers</h1>
-        
-        {/* Filters */}
-        <div className="flex space-x-4 mb-6">
-          <select
-            value={selectedYear}
-            onChange={(e) => handleYearSelection(e.target.value)}
-            className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300"
-          >
-            <option value="">Select Year</option>
-            <option value="1st">1st Year</option>
-            <option value="2nd">2nd Year</option>
-            <option value="3rd">3rd Year</option>
-            <option value="4th">4th Year</option>
-          </select>
-          <select
-            value={selectedBranch}
-            onChange={(e) => handleBranchSelection(e.target.value)}
-            className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300"
-          >
-            <option value="">Select Branch</option>
-            <option value="cse">CSE</option>
-            <option value="mechanical">Mechanical</option>
-            <option value="civil">Civil</option>
-            <option value="ec">EC</option>
-            <option value="ee">EE</option>
-            <option value="ai">AI</option>
-            <option value="iot">IoT</option>
-          </select>
+        <div>
+          <h1 className="text-3xl font-bold mb-4">
+            Previous Year Question Papers
+          </h1>
+
+          {/* Filters */}
+          <div className="flex space-x-4 mb-6">
+            <select
+              value={selectedYear}
+              onChange={(e) => handleYearSelection(e.target.value)}
+              className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300"
+            >
+              <option value="">Select Year</option>
+              <option value="1st">1st Year</option>
+              <option value="2nd">2nd Year</option>
+              <option value="3rd">3rd Year</option>
+              <option value="4th">4th Year</option>
+            </select>
+            <select
+              value={selectedBranch}
+              onChange={(e) => handleBranchSelection(e.target.value)}
+              className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300"
+            >
+              <option value="">Select Branch</option>
+              <option value="cse">CSE</option>
+              <option value="mechanical">Mechanical</option>
+              <option value="civil">Civil</option>
+              <option value="ec">EC</option>
+              <option value="ee">EE</option>
+              <option value="ai">AI</option>
+              <option value="iot">IoT</option>
+            </select>
+          </div>
+        </div>
+        <div className="flex gap-4">
+          <div className="border w-[90%]">Hello</div>
+          <div>
+          <div className="border">
+            <div className="text-xl mb-4">
+              Upload Files for {selectedYear} - {selectedBranch}:
+            </div>
+            <form className="mb-6" onSubmit={handleFileSubmit}>
+              <div className="mb-4">
+                <label
+                  htmlFor="uploadInput"
+                  className="btn-label bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer"
+                >
+                  Choose Files
+                </label>
+                <input
+                  type="file"
+                  id="uploadInput"
+                  multiple
+                  onChange={handleFileUpload}
+                  accept=".pdf,.doc,.docx"
+                  className="hidden"
+                />
+              </div>
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+              >
+                Upload
+              </button>
+            </form>
+          </div>
+
+          <div>
+            <div className="text-xl">Uploaded Files:</div>
+            <ul className="pl-0">
+              {uploadedFiles.map((file, index) => (
+                <li key={index}>{file.name}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
         </div>
         
-        <h2 className="text-xl mb-4">Upload Files for {selectedYear} - {selectedBranch}:</h2>
-        <form className="mb-6" onSubmit={handleFileSubmit}>
-          <div className="mb-4">
-            <label htmlFor="uploadInput" className="btn-label bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer">
-              Choose Files
-            </label>
-            <input
-              type="file"
-              id="uploadInput"
-              multiple
-              onChange={handleFileUpload}
-              accept=".pdf,.doc,.docx"
-              className="hidden"
-            />
-          </div>
-          <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-            Upload
-          </button>
-        </form>
-        
-        <h2 className="text-xl">Uploaded Files:</h2>
-        <ul className="pl-0">
-          {uploadedFiles.map((file, index) => (
-            <li key={index}>{file.name}</li>
-          ))}
-        </ul>
       </div>
     </div>
   );
