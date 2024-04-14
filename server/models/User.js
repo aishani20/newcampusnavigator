@@ -11,6 +11,9 @@ const userSchema = new mongoose.Schema({
     trim: true,
     required: true,
   },
+  token: {
+    type: String
+  },
   email: {
     type: String,
     trim: true,
@@ -20,6 +23,8 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   }
-});
+}, //timestamp for when the document was created and modified
+  {timestamps: true}
+);
 
 module.exports = mongoose.model("User", userSchema);

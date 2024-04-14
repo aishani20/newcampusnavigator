@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect   } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 // import Logo from "../../assests/LogoImage.png";
 // import CurvedLine from "../../assests/curveUnderline.svg";
@@ -19,6 +19,9 @@ import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
+  useEffect(() => {
+    console.log("Checking cookie", document.cookie);
+  }, [token]);
   const location = useLocation();
   const [show, setShow] = useState(false);
   const [showMenu, setShowMenu] = useState(false);

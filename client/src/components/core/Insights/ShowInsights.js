@@ -18,7 +18,10 @@ const ShowInsights = ({
       dispatch(setLoading(true));
       try {
         const response = await axios.get(`${backendUrl}/getAllInsights`, {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          }
+          
         });
         const data = response.data;
         if (data && Array.isArray(data.insights) && data.insights.length > 0) {
