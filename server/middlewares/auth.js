@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 
 exports.auth = async (req, res, next) => {
   try {
-    const tokenArray = req.header("token").split(" ");
+    const tokenArray = req.header("Authorisation").split(" ");
 
     console.log("Token array ", tokenArray);
 
