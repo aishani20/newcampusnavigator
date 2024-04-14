@@ -21,8 +21,11 @@ const ShowInsights = ({
           withCredentials: true,
         });
         const data = response.data;
-        const insightsArray = data.insights.reverse();
-        setAllInsights(insightsArray);
+        if (data && Array.isArray(data.insights) && data.insights.length > 0) {
+          const insightsArray = data.insights.reverse();
+          setAllInsights(insightsArray);
+        }
+        
       } catch (error) {
         console.error("Error fetching insights:", error);
       } finally {
