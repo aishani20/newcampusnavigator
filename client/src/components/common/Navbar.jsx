@@ -1,4 +1,4 @@
-import React, { useState,useEffect   } from "react";
+import React, { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 // import Logo from "../../assests/LogoImage.png";
 // import CurvedLine from "../../assests/curveUnderline.svg";
@@ -33,15 +33,21 @@ const Navbar = () => {
   }
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  function signoutHanlder() {
-    let newToken = document.cookie;
-    document.cookie = `token=${token}; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-    console.log("checking cookie deletion", newToken);
-    dispatch(setToken(token, null));
+  function signoutHandler() {
+    // Delete the token cookie by setting its expiration date to the past
+    localStorage.removeItem("token", token);
+
+    // Dispatch action to clear token state in Redux
+    dispatch(setToken(null));
+
+    // Redirect to login page
     navigate("/login");
+
+    // Show logout success message
     toast.success("Logged out successfully");
-    window.location.reload();
+    setShow(false);
   }
+
   return (
     <div
       className={`border-b-2 pt-8 pb-4 grid grid-cols-12 items-center relative ${
@@ -146,13 +152,13 @@ const Navbar = () => {
           />
           {show && (
             <div
-              className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white`}
+              className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white z-10 gap-1`}
             >
               <span>Profile</span>
               <span>Setting</span>
               <span
                 className={`flex items-center gap-1 cursor-pointer`}
-                onClick={signoutHanlder}
+                onClick={signoutHandler}
               >
                 <p>Signout</p>
                 <VscSignOut />
@@ -205,7 +211,11 @@ const Navbar = () => {
                   <span>Abhishek Tyagi</span>
                 </div>
               </div>
-              <hr className="w-full" />
+              <hr className="w-full border" />
+              <div className="relative sm:top-20 top-60 p-2">
+                <hr className="w-full my-2" />
+                <div onClick={signoutHandler}>Signout</div>
+              </div>
             </div>
           )}
         </div>
