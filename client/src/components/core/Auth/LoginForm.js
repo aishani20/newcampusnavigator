@@ -39,9 +39,6 @@ const LoginForm = () => {
     try {
       // Send login request to the backend
       const response = await axios.post(`${backendUrl}/login`, formData, {
-        headers: {
-          "Content-Type": "application/json",
-        },
         withCredentials: true,
       });
 
@@ -54,6 +51,7 @@ const LoginForm = () => {
         return;
       }
 
+      localStorage.setItem("token", JSON.stringify(data.token));
       // Login successful
       dispatch(setLoading(true)); // Set loading state
       navigate("/"); // Navigate to home page
