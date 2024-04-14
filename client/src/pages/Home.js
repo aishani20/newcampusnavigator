@@ -14,7 +14,7 @@ const Home = () => {
   }, [loading]);
   console.log("Checking loading state in Home.js", loading);
   return (
-    <div className="h-screen">
+    <div className="min-h-screen">
       {loading ? (
         <div className="animate-pulse">
           <section className="flex justify-center items-center py-12">
