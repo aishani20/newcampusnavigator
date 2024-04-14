@@ -66,7 +66,17 @@ const Card = ({ title, description, linkTo, bgImage }) => {
   return (
     <Link to={linkTo} className=" border-2 rounded-md ">
       <div className="relative flex cursor-pointer items-start p-2 duration-300 bg-lc-layer-01 dark:bg-dark-lc-layer-01 hover:bg-lc-layer-01 shadow-down-01 dark:shadow-dark-down-01 hover:shadow-down-02 rounded-lg dark:hover:bg-dark-lc-fill-02 dark:shadow-none dark:hover:shadow-none">
+      {bgImage ? (
+          <video
+            src={bgImage}
+            className="rounded-[4px] mr-3.5 h-[72px] w-[72px]"
+            autoPlay
+            loop
+            muted
+          />
+        ) : (
         <img src={bgImage} alt={title} className="rounded-[4px] mr-3.5 h-[72px] w-[72px]" />
+        )}
         <div className="flex-grow py-1 h-[72px]">
           <div className="flex h-full flex-col justify-center">
             <div className="flex items-start">
@@ -102,7 +112,7 @@ const Academics = () => {
           title="Programming Books"
           description="Explore programming books."
           linkTo="/academics/programming-books"
-          bgImage="https://media.geeksforgeeks.org/wp-content/uploads/20221206161100/Programming-Books-That-Every-Programmer-Must-Read-Once.png"
+          bgImage="https://cdnl.iconscout.com/lottie/premium/preview-watermark/coding-book-9550106-7763093.mp4"
         />
         
         {/* QuestionPaper Card */}
@@ -110,7 +120,8 @@ const Academics = () => {
           title="QuestionPaper"
           description="Practice previous year questions."
           linkTo="/academics/pyq"
-          // bgImage="http://dspace.christcollegeijk.edu.in:8080/jspui/retrieve/59054764-8b8f-456b-8fe7-d7a5e7c00a2b"
+          // bgImage="https://cdn3d.iconscout.com/3d/premium/thumb/question-and-answer-4552035-3774597.png?f=webp"
+          bgImage="https://cdnl.iconscout.com/lottie/premium/preview-watermark/questions-and-answers-3575719-2991383.mp4"
         />
 
         {/* Notes Card */}
@@ -118,7 +129,8 @@ const Academics = () => {
           title="Notes"
           description="Access course notes and materials."
           linkTo="/academics/notes"
-          bgImage="path_to_your_image.jpg"
+          // bgImage="https://cdn3d.iconscout.com/3d/premium/thumb/notes-5206761-4352352.png?f=webp"
+          bgImage="https://cdnl.iconscout.com/lottie/premium/preview-watermark/notes-6579407-5551521.mp4"
         />
 
         {/* SemesterBooks Card */}
@@ -126,6 +138,7 @@ const Academics = () => {
           title="SemesterBooks"
           description="Find semester-wise books."
           linkTo="/academics/semester-books"
+          bgImage="https://cdnl.iconscout.com/lottie/premium/preview-watermark/study-lamp-11184873-8972402.mp4"
         />
       </div>
     </div>
