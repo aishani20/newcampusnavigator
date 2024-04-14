@@ -4,11 +4,7 @@ const jwt = require("jsonwebtoken");
 exports.auth = async (req, res, next) => {
   try {
     const tokenArray = req.header("Authorisation").split(" ");
-
-    console.log("Token array ", tokenArray);
-
     const token = tokenArray[1];
-    console.log("Token ", token);
     //  ||
     // req.cookies.token ||
     // req.cookies.token ||
