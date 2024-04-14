@@ -75,7 +75,7 @@ import laptopImage from "../../../assests/laptopFrame.png";
 
 const HeroSection = () => {
   return (
-    <section className="flex justify-center items-center py-12 bg-gray-100">
+    <section className="flex md:flex-row flex-col justify-center items-center py-12 bg-gray-100">
       <div className="max-w-3xl mx-auto px-4 text-center">
         <h1 className="text-2xl md:text-4xl font-bold text-black mb-2">
           Chart Your Career Course:{" "}
@@ -87,19 +87,18 @@ const HeroSection = () => {
         {/* Add any additional buttons or text here */}
       </div>
 
-      <div className="md:w-1/2 relative mt-8 md:mt-0">
-        <img src={laptopImage} alt="Laptop Frame" className="w-full rounded-lg shadow-xl" />
-        <div className="absolute inset-0 flex items-center justify-center">
+      <div className="relative md:w-[500px] sm:mx-2 mx-8">
+        <img src={laptopImage} alt="Laptop Frame" className="w-full z-0" />
+        <div className="absolute inset-0 flex items-center justify-center z-10">
           <iframe
-            width="80%"
-            height="80%"
-            src="https://www.youtube.com/embed/0yw-z6f7Mb4?autoplay=1&mute=1"
-            title="Video Frame"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
+            src="https://www.youtube.com/embed/QECidbbwPzo?si=kO31BN3efxl_g1H-&amp;start=68&autoplay=1&mute=1"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowFullscreen
             autoPlay
-            className="rounded-lg shadow-xl"
+            className="w-[82%] h-[88%]"
           ></iframe>
         </div>
       </div>
