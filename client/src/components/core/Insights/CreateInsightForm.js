@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../../../slices/authSlice";
 
 import { SlClose } from "react-icons/sl";
@@ -27,12 +27,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
     console.log("Handle change", formData);
   };
   const dispatch = useDispatch();
-  const BearerToken = () =>
-    localStorage.getItem("token")
-      ? JSON.parse(localStorage.getItem("token"))
-      : false;
-
-      console.log("Seeing the bearer token", BearerToken());
+  const { token } = useSelector((state) => state.auth);
   const submitHandler = async (event) => {
     event.preventDefault();
     dispatch(setLoading(true));
@@ -40,7 +35,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
     try {
       const response = await axios.post(`${backendUrl}/createInsight`, formData, {
         headers: {
-          token: `Bearer ${BearerToken()}`,
+          Authorisation: `Bearer ${token}`,
         }
       });
 

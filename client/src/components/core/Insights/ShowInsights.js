@@ -10,22 +10,17 @@ const ShowInsights = ({
   isNewInsight,
   showLoader,
 }) => {
-  const { loading } = useSelector((state) => state.auth);
+  const { loading,token } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
-  const BearerToken = () =>
-    localStorage.getItem("token")
-      ? JSON.parse(localStorage.getItem("token"))
-      : false;
-
-      console.log("Seeing the bearer token", BearerToken());
+  console.log("Checking the token", token);
   useEffect(() => {
     const fetchData = async () => {
       dispatch(setLoading(true));
       try {
         const response = await axios.get(`${backendUrl}/getAllInsights`, {
           headers: {
-            token: `Bearer ${BearerToken()}`,
+            Authorisation: `Bearer ${token}`,
           }
         });
         const data = response.data;
@@ -45,8 +40,7 @@ const ShowInsights = ({
 
     fetchData();
   }, [backendUrl, dispatch, setAllInsights, isNewInsight]);
-  console.log("Showing all insights", allInsights);
-  console.log("Checking the loading in show insight ", loading);
+  
 
   return (
     <>
