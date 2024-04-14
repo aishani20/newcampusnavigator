@@ -3,14 +3,19 @@ const jwt = require("jsonwebtoken");
 
 exports.auth = async (req, res, next) => {
   try {
-    console.log("Before token authorisation");
+    const tokenArray = req.header("token").split(" ");
 
-    const {token} = req.cookies
-    //   req.cookies.token ||
-    //   req.body.token ||
-    //   req.header("Authorisation").replace("Bearer ", "");
-    // console.log("Token extraction");
+    console.log("Token array ", tokenArray);
+
+    const token = tokenArray[1];
+    console.log("Token ", token);
+    //  ||
+    // req.cookies.token ||
+    // req.cookies.token ||
+    // req.body.token;
     
+    console.log(typeof(token));
+
     if (!token) {
       return res.json({
         success: false,
@@ -20,8 +25,9 @@ exports.auth = async (req, res, next) => {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log(decoded);
+      console.log("Checking decoded val",decoded);
       req.user = decoded;
+      next();
     } catch (e) {
       console.error(e);
       res.status(500).json({
@@ -29,7 +35,7 @@ exports.auth = async (req, res, next) => {
         message: "Token is invalid or has expired",
       });
     }
-    next();
+    
   } catch (e) {
     console.error(e);
     res.status(500).json({

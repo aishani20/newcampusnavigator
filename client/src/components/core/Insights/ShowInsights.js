@@ -13,22 +13,26 @@ const ShowInsights = ({
   const { loading } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
+  const BearerToken = () =>
+    localStorage.getItem("token")
+      ? JSON.parse(localStorage.getItem("token"))
+      : false;
+
+      console.log("Seeing the bearer token", BearerToken());
   useEffect(() => {
     const fetchData = async () => {
       dispatch(setLoading(true));
       try {
         const response = await axios.get(`${backendUrl}/getAllInsights`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            token: `Bearer ${BearerToken()}`,
           }
-          
         });
         const data = response.data;
         if (data && Array.isArray(data.insights) && data.insights.length > 0) {
           const insightsArray = data.insights.reverse();
           setAllInsights(insightsArray);
         }
-        
       } catch (error) {
         console.error("Error fetching insights:", error);
       } finally {

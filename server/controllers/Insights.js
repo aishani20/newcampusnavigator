@@ -11,7 +11,9 @@ exports.createInsight = async (req, res) => {
       interviewProcess,
     } = req.body;
 
-    const { id } = req.user;
+    const user = req.user;
+    const { id } = user;
+    console.log("User id", id);
 
     try {
       await Insights.create({
@@ -42,6 +44,7 @@ exports.getAllInsights = async (req, res) => {
     try{
         const {id} = req.user;
         const insights = await Insights.find({user: id});
+        console.log("Showing the user id",id);
         res.json({
             success:true,
             insights: insights

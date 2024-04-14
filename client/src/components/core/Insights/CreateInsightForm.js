@@ -27,13 +27,21 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
     console.log("Handle change", formData);
   };
   const dispatch = useDispatch();
+  const BearerToken = () =>
+    localStorage.getItem("token")
+      ? JSON.parse(localStorage.getItem("token"))
+      : false;
+
+      console.log("Seeing the bearer token", BearerToken());
   const submitHandler = async (event) => {
     event.preventDefault();
     dispatch(setLoading(true));
 
     try {
       const response = await axios.post(`${backendUrl}/createInsight`, formData, {
-        withCredentials: true,
+        headers: {
+          token: `Bearer ${BearerToken()}`,
+        }
       });
 
       const data = response.data;
