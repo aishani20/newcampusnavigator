@@ -1,19 +1,26 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
+const User = require("../models/User");
 
 exports.auth = async (req, res, next) => {
   try {
-    const tokenArray = req.header("Authorisation").split(" ");
+    const tokenHeader = req.header("Authorisation");
+    if (!tokenHeader) {
+      return res.status(401).json({
+        success: false,
+        message: "Authorization header is missing",
+      });
+    }
+    const tokenArray = tokenHeader.split(" ");
+    if (tokenArray.length !== 2 || tokenArray[0] !== "Bearer") {
+      return res.status(401).json({
+        success: false,
+        message: "Invalid token format",
+      });
+    }
     const token = tokenArray[1];
-    //  ||
-    // req.cookies.token ||
-    // req.cookies.token ||
-    // req.body.token;
-    
-    console.log(typeof(token));
-
     if (!token) {
-      return res.json({
+      return res.status(401).json({
         success: false,
         message: "Token is missing",
       });
@@ -21,17 +28,33 @@ exports.auth = async (req, res, next) => {
 
     try {
       const decoded = jwt.verify(token, process.env.JWT_SECRET);
-      console.log("Checking decoded val",decoded);
       req.user = decoded;
+      const {id} = decoded;
+
+      const user = await User.findById(id);
+      console.log("user details from token",user);
+      // Add validation to check if user with this id exists or not
+      if (!user) {
+        return res.status(404).json({
+          success: false,
+          message: "Unauthorised access",
+        });
+      }
+      
       next();
-    } catch (e) {
-      console.error(e);
-      res.status(500).json({
-        status: false,
-        message: "Token is invalid or has expired",
+    } catch (error) {
+      console.error(error);
+      if (error.name === "TokenExpiredError") {
+        return res.status(401).json({
+          success: false,
+          message: "Token has expired",
+        });
+      }
+      return res.status(401).json({
+        success: false,
+        message: "Token is invalid",
       });
     }
-    
   } catch (e) {
     console.error(e);
     res.status(500).json({
