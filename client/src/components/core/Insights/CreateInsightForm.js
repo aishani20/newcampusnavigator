@@ -28,18 +28,41 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
   };
   const dispatch = useDispatch();
   const { token } = useSelector((state) => state.auth);
+  console.log("Token from redux in create insight", token);
+  const [message, setMessage] = useState(null);
   const submitHandler = async (event) => {
     event.preventDefault();
+    
+
+    if (
+      !formData.appliedRole ||
+      !formData.appliedCompany ||
+      !formData.rounds ||
+      !formData.package ||
+      !formData.interviewQuestions ||
+      !formData.interviewProcess
+    ) {
+      setMessage("Please fill all the fields");
+      return;
+    }
     dispatch(setLoading(true));
 
     try {
-      const response = await axios.post(`${backendUrl}/createInsight`, formData, {
-        headers: {
-          Authorisation: `Bearer ${token}`,
+      const response = await axios.post(
+        `${backendUrl}/createInsight`,
+        formData,
+        {
+          headers: {
+            Authorisation: `Bearer ${token}`,
+          },
         }
-      });
+      );
 
       const data = response.data;
+
+      if (!data.success) {
+        console.log("Error creating insight:", data.message);
+      }
 
       if (data.success) {
         setIsNewInsight(true);
@@ -66,7 +89,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
 
   return (
     <div className="flex justify-center items-center h-screen">
-      <form className="bg-white p-8 rounded-lg shadow-md">
+      <form className="bg-white p-8 rounded-lg shadow-md" onSubmit={submitHandler}>
         <div className="flex justify-between">
           <h2 className="text-xl font-bold mb-4">Create an Insight</h2>
           <SlClose
@@ -74,6 +97,14 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
             onClick={() => setShowModal(false)}
           />
         </div>
+        {message && (
+          <div
+            className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center 
+                justify-start items-center"
+          >
+            {message}
+          </div>
+        )}
         <div className="mb-4">
           <label className="block text-gray-700 text-sm font-bold mb-2">
             Applied Role:
@@ -83,7 +114,6 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="appliedRole"
               value={formData.appliedRole}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -96,7 +126,6 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="appliedCompany"
               value={formData.appliedCompany}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -109,7 +138,6 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="rounds"
               value={formData.rounds}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -122,7 +150,6 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="package"
               value={formData.package}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -135,7 +162,6 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="interviewQuestions"
               value={formData.interviewQuestions}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
@@ -148,13 +174,12 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
               name="interviewProcess"
               value={formData.interviewProcess}
               onChange={handleChange}
-              required
             />
           </label>
         </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={submitHandler}
+          type="submit"
         >
           Submit
         </button>

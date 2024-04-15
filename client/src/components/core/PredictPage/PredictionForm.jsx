@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import skillsData from "../../../assests/data/data.json";
 import { IoCloseSharp } from "react-icons/io5";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setLoading } from "../../../slices/authSlice";
+import axios from "axios";
 
 const PredictionForm = ({ setPredictionResult }) => {
   const predictionUrl = `${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/predict`;
@@ -49,19 +50,32 @@ const PredictionForm = ({ setPredictionResult }) => {
     setSkills((prev) => [...prev, { name: formData.Skills[index] }]);
   };
   const dispatch = useDispatch();
+  const { token } = useSelector((state) => state.auth);
+  const [message, setMessage] = useState("");
   const submitHandler = async (event) => {
     event.preventDefault();
     console.log(formData);
+    if (
+      !formData.Branch ||
+      !formData.Gender ||
+      !formData.tenth_percentage ||
+      !formData.twelfth_percentage ||
+      !formData.CGPA_Till_sixth ||
+      !formData.sixth_Sem_SGPA ||
+      !formData.Internship ||
+      formData.Skills.length === 0
+    ) {
+      setMessage("Please fill all the fields");
+      return;
+    }
+    dispatch(setLoading(true));
     try {
-      const response = await fetch(predictionUrl, {
-        method: "POST",
+      const response = await axios.post(predictionUrl, formData, {
         headers: {
-          "Content-Type": "application/json",
+          Authorisation: `Bearer ${token}`,
         },
-        body: JSON.stringify(formData),
-        credentials: "include",
       });
-      const data = await response.json();
+      const data = response.data;
       const result = data.result;
       setPredictionResult(result);
       dispatch(setLoading(false));
@@ -76,11 +90,15 @@ const PredictionForm = ({ setPredictionResult }) => {
       <h1 className="text-3xl font-bold text-center mb-4">
         Make Your Prediction
       </h1>
+      {message && (
+        <div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
+          {message}
+        </div>
+      )}
       <form
         className="space-y-4 md:px-5 sm:px-3 px-2"
         onSubmit={(e) => {
           submitHandler(e);
-          dispatch(setLoading(true));
         }}
       >
         <div className="grid md:grid-cols-2 grid-col-1 gap-4">
