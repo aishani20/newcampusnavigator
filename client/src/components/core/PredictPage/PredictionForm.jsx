@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setLoading } from "../../../slices/authSlice";
 
 const PredictionForm = ({ setPredictionResult }) => {
-  const predictionUrl = process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL;
+  const predictionUrl = `${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/predict`;
   const [formData, setFormData] = useState({
     Branch: "",
     Gender: "",
