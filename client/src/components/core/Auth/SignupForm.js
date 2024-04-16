@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { toast } from "react-hot-toast"
-import { setSignupData } from "../../../slices/authSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-hot-toast";
+import { setSignupData, setLoading } from "../../../slices/authSlice";
 
 const SignupForm = () => {
   const backendUrl =
@@ -30,7 +30,8 @@ const SignupForm = () => {
       };
     });
   };
-  const [message,setMessage] = useState(null);
+  const [message, setMessage] = useState(null);
+  const { loading } = useSelector((state) => state.auth);
   const submitHandler = async (event) => {
     try {
       if (
@@ -43,7 +44,10 @@ const SignupForm = () => {
         setMessage("Please fill all the fields");
         return;
       }
-      if(formData.email.indexOf('@') === -1 || formData.email.indexOf('.') === -1){
+      if (
+        formData.email.indexOf("@") === -1 ||
+        formData.email.indexOf(".") === -1
+      ) {
         setMessage("Invalid Email Address");
         return;
       }
@@ -51,8 +55,10 @@ const SignupForm = () => {
         setMessage("Passwords do not match");
         return;
       }
+
       dispatch(setSignupData(formData));
       event.preventDefault();
+      dispatch(setLoading(true));
       const response = await fetch(`${backendUrl}/signup`, {
         method: "POST",
         headers: {
@@ -62,16 +68,15 @@ const SignupForm = () => {
       });
       const data = await response.json();
       console.log(data);
-      if(data.success === true){
-        toast.success("OTP has been sent to your email id");
+      if (data.success === true) {
+        dispatch(setLoading(true));
         navigate("/verify-email");
+        toast.success("OTP has been sent to your email id");
+      } else {
+        dispatch(setLoading(false));
+        setMessage(data.message);
+        return;
       }
-      else{
-        console.log("Checking this statement");
-        toast.error("Account already exists with this email id");
-        return; 
-      }
-      
     } catch (err) {
       console.error(err);
       console.log("Error in signup submit handler");
@@ -139,9 +144,14 @@ const SignupForm = () => {
           />
         </label>
         <div
-          className="bg-[#3652DD] text-white rounded-lg py-3 text-lg hover:bg-[#2f48c6] transition-colors duration-300 text-center cursor-pointer"
+          className="bg-[#3652DD]  text-white rounded-lg py-3 text-lg hover:bg-[#2f48c6] transition-colors duration-300 
+                    text-center cursor-pointer flex items-center justify-center"
           onClick={submitHandler}
         >
+          {loading && (<svg
+            class="animate-spin border-2 border-t-white  rounded-full h-5 w-5 mr-3 ..."
+            viewBox="0 0 24 24"
+          ></svg>)}
           Sign up
         </div>
       </form>
