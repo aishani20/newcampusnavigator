@@ -64,7 +64,7 @@ import Breadcrumbs from '../components/common/Breadcrumbs';
 
 const Card = ({ title, description, linkTo, bgImage }) => {
   return (
-    <Link to={linkTo} className=" border-2 rounded-md ">
+    <Link to={linkTo} className=" border-2 rounded-md dark:border-[#B8AE9F] ">
       <div className="relative flex cursor-pointer items-start p-2 duration-300 bg-lc-layer-01 dark:bg-dark-lc-layer-01 hover:bg-lc-layer-01 shadow-down-01 dark:shadow-dark-down-01 hover:shadow-down-02 rounded-lg dark:hover:bg-dark-lc-fill-02 dark:shadow-none dark:hover:shadow-none">
       {bgImage ? (
           <video
@@ -80,9 +80,9 @@ const Card = ({ title, description, linkTo, bgImage }) => {
         <div className="flex-grow py-1 h-[72px]">
           <div className="flex h-full flex-col justify-center">
             <div className="flex items-start">
-              <p className="block text-lg font-semibold text-blue-500 hover:underline">{title}</p>
+              <p className="block text-lg font-semibold text-blue-500 hover:underline dark:text-[#49B1F3] ">{title}</p>
             </div>
-            <p className="text-gray-500">{description}</p>
+            <p className="text-gray-500 dark:text-[#B8AE9F]">{description}</p>
           </div>
         </div>
       </div>

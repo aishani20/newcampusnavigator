@@ -53,7 +53,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`border-b-2  pb-4 grid grid-cols-12 items-center relative ${
+      className={`border-b-2  pb-4 grid grid-cols-12 items-center relative dark:border-[#51585B] ${
         token === null ? "md:grid-cols-4 " : ""
       }`}
     >
@@ -82,7 +82,7 @@ const Navbar = () => {
           <Link
             to="/blogs"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#A2A19F] ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#B2AE9F] ${
               location.pathname === "/blogs" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
@@ -92,7 +92,7 @@ const Navbar = () => {
           <Link
             to="/insights"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#A2A19F] ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#B2AE9F] ${
               location.pathname === "/insights" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
@@ -102,7 +102,7 @@ const Navbar = () => {
           <Link
             to="/academics"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#A2A19F] hover:text-blue-500 ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
               location.pathname === "/academics" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
