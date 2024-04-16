@@ -45,6 +45,7 @@ const Navbar = () => {
 
     // Show logout success message
     toast.success("Logged out successfully");
+    setShowMenu(false);
     setShow(false);
   }
 
@@ -152,7 +153,7 @@ const Navbar = () => {
           />
           {show && (
             <div
-              className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white z-10 gap-1`}
+              className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white z-20 gap-1 text-sm`}
             >
               <span>Profile</span>
               <span>Setting</span>
