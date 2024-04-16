@@ -22,6 +22,7 @@ import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import axios from "axios";
 import TopHeader from "./components/common/TopHeader";
+import CNAssistant  from "./components/AiChatBot/CNAssistant";
 
 function App() {
   useEffect(() => {
@@ -150,6 +151,7 @@ function App() {
             }
           />
         </Routes>
+        <CNAssistant />
         <Footer />
       </div>
     </div>
