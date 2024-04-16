@@ -24,18 +24,18 @@ const InsightCard = ({ insight, allInsights }) => {
 
   return (
     <div>
-      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm hover:bg-gray-100 dark:bg-[#1E2023] ">
+      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm  dark:bg-[#1E2023] ">
         <div className="items-center mb-4 flex">
           <Link to={`/username`}>
-            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2 dark:text-[#FFFFFF]" />
+            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2 dark:text-[#A2A19F]" />
           </Link>
           <div className="flex flex-col w-full dark:text-[#FFFFFF]">
-            <div className="font-bold text-lg dark:text-[#FFFFFF]">
+            <div className="font-bold text-lg dark:text-[#A2A19F]">
               <span>{insight.appliedRole}</span> -{" "}
               <span>{insight.appliedCompany}</span>
             </div>
             <div className="text-gray-600 flex justify-between items-center">
-              <div className="text-sm dark:text-[#CFC7BB]">Person name whose experience shown</div>
+              <div className="text-sm dark:text-[#88857F]">Person name whose experience shown</div>
               <div className="flex items-center ml-4 relative">
                 <p className="text-sm text-gray-500 mr-2">
                   {authoredTime}
@@ -52,8 +52,8 @@ const InsightCard = ({ insight, allInsights }) => {
           </div>
         </div>
         <div className="mb-6">
-          <div className="flex gap-20">
-            <div className="mb-2 dark:text-[#CFC7BB]">
+          <div className="flex gap-20"> 
+            <div className="mb-2 dark:text-[#3C667A]">
               Total No. of round :{" "}
               <span className="font-bold">{insight.rounds}</span>
             </div>
