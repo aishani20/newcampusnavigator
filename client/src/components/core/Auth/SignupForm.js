@@ -30,7 +30,7 @@ const SignupForm = () => {
       };
     });
   };
-
+  const [message,setMessage] = useState(null);
   const submitHandler = async (event) => {
     try {
       if (
@@ -40,11 +40,15 @@ const SignupForm = () => {
         !formData.password ||
         !formData.confirmPassword
       ) {
-        toast.error("Please fill all the fields");
+        setMessage("Please fill all the fields");
+        return;
+      }
+      if(formData.email.indexOf('@') === -1 || formData.email.indexOf('.') === -1){
+        setMessage("Invalid Email Address");
         return;
       }
       if (formData.password !== formData.confirmPassword) {
-        toast.error("Passwords Do Not Match")
+        setMessage("Passwords do not match");
         return;
       }
       dispatch(setSignupData(formData));
@@ -74,10 +78,15 @@ const SignupForm = () => {
     }
   };
   return (
-    <div className="border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md">
+    <div className="border w-full rounded-lg flex flex-col items-center p-6 bg-white shadow-md">
       <div className="text-3xl text-gray-700 font-semibold mb-6">SIGNUP</div>
-      <form className="flex flex-col gap-3 text-[16px] w-full">
-        <div className="flex gap-2">
+      {message && (
+        <div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
+          {message}
+        </div>
+      )}
+      <form className="flex flex-col gap-3 text-lg w-full">
+        <div className="flex sm:gap-4 gap-3 sm:flex-row flex-col">
           <label className="flex flex-col">
             <p>First Name</p>
             <input
