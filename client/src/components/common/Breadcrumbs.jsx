@@ -6,7 +6,7 @@ const Breadcrumbs = ({ crumbs }) => {
   const location = useLocation();
 
   return (
-    <div className="flex items-center text-sm text-gray-500 space-x-2">
+    <div className="flex items-center text-sm text-gray-500 space-x-2 dark:text-[#B2AE9F]">
       {crumbs.map((crumb, index) => (
         <React.Fragment key={index}>
           {index > 0 && (

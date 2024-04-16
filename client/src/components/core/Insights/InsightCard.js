@@ -24,18 +24,18 @@ const InsightCard = ({ insight, allInsights }) => {
 
   return (
     <div>
-      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm hover:bg-gray-100">
+      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm hover:bg-gray-100 dark:bg-[#1E2023] ">
         <div className="items-center mb-4 flex">
           <Link to={`/username`}>
-            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2" />
+            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2 dark:text-[#FFFFFF]" />
           </Link>
-          <div className="flex flex-col w-full">
-            <div className="font-bold text-lg">
+          <div className="flex flex-col w-full dark:text-[#FFFFFF]">
+            <div className="font-bold text-lg dark:text-[#FFFFFF]">
               <span>{insight.appliedRole}</span> -{" "}
               <span>{insight.appliedCompany}</span>
             </div>
             <div className="text-gray-600 flex justify-between items-center">
-              <div className="text-sm">Person name whose experience shown</div>
+              <div className="text-sm dark:text-[#CFC7BB]">Person name whose experience shown</div>
               <div className="flex items-center ml-4 relative">
                 <p className="text-sm text-gray-500 mr-2">
                   {authoredTime}
@@ -53,23 +53,23 @@ const InsightCard = ({ insight, allInsights }) => {
         </div>
         <div className="mb-6">
           <div className="flex gap-20">
-            <div className="mb-2">
+            <div className="mb-2 dark:text-[#CFC7BB]">
               Total No. of round :{" "}
               <span className="font-bold">{insight.rounds}</span>
             </div>
-            <div className="mb-2">
+            <div className="mb-2 dark:text-[#CFC7BB]">
               Approx Package offered(LPA) :{" "}
-              <span className="font-bold">{insight.package}</span>
+              <span className="font-bold dark:text-[#FFFFFF]">{insight.package}</span>
             </div>
           </div>
           <div className="mb-2">
-            <p className="font-bold">Interview Questions</p>
-            <p>{insight.interviewQuestions}</p>
+            <p className="font-bold dark:text-[#FFFFFF]">Interview Questions</p>
+            <p className="dark:text-[#CFC7BB]">{insight.interviewQuestions}</p>
           </div>
 
           <div>
-            <p className="font-bold">Interview Process Description</p>
-            <p>{insight.interviewProcess}</p>
+            <p className="font-bold dark:text-[#FFFFFF]">Interview Process Description</p>
+            <p classname="dark:text-[#CFC7BB]">{insight.interviewProcess}</p>
           </div>
         </div>
 

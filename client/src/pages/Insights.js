@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateInsights from "../components/core/Insights/CreateInsight";
 import ShowInsights from "../components/core/Insights/ShowInsights";
-import SearchInsight from "../components/core/Insights/SearchInsight";
+// import SearchInsight from "../components/core/Insights/SearchInsight";
 
 const Insights = () => {
   const [allInsights, setAllInsights] = useState([]);
@@ -14,7 +14,7 @@ const Insights = () => {
           setAllInsights={setAllInsights}
           setIsNewInsight={setIsNewInsight}
         />
-        <SearchInsight />
+        {/* <SearchInsight /> */}
       </div>
       <div>
         <ShowInsights

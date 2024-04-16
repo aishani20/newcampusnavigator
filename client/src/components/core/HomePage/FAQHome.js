@@ -79,12 +79,12 @@ const FAQHome = () => {
 
   return (
     <div className="mx-auto pl-4 my-16">
-      <h2 className="text-xl font-bold mb-4 dark:text-[#C5C4C2]">Frequently Asked Questions</h2>
+      <h2 className="text-xl font-bold mb-4 dark:text-[#E4DED4]">Frequently Asked Questions</h2>
 
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <div key={index}>
-            <div className="flex items-center justify-between border-b pb-2 cursor-pointer dark:text-[#C5C4C2]" onClick={()=>toggleFAQ(index)}>
+            <div className="flex items-center justify-between border-b pb-2 cursor-pointer dark:text-[#E4DED4]" onClick={()=>toggleFAQ(index)}>
               <p className="text-lg">{faq.question}</p>
               {isOpen[index] ? (
                 <FaMinus

@@ -123,7 +123,7 @@ const SemesterPage = () => {
       <Breadcrumbs crumbs={crumbs} />
     </div>
     <div className="max-w-screen-lg mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6 dark:text-[#C5C4C2]">Semester-wise Books</h1>
+      <h1 className="text-3xl font-bold mb-6 dark:text-[#E4DED4]">Semester-wise Books</h1>
 
       {/* Semester Selection */}
       <div className="flex space-x-4 mb-6">
@@ -159,11 +159,11 @@ const SemesterPage = () => {
       {/* Branch Filter Dropdown */}
       {selectedSemester && (
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-4  dark:text-[#C5C4C2]">Select your Branch:</h2>
+          <h2 className="text-xl font-bold mb-4  dark:text-[#E4DED4]">Select your Branch:</h2>
           <select
             value={selectedBranch}
             onChange={(e) => handleBranchSelection(e.target.value)}
-            className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300"
+            className="rounded-lg px-4 py-2 bg-blue-100 text-blue-700 focus:outline-none focus:bg-blue-200 hover:bg-blue-200 transition duration-300 dark:bg-[#25292B] dark:text-[#5AAFFF]"
           >
             <option value="">All</option>
             {allBranches.map((branch) => (
@@ -176,11 +176,11 @@ const SemesterPage = () => {
       {/* Display Books */}
       <div className="flex flex-wrap gap-4">
         {books.map((book) => (
-          <div key={book.id} className="w-1/4 bg-white rounded-lg shadow-md p-4  dark:bg-blue-100">
+          <div key={book.id} className="w-1/4 bg-white rounded-lg shadow-md p-4 dark:bg-[#25292B]">
             <img src={book.imageUrl} alt={book.title} className="w-full h-40 mb-2" />
-            <h3 className="text-sm font-semibold mb-1">{book.title}</h3>
-            <p className="text-gray-500">Author: {book.author}</p>
-            <p className="text-gray-500">Branch: {book.branch}</p>
+            <h3 className="text-sm font-semibold mb-1 dark:text-white">{book.title}</h3>
+            <p className="text-gray-500 dark:text-[#B8AE9F]">Author: {book.author}</p>
+            <p className="text-gray-500 dark:text-[#B8AE9F]">Branch: {book.branch}</p>
           <Link to={book.downloadUrl} className=" gap-2 mt-4 w-full text-center py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300 ease-in-out flex justify-center items-center" >
             <span>View</span>
             <LuEye /></Link>

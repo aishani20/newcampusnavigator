@@ -13,7 +13,7 @@ const MeetOurTeamPage = () => {
   return (
     <div>
       <div className="py-12">
-        <h1 className="text-3xl font-bold text-center mb-8 dark:text-[#C5C4C2]">Meet Our Team</h1>
+        <h1 className="text-3xl font-bold text-center mb-8 dark:text-[#E4DED4]">Meet Our Team</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
             <div className="flex flex-col items-center justify-center space-y-4" key={index}>
