@@ -164,5 +164,31 @@
         }
       ]
     }
+  ],
+  "teamMembers": [
+    {
+      "name": "Abhishek Tyagi",
+      "email": "abhishek@example.com",
+      "contact": "+91 1234567890",
+      "role": "Frontend Developer"
+    },
+    {
+      "name": "Aishani Mohapatra",
+      "email": "aishani@example.com",
+      "contact": "+91 9876543210",
+      "role": "Backend Developer"
+    },
+    {
+      "name": "Bhavika Surywanshi",
+      "email": "bhavika@example.com",
+      "contact": "+91 9876543210",
+      "role": "UI/UX Designer"
+    },
+    {
+      "name": "Himanshu Koshti",
+      "email": "himanshu@example.com",
+      "contact": "+91 9876543210",
+      "role": "Project Manager"
+    }
   ]
 }

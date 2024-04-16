@@ -35,7 +35,7 @@ function App() {
     .catch((err)=>console.log(err))
   }, []);
   return (
-    <div className="min-h-screen flex flex-col dark:bg-[#313233]">
+    <div className="min-h-screen flex flex-col dark:bg-[#111213]">
       <div className="bg-gray-100 mb-1 dark:bg-[#151618]">
         <TopHeader />
       </div>

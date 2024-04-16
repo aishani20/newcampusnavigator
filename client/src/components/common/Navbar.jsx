@@ -3,6 +3,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 // import Logo from "../../assests/LogoImage.png";
 // import CurvedLine from "../../assests/curveUnderline.svg";
 import CompleteLogo from "../../assests/completeLogo.png";
+import DarkModeLogo from "../../assests/darkModeLogo.png";
 import predictionImage from "../../assests/prediction.png";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -19,6 +20,7 @@ import { toast } from "react-hot-toast";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
+  const {darkMode} = useSelector((state) => state.darkMode);
   useEffect(() => {
     console.log("Checking cookie", document.cookie);
   }, [token]);
@@ -64,7 +66,7 @@ const Navbar = () => {
         }`}
       >
         <div className="relative flex items-center max-w-80 ">
-          <img src={CompleteLogo} alt="Logo" className="" />
+          <img src={!darkMode ? CompleteLogo : DarkModeLogo} alt="Logo" className="" />
         </div>
       </Link>
 
@@ -80,7 +82,7 @@ const Navbar = () => {
           <Link
             to="/blogs"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#A2A19F] ${
               location.pathname === "/blogs" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
@@ -90,7 +92,7 @@ const Navbar = () => {
           <Link
             to="/insights"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#A2A19F] ${
               location.pathname === "/insights" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
@@ -100,7 +102,7 @@ const Navbar = () => {
           <Link
             to="/academics"
             onClick={() => setShowMenu(false)}
-            className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 ${
+            className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#A2A19F] hover:text-blue-500 ${
               location.pathname === "/academics" &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
@@ -138,12 +140,12 @@ const Navbar = () => {
       {token !== null && (
         <div className="flex gap-3 relative  justify-end items-center sm:col-start-11 sm:col-end-12 md:col-start-12 md:col-end-13 col-start-11 col-end-12">
           <VscBell
-            className={`w-6 h-6 cursor-pointer sm:block ${
+            className={`w-6 h-6 cursor-pointer sm:block dark:text-[#A2A19F] ${
               showMenu === true ? "" : ""
             }`}
           />
           <VscAccount
-            className={`w-6 h-6 cursor-pointer md:block ${
+            className={`w-6 h-6 cursor-pointer md:block dark:text-[#A2A19F] ${
               showMenu === true ? "hidden" : "hidden"
             }`}
             onClick={() => {
@@ -190,13 +192,13 @@ const Navbar = () => {
           <div onClick={menuToggleHandler}>
             {showMenu === false ? (
               <GiHamburgerMenu
-                className={`cursor-pointer w-7 h-7  ${
+                className={`cursor-pointer w-7 h-7 dark:text-[#A2A19F]  ${
                   showMenu && "bg-gray-400 p-1"
                 } z-40 `}
               />
             ) : (
               <AiOutlineClose
-                className={`cursor-pointer w-8 h-8  ${
+                className={`cursor-pointer w-8 h-8   ${
                   showMenu && "bg-gray-400 p-1"
                 } z-40 `}
               />
