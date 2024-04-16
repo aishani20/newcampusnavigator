@@ -37,7 +37,7 @@ const TopHeader = () => {
   return (
     <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full flex justify-end items-center">
       <div className="border-x border-gray-500 px-2 cursor-pointer" onClick={toggleDarkMode}>
-        {darkMode ? (
+        {!darkMode ? (
           <MdModeNight
             // onClick={toggleDarkMode}
             className="text-black-400 hover:text-black-500 transition duration-300 cursor-pointer"
@@ -45,7 +45,7 @@ const TopHeader = () => {
         ) : (
           <MdOutlineLightMode
             // onClick={toggleDarkMode}
-            className="text-black-400 hover:text-black-500 transition duration-300 cursor-pointer"
+            className="dark:text-white  hover:text-black-500 transition duration-300 cursor-pointer"
           />
         )}
       </div>
