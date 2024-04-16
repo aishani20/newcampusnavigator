@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`border-b-2 pt-8 pb-4 grid grid-cols-12 items-center relative ${
+      className={`border-b-2  pb-4 grid grid-cols-12 items-center relative ${
         token === null ? "md:grid-cols-4 " : ""
       }`}
     >
