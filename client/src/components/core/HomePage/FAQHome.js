@@ -57,7 +57,7 @@ const FAQHome = () => {
         "The Placement Management System is a software platform designed to streamline and manage the placement process in educational institutions. It helps automate tasks such as job postings, student registrations, interview scheduling, and placement analytics.",
     },
     {
-      question: "How is CampusNavigator helpfull for you?",
+      question: "How is CampusNavigator helpful for you?",
       answer:
         "Placement Software offers several benefits to higher education institutions. It improves efficiency by automating manual tasks, enhances communication between students and recruiters, provides data insights for better decision-making, and contributes to overall placement success rates.",
     },
@@ -88,12 +88,12 @@ const FAQHome = () => {
               <p className="text-lg">{faq.question}</p>
               {isOpen[index] ? (
                 <FaMinus
-                  className="text-blue-500 cursor-pointer dark:text-[#C5C4C2]"
+                  className="text-blue-500 cursor-pointer dark:text-[#6377d8]"
                   onClick={() => toggleFAQ(index)}
                 />
               ) : (
                 <FaPlus
-                  className="text-blue-500 cursor-pointer dark:text-[#C5C4C2]"
+                  className="text-blue-500 cursor-pointer dark:text-[#6377d8]"
                   onClick={() => toggleFAQ(index)}
                 />
               )}

@@ -86,8 +86,8 @@ const PredictionForm = ({ setPredictionResult }) => {
   };
 
   return (
-    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16">
-      <h1 className="text-3xl font-bold text-center mb-4">
+    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16  dark:bg-blue-100">
+      <h1 className="text-3xl font-bold text-center mb-4 dark:text-[#2e3764]">
         Make Your Prediction
       </h1>
       {message && (
@@ -274,7 +274,7 @@ const PredictionForm = ({ setPredictionResult }) => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full dark:bg-[#61a5ed]"
         >
           Predict
         </button>

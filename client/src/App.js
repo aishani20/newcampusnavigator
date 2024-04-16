@@ -30,9 +30,9 @@ function App() {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-    axios.get(`${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/home`)
-    .then((res)=>console.log("res"))
-    .catch((err)=>console.log(err))
+      axios.get(`${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/home`)
+      .then((res)=>console.log("res"))
+      .catch((err)=>console.log(err))
   }, []);
   return (
     <div className="min-h-screen flex flex-col dark:bg-[#111213]">

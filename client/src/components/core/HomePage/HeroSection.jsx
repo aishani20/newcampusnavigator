@@ -79,9 +79,9 @@ const HeroSection = () => {
       <div className="max-w-3xl mx-auto px-4 text-center">
         <h1 className="text-2xl md:text-4xl font-bold text-black mb-2 dark:text-[#A2A19F]">
           Chart Your Career Course:{" "}
-          <div className="text-blue-500">Where Insights Meet Opportunity!</div>
+          <div className="text-blue-500 dark:text-[#6377d8]">Where Insights Meet Opportunity!</div>
         </h1>
-        <h2 className="text-lg md:text-xl text-gray-700 mb-8">
+        <h2 className="text-lg md:text-xl text-gray-700 mb-8 dark:text-[#7e7e7d]">
           Building Bridges to Success: Empowering Student Journeys!
         </h2>
         {/* Add any additional buttons or text here */}

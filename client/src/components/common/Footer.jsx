@@ -25,7 +25,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="grid md:grid-cols-2 grid-rows-2">
-        <div className="flex flex-col">
+        <div className="flex flex-col dark:text-[#C5C4C2]">
           <b>+91 9340204054</b>
           <div>abtyagi150702@gmail.com</div>
         </div>
@@ -46,17 +46,19 @@ const Footer = () => {
       </div>
       <hr className="border my-4" />
       <div className="flex md:flex-row flex-col items-center md:justify-between md:items-center">
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 dark:text-[#C5C4C2]">
           <span>Social Media</span>
           <span className="flex">
             <FaInstagramSquare /> <FaSquareXTwitter /> <FaLinkedin />
           </span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-4 dark:text-[#C5C4C2]">
           <span>A product of</span>
           <img src={Logo} alt="Logo" className="w-[26.16px]" />
         </div>
+        <div className="dark:text-[#C5C4C2]">
         <div>© 2024 ABTYAGI. All rights reserved</div>
+        </div>
       </div>
     </div>
   );

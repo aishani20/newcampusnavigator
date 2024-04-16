@@ -27,11 +27,11 @@ const programmingBooks = [
     </div>
     <div className="container mx-auto px-4 py-8 flex flex-wrap gap-4">
       {programmingBooks.map(book => (
-        <div key={book.id} className="book-card w-64 p-4 border rounded-lg shadow-md bg-white">
+        <div key={book.id} className="book-card w-64 p-4 border rounded-lg shadow-md  focus:border-blue-300 dark:bg-[#32373A] dark:border-[#877C6E] bg-white">
           <img src={book.imageUrl} alt={book.title} className="w-full h-48 object-cover rounded-md" />
-          <h3 className="text-lg font-semibold mt-2">{book.title}</h3>
-          <p className="text-sm text-gray-600">{book.author}</p>
-          <a href={book.downloadUrl} className="mt-4 block w-full text-center py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300 ease-in-out" download>Download</a>
+          <h3 className="text-lg font-semibold mt-2 dark:text-[#FFFFFF]">{book.title}</h3>
+          <p className="text-sm text-gray-600 dark:text-[#C6BDB0]">{book.author}</p>
+          <a href={book.downloadUrl} className="mt-4 block w-full text-center py-2 px-4 bg-blue-500 text-white rounded-md hover:bg-blue-700 transition duration-300 ease-in-out dark:bg-[#034CC2]" download>Download</a>
         </div>
       ))}
       </div>
