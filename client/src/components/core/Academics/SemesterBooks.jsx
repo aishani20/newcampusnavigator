@@ -123,7 +123,7 @@ const SemesterPage = () => {
       <Breadcrumbs crumbs={crumbs} />
     </div>
     <div className="max-w-screen-lg mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Semester-wise Books</h1>
+      <h1 className="text-3xl font-bold mb-6 dark:text-[#C5C4C2]">Semester-wise Books</h1>
 
       {/* Semester Selection */}
       <div className="flex space-x-4 mb-6">
@@ -159,7 +159,7 @@ const SemesterPage = () => {
       {/* Branch Filter Dropdown */}
       {selectedSemester && (
         <div className="mb-6">
-          <h2 className="text-xl font-bold mb-4">Select your Branch:</h2>
+          <h2 className="text-xl font-bold mb-4  dark:text-[#C5C4C2]">Select your Branch:</h2>
           <select
             value={selectedBranch}
             onChange={(e) => handleBranchSelection(e.target.value)}
@@ -176,7 +176,7 @@ const SemesterPage = () => {
       {/* Display Books */}
       <div className="flex flex-wrap gap-4">
         {books.map((book) => (
-          <div key={book.id} className="w-1/4 bg-white rounded-lg shadow-md p-4">
+          <div key={book.id} className="w-1/4 bg-white rounded-lg shadow-md p-4  dark:bg-blue-100">
             <img src={book.imageUrl} alt={book.title} className="w-full h-40 mb-2" />
             <h3 className="text-sm font-semibold mb-1">{book.title}</h3>
             <p className="text-gray-500">Author: {book.author}</p>

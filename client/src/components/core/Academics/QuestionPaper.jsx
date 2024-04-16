@@ -132,7 +132,7 @@ const QuestionPaper = () => {
       </div>
       <div className="max-w-screen-lg mx-auto p-8">
         <div>
-          <h1 className="text-3xl font-bold mb-4">
+          <h1 className="text-3xl font-bold mb-4 dark:text-[#C5C4C2]">
             Previous Year Question Papers
           </h1>
 
@@ -166,17 +166,17 @@ const QuestionPaper = () => {
           </div>
         </div>
         <div className="flex gap-4">
-          <div className="border w-[90%]">Hello</div>
+          <div className="border w-[90%] dark:text-[#C5C4C2]">Hello</div>
           <div>
           <div className="border">
-            <div className="text-xl mb-4">
+            <div className="text-xl mb-4 dark:text-[#C5C4C2]">
               Upload Files for {selectedYear} - {selectedBranch}:
             </div>
             <form className="mb-6" onSubmit={handleFileSubmit}>
               <div className="mb-4">
                 <label
                   htmlFor="uploadInput"
-                  className="btn-label bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer"
+                  className="btn-label bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer dark:text-[#C5C4C2]"
                 >
                   Choose Files
                 </label>
@@ -191,7 +191,7 @@ const QuestionPaper = () => {
               </div>
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                className="bg-blue-500 text-white px-4 py-2 rounded-lg dark:text-[#C5C4C2] hover:bg-blue-700"
               >
                 Upload
               </button>
@@ -199,7 +199,7 @@ const QuestionPaper = () => {
           </div>
 
           <div>
-            <div className="text-xl">Uploaded Files:</div>
+            <div className="text-xl dark:text-[#C5C4C2]">Uploaded Files:</div>
             <ul className="pl-0">
               {uploadedFiles.map((file, index) => (
                 <li key={index}>{file.name}</li>

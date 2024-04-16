@@ -33,8 +33,8 @@ const QuestionPaper = () => {
       <Breadcrumbs crumbs={crumbs} />
     </div>
     <div className="max-w-screen-lg mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-4">Previous Year Question Papers</h1>
-      <h2 className="text-xl mb-4">Please select your Year:</h2>
+      <h1 className="text-3xl font-bold mb-4 dark:text-[#C5C4C2]">Previous Year Question Papers</h1>
+      <h2 className="text-xl mb-4 dark:text-[#C5C4C2]">Please select your Year:</h2>
       <div className="flex space-x-4 mb-6">
         <button
           className={`rounded-lg px-4 py-2 bg-blue-500 text-white ${selectedYear === 'First Year' ? 'bg-blue-700' : ''}`}
@@ -61,7 +61,7 @@ const QuestionPaper = () => {
           Fourth Year
         </button>
       </div>
-      <h2 className="text-xl mb-4">Upload Files for {selectedYear}:</h2>
+      <h2 className="text-xl mb-4 dark:text-[#C5C4C2]">Upload Files for {selectedYear}:</h2>
       <form className="mb-6" onSubmit={handleFileSubmit}>
         <div className="mb-4">
           <label htmlFor="uploadInput" className="btn-label bg-blue-500 text-white px-4 py-2 rounded-lg cursor-pointer">
@@ -76,11 +76,10 @@ const QuestionPaper = () => {
             className="hidden"
           />
         </div>
-        
           Upload
         
       </form>
-      <h2 className="text-xl">Uploaded Files:</h2>
+      <h2 className="text-xl dark:text-[#C5C4C2]">Uploaded Files:</h2>
       <ul className="pl-0">
         {uploadedFiles.map((file, index) => (
           <li key={index}>{file.name}</li>

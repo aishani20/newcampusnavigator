@@ -23,7 +23,7 @@ const ContactUs = () => {
   return (
     <div>
       <div className="mx-auto py-12">
-        <h1 className="text-3xl font-bold text-center mb-8 dark:text-[#C5C4C2]">Contact Us</h1>
+        <h1 className="text-3xl font-bold text-center mb-8 dark:text-[#f1f0ed]">Contact Us</h1>
         <form onSubmit={handleSubmit} className="max-w-md mx-auto dark:text-[#C5C4C2]">
           <div className="mb-4">
             <label className="block mb-1 text-sm font-semibold">Name</label>
@@ -57,7 +57,7 @@ const ContactUs = () => {
           </div>
           <button
             type="submit"
-            className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+            className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none dark:bg-[#4c98db] focus:bg-blue-600"
           >
             Submit
           </button>
