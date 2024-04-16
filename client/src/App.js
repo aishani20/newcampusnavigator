@@ -35,11 +35,11 @@ function App() {
     .catch((err)=>console.log(err))
   }, []);
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="bg-gray-100 mb-1">
+    <div className="min-h-screen flex flex-col dark:bg-[#313233]">
+      <div className="bg-gray-100 mb-1 dark:bg-[#151618]">
         <TopHeader />
       </div>
-      <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full dark:bg-black">
+      <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full ">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />

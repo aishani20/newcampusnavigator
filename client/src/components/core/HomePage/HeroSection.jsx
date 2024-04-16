@@ -75,9 +75,9 @@ import laptopImage from "../../../assests/laptopFrame.png";
 
 const HeroSection = () => {
   return (
-    <section className="flex md:flex-row flex-col justify-center items-center py-12 bg-gray-100">
+    <section className="flex md:flex-row flex-col justify-center items-center py-12 bg-gray-100 dark:bg-[#151618]">
       <div className="max-w-3xl mx-auto px-4 text-center">
-        <h1 className="text-2xl md:text-4xl font-bold text-black mb-2">
+        <h1 className="text-2xl md:text-4xl font-bold text-black mb-2 dark:text-[#A2A19F]">
           Chart Your Career Course:{" "}
           <div className="text-blue-500">Where Insights Meet Opportunity!</div>
         </h1>

@@ -49,7 +49,7 @@ const TopHeader = () => {
           />
         )}
       </div>
-      <div className="px-2">Hindi</div>
+      <div className="px-2 dark:text-[#477592]">Hindi</div>
     </div>
   );
 };
