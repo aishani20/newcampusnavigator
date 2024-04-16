@@ -3,7 +3,7 @@ import VerifyEmailForm from "../components/core/Auth/VerifyEmailForm";
 
 export const VerifyEmail = () => {
   return (
-    <div className="h-screen">
+    <div>
       <div>
         <VerifyEmailForm />
       </div>

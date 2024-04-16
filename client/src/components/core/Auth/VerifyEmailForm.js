@@ -51,7 +51,7 @@ const VerifyEmailForm = () => {
     }
   }
   return (
-    <div className="border w-[500px] mx-auto rounded-[32px] flex flex-col items-center">
+    <div className="border max-w-lg sm:w-2/3 w-[80%] mx-auto rounded-[32px] flex flex-col items-center my-10 dark:bg-gray-700">
       <div className="text-[32px] text-[#333333] my-[20px]">Verify Email</div>
       <form className="flex flex-col gap-3 text-[16px] w-[80%] my-7">
         <label>
