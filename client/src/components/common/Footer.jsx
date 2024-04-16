@@ -5,19 +5,23 @@ import ForwardArrow from "../../assests/ForwardArrow.svg";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
+import DarkCurvedLine from "../../assests/darkCurveUnderline.png";
+import { useSelector } from "react-redux";
+
 
 const Footer = () => {
+  const {darkMode} = useSelector((state) => state.darkMode);
   return (
-    <div className="max-w-[1292px] flex flex-col mx-auto">
+    <div className="max-w-[1292px] flex flex-col mx-auto mb-5">
       <div className="relative montserrat h-[26.34px]">
         <div className="flex item-center absolute gap-[1px]">
           <img src={Logo} alt="Logo" className="w-[27.16px]" />
           <div className="text-[19.11px] font-bold">
-            Campus<span className="text-[#3652DD]">Navigator</span>
+            <span className="dark:text-white">Campus</span><span className="text-[#3652DD]">Navigator</span>
           </div>
         </div>
         <div className="absolute w-[205px] top-[15px]">
-          <img src={CurvedLine} alt="CurvedLine" />
+          <img src={!darkMode ? CurvedLine : DarkCurvedLine} alt="CurvedLine" />
         </div>
       </div>
       <div className="grid md:grid-cols-2 grid-rows-2">

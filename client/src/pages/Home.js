@@ -3,6 +3,8 @@ import HeroSection from "../components/core/HomePage/HeroSection";
 import FAQHome from "../components/core/HomePage/FAQHome";
 import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../slices/authSlice";
+import ContactUs from "../components/core/HomePage/ContactUs";
+import MeetTheTeam from "../components/core/HomePage/MeetTheTeam";
 const Home = () => {
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -71,6 +73,12 @@ const Home = () => {
           </div>
           <div>
             <FAQHome />
+          </div>
+          <div>
+            <MeetTheTeam />
+          </div>
+          <div>
+            <ContactUs />
           </div>
         </>
       )}
