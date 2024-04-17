@@ -40,7 +40,7 @@ function App() {
       <div className="bg-gray-100 mb-1 dark:bg-[#151618]">
         <TopHeader />
       </div>
-      <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full ">
+      <div className="mx-auto px-4 lg:px-6 xl:px-8 max-w-screen-xl w-full relative">
         <Navbar />
         <Routes>
           <Route exact path="/" element={<Home />} />
