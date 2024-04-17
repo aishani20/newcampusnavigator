@@ -16,9 +16,9 @@ const CNAssistant = () => {
       try {
         // Send user message to backend
         const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/chat-cnassistant`, { message: userInput });
-  
+        const message = response.data.message;  
         // Add bot response to chat history
-        setChatHistory([...chatHistory, { text: response.data.message, sender: 'bot' }]);
+        setChatHistory([...chatHistory, { text: message, sender: 'bot' }]);
       } catch (error) {
         console.error('Error sending message to chatbot:', error);
       }
