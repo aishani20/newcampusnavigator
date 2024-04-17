@@ -36,7 +36,7 @@ const CNAssistant = () => {
     <div className="absolute right-0 top-10 z-20">
       {showChat ? (
         <div
-          className="w-20 h-20 fixed bottom-20 right-[10%] rounded-full dark:bg-white cursor-pointer"
+          className="w-20 h-20 fixed bottom-20 right-[10%] rounded-full  cursor-pointer"
           onClick={openChatHandler}
         >
           <img
