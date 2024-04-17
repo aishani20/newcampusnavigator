@@ -86,8 +86,8 @@ const PredictionForm = ({ setPredictionResult }) => {
   };
 
   return (
-    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16  dark:bg-blue-100">
-      <h1 className="text-3xl font-bold text-center mb-4 dark:text-[#2e3764]">
+    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16  dark:bg-[#181A1B]">
+      <h1 className="text-3xl font-bold text-center mb-4 dark:text-[#707F94]">
         Make Your Prediction
       </h1>
       {message && (
@@ -96,7 +96,7 @@ const PredictionForm = ({ setPredictionResult }) => {
         </div>
       )}
       <form
-        className="space-y-4 md:px-5 sm:px-3 px-2"
+        className="space-y-4 md:px-5 sm:px-3 px-2 dark:text-[#A2A19F]"
         onSubmit={(e) => {
           submitHandler(e);
         }}
@@ -110,7 +110,7 @@ const PredictionForm = ({ setPredictionResult }) => {
               type="number"
               id="CGPA_Till_sixth"
               name="CGPA_Till_sixth"
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]" 
               onChange={changeHandler}
               value={formData.CGPA_Till_sixth}
             />
@@ -123,7 +123,7 @@ const PredictionForm = ({ setPredictionResult }) => {
               type="number"
               id="sixth_Sem_SGPA"
               name="sixth_Sem_SGPA"
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
               onChange={changeHandler}
               value={formData.sixth_Sem_SGPA}
             />
@@ -136,7 +136,7 @@ const PredictionForm = ({ setPredictionResult }) => {
               type="number"
               id="twelfth_percentage"
               name="twelfth_percentage"
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
               onChange={changeHandler}
               value={formData.twelfth_percentage}
             />
@@ -149,7 +149,7 @@ const PredictionForm = ({ setPredictionResult }) => {
               type="number"
               id="tenth_percentage"
               name="tenth_percentage"
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
               onChange={changeHandler}
               value={formData.tenth_percentage}
             />
@@ -211,7 +211,7 @@ const PredictionForm = ({ setPredictionResult }) => {
             <select
               id="Branch"
               name="Branch"
-              className="border border-gray-300 rounded-md p-2 w-full"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
               onChange={changeHandler}
               value={formData.Branch}
             >
@@ -248,7 +248,7 @@ const PredictionForm = ({ setPredictionResult }) => {
           <select
             id="Skills"
             name="Skills"
-            className="border border-gray-300 rounded-md p-2 w-full"
+            className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
             onChange={changeHandler}
             value={formData.Skills}
           >
