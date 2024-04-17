@@ -8,7 +8,7 @@ const CNAssistant = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [showChat, setShowChat] = useState(true);
 
-  const sendMessage = async () => {
+  const sendMessageHandler = async () => {
     if (userInput.trim() === "") return; // Don't send empty messages
 
     // Add user message to chat history
@@ -21,9 +21,9 @@ const CNAssistant = () => {
         `${process.env.REACT_APP_BACKEND_URL}/chat-cnassistant`,
         { message: userInput }
       );
-      const message = response.data.message;
+      const botResponse = response.data.message;
       // Add bot response to chat history
-      setChatHistory([...chatHistory, { text: message, sender: "bot" }]);
+      setChatHistory([...chatHistory, { text: botResponse, sender: "bot" }]);
     } catch (error) {
       console.error("Error sending message to chatbot:", error);
     }
@@ -33,7 +33,7 @@ const CNAssistant = () => {
   };
 
   return (
-    <div className="absolute right-0 top-10">
+    <div className="absolute right-0 top-10 z-20">
       {showChat ? (
         <div
           className="w-20 h-20 fixed bottom-20 right-[10%] rounded-full dark:bg-white cursor-pointer"
@@ -46,24 +46,26 @@ const CNAssistant = () => {
           />
         </div>
       ) : (
-        <div className="max-w-sm mx-auto my-8 rounded-lg overflow-hidden shadow-lg bg-white fixed bottom-20 right-[10%]">
+        <div className="max-w-sm mx-auto my-8 rounded-lg overflow-auto h-96 shadow-lg bg-white fixed bottom-20 right-[10%]">
           <div className="bg-blue-500 text-white flex justify-between px-3 items-center py-1">
             <span>CNAssistant</span>
             <span className="cursor-pointer" onClick={()=> setShowChat(!showChat)}>
               <FaMinus />
             </span>
           </div>
-          <div className="overflow-auto h-full p-4">
+          <div className={`overflow-auto h-full p-4 flex flex-col`}>
             {chatHistory.map((message, index) => (
               <div
                 key={index}
-                className={`message ${
+                className={`flex flex-col ${
                   message.sender === "user"
-                    ? "bg-gray-200 text-gray-700"
-                    : "bg-blue-100 text-blue-800"
+                    ? "bg-gray-200 text-gray-700 border"
+                    : "bg-blue-100 text-blue-800 border"
                 } p-2 mb-2 rounded`}
               >
-                {message.text}
+                <span>{message.sender}</span>
+                <hr className="borde border-white"/>
+                <span>{message.text}</span>
               </div>
             ))}
           </div>
@@ -76,7 +78,7 @@ const CNAssistant = () => {
               className="border border-gray-300 rounded-lg py-2 px-4 flex-1 mr-4"
             />
             <button
-              onClick={sendMessage}
+              onClick={sendMessageHandler}
               className="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none"
             >
               Send
