@@ -12,7 +12,7 @@ const CNAssistant = () => {
     if (userInput.trim() === "") return; // Don't send empty messages
 
     // Add user message to chat history
-    setChatHistory([...chatHistory, { text: userInput, sender: "user" }]);
+    setChatHistory((prev)=>[...prev, { text: userInput, sender: "user" }]);
     setUserInput(""); // Clear input field
 
     try {
@@ -23,7 +23,7 @@ const CNAssistant = () => {
       );
       const botResponse = response.data.message;
       // Add bot response to chat history
-      setChatHistory([...chatHistory, { text: botResponse, sender: "bot" }]);
+      setChatHistory((prev)=>[...prev, { text: botResponse, sender: "CNAssistant" }]);
     } catch (error) {
       console.error("Error sending message to chatbot:", error);
     }
@@ -46,21 +46,21 @@ const CNAssistant = () => {
           />
         </div>
       ) : (
-        <div className="max-w-sm mx-auto my-8 rounded-lg overflow-auto h-96 shadow-lg bg-white fixed bottom-20 right-[10%]">
+        <div className="max-w-sm mx-auto my-8 rounded-lg h-96 shadow-lg bg-white fixed bottom-20 right-[10%] flex flex-col">
           <div className="bg-blue-500 text-white flex justify-between px-3 items-center py-1">
             <span>CNAssistant</span>
             <span className="cursor-pointer" onClick={()=> setShowChat(!showChat)}>
               <FaMinus />
             </span>
           </div>
-          <div className={`overflow-auto h-full p-4 flex flex-col`}>
+          <div className={`overflow-auto p-4 flex flex-col`}>
             {chatHistory.map((message, index) => (
               <div
                 key={index}
                 className={`flex flex-col ${
                   message.sender === "user"
-                    ? "bg-gray-200 text-gray-700 border"
-                    : "bg-blue-100 text-blue-800 border"
+                    ? "bg-gray-200 text-gray-700 border self-end"
+                    : "bg-blue-100 text-blue-800 border self-start"
                 } p-2 mb-2 rounded`}
               >
                 <span>{message.sender}</span>
@@ -69,7 +69,8 @@ const CNAssistant = () => {
               </div>
             ))}
           </div>
-          <div className="input-container flex items-center p-4 border-t border-gray-200">
+          <hr className="border"/>
+          <div className="input-container flex items-center border-gray-200 px-4 py-2">
             <input
               type="text"
               value={userInput}
