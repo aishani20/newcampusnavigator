@@ -71,7 +71,7 @@ const Navbar = () => {
       </Link>
 
       {token !== null && (
-        <div className={`sm:flex gap-2 sm:flex-row md:gap-4 text-lg justify-center sm:col-start-7 sm:col-end-10 md:col-start-5 lg:col-end-9 md:col-end-10 ${showMenu === true ? "flex flex-col absolute sm:static col-start-12 col-end-13 z-30 top-[12rem] right-40" : "hidden"}`}>
+        <div className={`sm:flex gap-2 sm:flex-row md:gap-4 text-lg justify-center sm:col-start-7 sm:col-end-10 md:col-start-5 lg:col-end-9 md:col-end-10 ] ${showMenu === true ? "flex flex-col absolute sm:static col-start-12 col-end-13 z-30 top-[12rem] right-40" : "hidden"}`}>
           <Link to="/blogs" onClick={() => setShowMenu(false)} className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#B2AE9F] ${location.pathname === "/blogs" && "underline underline-offset-8 decoration-4 decoration-blue-500"}`}>Blogs</Link>
           <Link to="/insights" onClick={() => setShowMenu(false)} className={`transition duration-300 ease-in-out transform hover:scale-105 hover:text-blue-500 dark:text-[#B2AE9F] ${location.pathname === "/insights" && "underline underline-offset-8 decoration-4 decoration-blue-500"}`}>Insights</Link>
           <Link to="/academics" onClick={() => setShowMenu(false)} className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${location.pathname === "/academics" && "underline underline-offset-8 decoration-4 decoration-blue-500"}`}>Academics</Link>

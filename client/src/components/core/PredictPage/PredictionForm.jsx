@@ -86,8 +86,8 @@ const PredictionForm = ({ setPredictionResult }) => {
   };
 
   return (
-    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16  dark:bg-[#181A1B]">
-      <h1 className="text-3xl font-bold text-center mb-4 dark:text-[#707F94]">
+    <div className=" max-w-[650px] p-4 bg-white border shadow-md rounded-lg md:mt-12 mt-16  dark:bg-[#111314]">
+      <h1 className="text-3xl font-bold text-center mb-4 dark:text-[#B2A898]">
         Make Your Prediction
       </h1>
       {message && (
@@ -102,7 +102,7 @@ const PredictionForm = ({ setPredictionResult }) => {
         }}
       >
         <div className="grid md:grid-cols-2 grid-col-1 gap-4">
-          <div className="space-y-2">
+          <div className="space-y-2 dark:text-[#B2A898]">
             <label htmlFor="CGPA_Till_sixth" className="text-sm block">
               CGPA Till Sixth Semester
             </label>
@@ -110,52 +110,52 @@ const PredictionForm = ({ setPredictionResult }) => {
               type="number"
               id="CGPA_Till_sixth"
               name="CGPA_Till_sixth"
-              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]" 
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#78746C] dark:border-[#B2A898]" 
               onChange={changeHandler}
               value={formData.CGPA_Till_sixth}
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="sixth_Sem_SGPA" className="text-sm block">
+            <label htmlFor="sixth_Sem_SGPA" className="text-sm block dark:text-[#B2A898]">
               SGPA in 6th Semester
             </label>
             <input
               type="number"
               id="sixth_Sem_SGPA"
               name="sixth_Sem_SGPA"
-              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#78746C] dark:border-[#B2A898]"
               onChange={changeHandler}
               value={formData.sixth_Sem_SGPA}
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="twelfth_percentage" className="text-sm block">
+            <label htmlFor="twelfth_percentage" className="text-sm block dark:text-[#B2A898]">
               Percentage in 12th Class
             </label>
             <input
               type="number"
               id="twelfth_percentage"
               name="twelfth_percentage"
-              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#78746C] dark:border-[#B2A898]"
               onChange={changeHandler}
               value={formData.twelfth_percentage}
             />
           </div>
           <div className="space-y-2">
-            <label htmlFor="tenth_percentage" className="text-sm block">
+            <label htmlFor="tenth_percentage" className="text-sm block dark:text-[#B2A898]">
               Percentage in 10th Class
             </label>
             <input
-              type="number"
+              type="number"        
               id="tenth_percentage"
               name="tenth_percentage"
-              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#78746C] dark:border-[#B2A898]"
               onChange={changeHandler}
               value={formData.tenth_percentage}
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm block">Gender</label>
+            <label className="text-sm block dark:text-[#B2A898]">Gender</label>
             <div className="flex space-x-4">
               <label className="flex items-center">
                 <input
@@ -165,7 +165,7 @@ const PredictionForm = ({ setPredictionResult }) => {
                   onChange={changeHandler}
                   checked={formData.Gender === "Male"}
                 />
-                <span className="ml-2">Male</span>
+                <span className="ml-2 dark:text-[#B2A898]">Male</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -175,12 +175,12 @@ const PredictionForm = ({ setPredictionResult }) => {
                   onChange={changeHandler}
                   checked={formData.Gender === "Female"}
                 />
-                <span className="ml-2">Female</span>
+                <span className="ml-2 dark:text-[#B2A898]">Female</span>
               </label>
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm block">Internship</label>
+            <label className="text-sm block dark:text-[#B2A898]">Internship</label>
             <div className="flex space-x-4">
               <label className="flex items-center">
                 <input
@@ -190,7 +190,7 @@ const PredictionForm = ({ setPredictionResult }) => {
                   onChange={changeHandler}
                   checked={formData.Internship === "Yes"}
                 />
-                <span className="ml-2">Yes</span>
+                <span className="ml-2 dark:text-[#B2A898]">Yes</span>
               </label>
               <label className="flex items-center">
                 <input
@@ -200,18 +200,18 @@ const PredictionForm = ({ setPredictionResult }) => {
                   onChange={changeHandler}
                   checked={formData.Internship === "No"}
                 />
-                <span className="ml-2">No</span>
+                <span className="ml-2 dark:text-[#B2A898]">No</span>
               </label>
             </div>
           </div>
           <div className="space-y-2">
-            <label htmlFor="Branch" className="text-sm block">
+            <label htmlFor="Branch" className="text-sm block dark:text-[#B2A898]">
               Branch
             </label>
             <select
               id="Branch"
               name="Branch"
-              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
+              className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#B2A898] dark:border-[#B2A898]"
               onChange={changeHandler}
               value={formData.Branch}
             >
@@ -242,13 +242,13 @@ const PredictionForm = ({ setPredictionResult }) => {
           </div>
         </div>
         <div className="space-y-2">
-          <label htmlFor="Skills" className="text-sm block">
+          <label htmlFor="Skills" className="text-sm block dark:text-[#B2A898]">
             Skills
           </label>
           <select
             id="Skills"
             name="Skills"
-            className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#3B3B3B] dark:text-[#78746C]"
+            className="border border-gray-300 rounded-md p-2 w-full dark:bg-[#2F3436] dark:text-[#B2A898] dark:border-[#B2A898]"
             onChange={changeHandler}
             value={formData.Skills}
           >
@@ -274,7 +274,7 @@ const PredictionForm = ({ setPredictionResult }) => {
         </div>
         <button
           type="submit"
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full dark:bg-[#61a5ed]"
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md w-full dark:bg-[#1544CB]"
         >
           Predict
         </button>
