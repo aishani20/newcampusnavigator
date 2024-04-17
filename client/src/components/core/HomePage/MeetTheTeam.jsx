@@ -5,11 +5,12 @@ import aishaniMohapatra from "../../../assests/ContributersImages/aishaniMohapat
 import himanshuKoshti from "../../../assests/ContributersImages/himanshuKoshti.jpg";
 import bhavikaSurywanshi from "../../../assests/ContributersImages/bhavikaSurywanshi.jpeg";
 
-
-
 const MeetOurTeamPage = () => {
-  const teamMembers = assestsData.teamMembers;
-    
+  const teamMembers = assestsData.teamMembers.map((member, index) => ({
+    ...member,
+    imgSrc: [abhishekTyagi, aishaniMohapatra, himanshuKoshti, bhavikaSurywanshi][index],
+  }));
+
   return (
     <div>
       <div className="py-12">
@@ -18,7 +19,7 @@ const MeetOurTeamPage = () => {
           {teamMembers.map((member, index) => (
             <div className="flex flex-col items-center justify-center space-y-4" key={index}>
               <img
-                src={teamMembers.imgSrc}
+                src={member.imgSrc}
                 alt={member.name}
                 className="w-32 h-32 rounded-full"
               />

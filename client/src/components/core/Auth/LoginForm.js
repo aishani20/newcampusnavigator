@@ -65,37 +65,37 @@ const LoginForm = () => {
   }
 
   return (
-    <div className="m-20 border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md px-8 sm:px-6">
-      <div className="text-3xl text-gray-700 font-semibold mb-6">LOGIN</div>
+    <div className="m-20 border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md px-8 sm:px-6 dark:bg-[#17191A]">
+      <div className="text-3xl text-gray-700 font-semibold mb-6 dark:text-[#DED7CD]">LOGIN</div>
       {message && (
         <div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
           {message}
         </div>
       )}
       <form className="flex flex-col gap-4 w-full">
-        <label className="flex flex-col md:w-80">
-          <p className="text-gray-700 mb-1">Email Address</p>
+        <label className="flex flex-col md:w-80 ">
+          <p className="text-gray-700 mb-1 dark:text-[#F2EEE5]">Email Address</p>
           <input
             type="email"
             name="email"
             onChange={changeHandler}
             value={formData.email}
-            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500 dark:bg-[#3B3B3B] dark:border-[#3B3B3B] dark:text-white"
           />
         </label>
-        <label className="flex flex-col">
-          <p className="text-gray-700">Password</p>
+        <label className="flex flex-col ">
+          <p className="text-gray-700 dark:text-[#F2EEE5]">Password</p>
           <input
             type="password"
             name="password"
-            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500"
+            className="border h-12 px-4 rounded focus:outline-none focus:border-blue-500 dark:bg-[#3B3B3B] dark:border-[#3B3B3B] dark:text-white"
             onChange={changeHandler}
             value={formData.password}
           />
         </label>
         <Link
           to="/forgot-password"
-          className="self-end text-[12px] cursor-pointer"
+          className="self-end text-[12px] cursor-pointer dark:text-[#FFFFFF]"
         >
           Forgot Password?
         </Link>
