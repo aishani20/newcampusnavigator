@@ -1,4 +1,4 @@
-# newcampusnavigator
+# CampusNavigator
 
 This is the phase 1 of developing the campus navigator project.
 In this phase we will first develop the fronend then the backend.
