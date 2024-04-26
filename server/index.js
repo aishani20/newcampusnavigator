@@ -32,6 +32,8 @@ app.use('/api/v1',insightsRoute);
 const cnassistantRoute = require('./routes/CNAssistant');
 app.use('/api/v1',cnassistantRoute);
 
+const profileRoute = require('./routes/Profile');
+app.use('/api/v1',profileRoute);
 
 app.get('/api/v1', (req, res) => {
     res.json({message: "Welcome to the CampusNavigator!"});

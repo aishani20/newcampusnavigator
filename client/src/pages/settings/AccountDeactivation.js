@@ -1,6 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
+import { useSelector,useDispatch } from "react-redux";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
+import { setToken } from "../../slices/authSlice";
+import { setUser } from "../../slices/profileSlice";
 
 const AccountDeactivation = () => {
+  const [confirmDeletion, setConfirmDeletion] = useState(false);
+  const [message, setMessage] = useState(null);
+  const { token } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const deleteAccountHandler = () => {
+    if (!confirmDeletion) {
+      setMessage("Confirm your decision by ticking the box");
+      return;
+    }
+
+    //axios request to delete account
+
+    async function fetchData() {
+      const response = await axios.delete(
+        `${process.env.REACT_APP_BACKEND_URL}/deleteAccount`,
+        {
+          headers: {
+            Authorisation: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = response.data;
+      console.log("Account deletion related", JSON.stringify(data));
+      if (data && !data.success) {
+        toast.error(data.message);
+        return;
+      }
+      toast.success(data.message);
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      dispatch(setToken(null));
+      dispatch(setUser(null));
+
+
+      //redirect to login page
+      navigate("/login");
+    }
+    fetchData();
+  };
   return (
     <div
       className={`mx-auto p-6 bg-white shadow-lg rounded-lg dark:bg-gray-800 dark:text-gray-300`}
@@ -43,21 +90,30 @@ const AccountDeactivation = () => {
           </p>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-4  ">
           <input
             type="checkbox"
             name="confirmDeletion"
             id="confirmDeletion"
             className="mr-2 cursor-pointer"
+            onChange={(e) => {
+              setConfirmDeletion(e.target.checked);
+              console.log(confirmDeletion);
+            }}
           />
           <label htmlFor="confirmDeletion">
             I understand, delete my account anyway
           </label>
         </div>
 
-        <p>Confirm your decision by ticking this box</p>
+        {message && !confirmDeletion && (
+          <p className="text-red-500">{message}</p>
+        )}
 
-        <button className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md">
+        <button
+          className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md"
+          onClick={deleteAccountHandler}
+        >
           Delete My Account
         </button>
       </div>
