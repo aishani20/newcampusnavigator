@@ -8,7 +8,7 @@ import bhavikaSurywanshi from "../../../assests/ContributersImages/bhavikaSurywa
 const MeetOurTeamPage = () => {
   const teamMembers = assestsData.teamMembers.map((member, index) => ({
     ...member,
-    imgSrc: [abhishekTyagi, aishaniMohapatra, himanshuKoshti, bhavikaSurywanshi][index],
+    imgSrc: [abhishekTyagi, aishaniMohapatra, bhavikaSurywanshi, himanshuKoshti][index],
   }));
 
   return (
