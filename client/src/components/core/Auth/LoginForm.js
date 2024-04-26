@@ -52,6 +52,8 @@ const LoginForm = () => {
       }
 
       localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       // Login successful
       dispatch(setLoading(true)); // Set loading state
       navigate("/"); // Navigate to home page
