@@ -158,7 +158,7 @@ const Navbar = () => {
               className={`flex flex-col border p-2 rounded shadow-sm absolute top-8 right-3 bg-white z-20 gap-1 text-sm account-menu dark:bg-[#17191A] dark:text-[#FFFFFF]`}
             >
               <span>Profile</span>
-              <span>Setting</span>
+              <Link to="/settings"><span>Setting</span></Link>
               <span
                 className={`flex items-center gap-1 cursor-pointer`}
                 onClick={signoutHandler}
@@ -218,6 +218,7 @@ const Navbar = () => {
               <hr className="w-full border" />
               <div className="relative sm:top-20 top-60 p-2">
                 <hr className="w-full my-2" />
+                <Link to="/settings" onClick={()=> setShowMenu(false)}>Settings</Link>
                 <div onClick={signoutHandler}>Signout</div>
               </div>
             </div>
