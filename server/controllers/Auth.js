@@ -6,9 +6,9 @@ const jwt = require("jsonwebtoken");
 require("dotenv").config();
 exports.signup = async (req, res) => {
   try {
-    const { firstName, lastName, email, password, confirmPassword } = req.body;
+    const { firstName, lastName, email, password, confirmPassword, userRole } = req.body;
 
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
+    if (!firstName || !lastName || !email || !password || !confirmPassword || !userRole) {
       return res.status(400).json({
         success: false,
         message: "All fields are required",
@@ -57,7 +57,7 @@ exports.signup = async (req, res) => {
 };
 
 exports.verifyOtp = async (req, res) => {
-  const { firstName, lastName, email, password, otp } = req.body;
+  const { firstName, lastName, userRole, email, password, otp } = req.body;
   const user = await OTP.findOne({ email });
   if (user.otp !== otp) {
     return res.status(400).json({
@@ -70,6 +70,7 @@ exports.verifyOtp = async (req, res) => {
   await User.create({
     firstName,
     lastName,
+    userRole,
     email,
     password: hashedPassword,
   });
