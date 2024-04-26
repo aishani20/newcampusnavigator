@@ -19,7 +19,7 @@ const Predict = () => {
         </div>
       ) : (
         <div
-          className={`max-w-[650px] w-full p-4 bg-white border shadow-md rounded-lg md:mb-16 mb-20 mt-2  dark:bg-[#1F2223] dark:text-[#A2A19F]`}
+          className={`max-w-[650px] w-full p-4 bg-white border shadow-md rounded-lg md:mb-16 mb-20 mt-2  dark:bg-[#111314] dark:text-[#B2A898]`}
         >
           Output: {predictionResult}
         </div>

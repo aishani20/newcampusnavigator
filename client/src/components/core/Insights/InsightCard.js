@@ -24,20 +24,20 @@ const InsightCard = ({ insight, allInsights }) => {
 
   return (
     <div>
-      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm  dark:bg-[#1E2023] ">
+      <div className="mx-auto my-4 bg-white border border-gray-200 p-6 rounded-md max-w-3xl shadow-sm  dark:bg-[#1E2023] dark:border-[#373b3e]">
         <div className="items-center mb-4 flex">
           <Link to={`/username`}>
-            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2 dark:text-[#A2A19F]" />
+            <VscAccount className="w-10 h-10 rounded-md object-cover mr-2 dark:text-[#CFC7BB]" />
           </Link>
-          <div className="flex flex-col w-full dark:text-[#FFFFFF]">
-            <div className="font-bold text-lg dark:text-[#A2A19F]">
+          <div className="flex flex-col w-full dark:text-[#CFC7BB]">
+            <div className="font-bold text-lg dark:text-[#CFC7BB]">
               <span>{insight.appliedRole}</span> -{" "}
               <span>{insight.appliedCompany}</span>
             </div>
             <div className="text-gray-600 flex justify-between items-center">
               <div className="text-sm dark:text-[#88857F]">Person name whose experience shown</div>
               <div className="flex items-center ml-4 relative">
-                <p className="text-sm text-gray-500 mr-2">
+                <p className="text-sm text-gray-500 mr-2 dark:text-[#CFC7BB]">
                   {authoredTime}
                   <span className="ml-1">ago</span>
                 </p>
@@ -53,9 +53,9 @@ const InsightCard = ({ insight, allInsights }) => {
         </div>
         <div className="mb-6">
           <div className="flex gap-20"> 
-            <div className="mb-2 dark:text-[#3C667A]">
+            <div className="mb-2 dark:text-[#CFC7BB]">
               Total No. of round :{" "}
-              <span className="font-bold">{insight.rounds}</span>
+              <span className="font-bold dark:text-[#FFFFFF]">{insight.rounds}</span>
             </div>
             <div className="mb-2 dark:text-[#CFC7BB]">
               Approx Package offered(LPA) :{" "}
@@ -74,16 +74,16 @@ const InsightCard = ({ insight, allInsights }) => {
         </div>
 
         <div className="flex items-center text-gray-600 text-sm">
-          <button className="flex items-center hover:text-blue-600">
-            <SlLike className="mr-1.5" />
+          <button className="flex items-center hover:text-blue-600 dark:text-[#CFC7BB]">
+            <SlLike className="mr-1.5 dark:text-[#CFC7BB]" />
             Like
           </button>
-          <button className="flex items-center ml-4 hover:text-green-600">
-            <LiaCommentAlt className="mr-1.5" />
+          <button className="flex items-center ml-4 hover:text-green-600 dark:text-[#CFC7BB]">
+            <LiaCommentAlt className="mr-1.5 dark:text-[#CFC7BB]" />
             Comment
           </button>
-          <button className="flex items-center ml-4 hover:text-indigo-600">
-            <SlShareAlt className="mr-1.5" />
+          <button className="flex items-center ml-4 hover:text-indigo-600 dark:text-[#CFC7BB]">
+            <SlShareAlt className="mr-1.5 dark:text-[#CFC7BB]" />
             Share
           </button>
         </div>
