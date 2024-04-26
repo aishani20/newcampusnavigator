@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setLoading } from "../slices/authSlice";
 import ContactUs from "../components/core/HomePage/ContactUs";
 import MeetTheTeam from "../components/core/HomePage/MeetTheTeam";
+import CompleteCNAllComponentsImg from "../assests/CompleteCNAllComponents.png";
 const Home = () => {
   const { loading } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
@@ -73,6 +74,9 @@ const Home = () => {
           </div>
           <div>
             <FAQHome />
+          </div>
+          <div>
+            <img src={CompleteCNAllComponentsImg} alt="CompleteCNAllComponents" className="" />
           </div>
           <div>
             <MeetTheTeam />
