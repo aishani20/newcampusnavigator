@@ -4,14 +4,14 @@ import Login from "./pages/Login";
 import { Signup } from "./pages/Signup";
 import Predict from "./pages/Predict";
 import { VerifyEmail } from "./pages/VerifyEmail";
-import UserHome from "./pages/UserHome";
+import Blogs from "./pages/Blogs";
 import Home from "./pages/Home";
 import Insights from "./pages/Insights";
 import OpenRoute from "./components/core/Auth/OpenRoute";
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Navbar from "./components/common/Navbar";
 import Footer from "./components/common/Footer";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/settings/Profile";
 import Academics from "./pages/Academics";
 import ProgrammingBooks from "./components/core/Academics/ProgrammingBooks";
 import QuestionPaper from "./components/core/Academics/QuestionPaper";
@@ -22,7 +22,12 @@ import NotFound from "./pages/NotFound";
 import { useEffect } from "react";
 import axios from "axios";
 import TopHeader from "./components/common/TopHeader";
-import CNAssistant  from "./components/AiChatBot/CNAssistant";
+import CNAssistant from "./components/AiChatBot/CNAssistant";
+import Settings from "./pages/settings/Settings";
+import Profile from "./pages/settings/Profile";
+import ChangePassword from "./pages/settings/ChangePassword";
+import Help from "./pages/settings/Help";
+import AccountDeactivation from "./pages/settings/AccountDeactivation";
 
 function App() {
   useEffect(() => {
@@ -31,9 +36,10 @@ function App() {
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
 
-      axios.get(`${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/home`)
-      .then((res)=>console.log("res"))
-      .catch((err)=>console.log(err))
+    axios
+      .get(`${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/home`)
+      .then((res) => console.log("res"))
+      .catch((err) => console.log(err));
   }, []);
   return (
     <div className="min-h-screen flex flex-col dark:bg-[#111213]">
@@ -110,7 +116,7 @@ function App() {
               </PrivateRoute>
             }
           />
-           <Route
+          <Route
             path="/academics/programming-books"
             element={
               <PrivateRoute>
@@ -125,8 +131,8 @@ function App() {
                 <QuestionPaper />
               </PrivateRoute>
             }
-            />
-            <Route
+          />
+          <Route
             path="/academics/notes"
             element={
               <PrivateRoute>
@@ -146,10 +152,24 @@ function App() {
             path="/blogs"
             element={
               <PrivateRoute>
-                <UserHome />
+                <Blogs />
               </PrivateRoute>
             }
           />
+          <Route
+            path="/settings"
+            element={
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            }
+          >
+            <Route path="profile" element={<Profile />} />
+            <Route path="change-password" element={<ChangePassword />} />
+            <Route path="help" element={<Help />} />
+            <Route path="account-deactivation" element={<AccountDeactivation />} />
+
+          </Route>
         </Routes>
         <CNAssistant />
         <Footer />
