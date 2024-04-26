@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { VscBell, VscAccount, VscSignOut } from "react-icons/vsc";
 import { AiOutlineClose } from "react-icons/ai";
 import { setToken } from "../../slices/authSlice";
+import { setUser } from "../../slices/profileSlice";
 import { toast } from "react-hot-toast";
 
 const Navbar = () => {
@@ -44,6 +45,10 @@ const Navbar = () => {
   function signoutHandler() {
     localStorage.removeItem("token"); // Remove token from localStorage
     dispatch(setToken(null)); // Clear token in Redux
+
+    localStorage.removeItem("user"); // Remove token from localStorage
+    dispatch(setUser(null)); // Clear token in Redux
+
     navigate("/login"); // Redirect to login page
     toast.success("Logged out successfully"); // Show logout success message
     setShowMenu(false);
