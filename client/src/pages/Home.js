@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import HeroSection from "../components/core/HomePage/HeroSection";
 import FAQHome from "../components/core/HomePage/FAQHome";
 import { useSelector, useDispatch } from "react-redux";
@@ -8,13 +8,11 @@ import MeetTheTeam from "../components/core/HomePage/MeetTheTeam";
 import CompleteCNAllComponentsImg from "../assests/CompleteCNAllComponents.png";
 const Home = () => {
   const { loading } = useSelector((state) => state.auth);
+  const { user } = useSelector((state) => state.profile);
   const dispatch = useDispatch();
   useEffect(() => {
-    console.log("Checking loading state in Home.js", loading);
-    setTimeout(() => {
-      dispatch(setLoading(false));
-    }, 3000);
-  }, [loading]);
+    dispatch(setLoading(false));
+  }, [dispatch]);
   console.log("Checking loading state in Home.js", loading);
   return (
     <div className="min-h-screen">
@@ -76,11 +74,17 @@ const Home = () => {
             <FAQHome />
           </div>
           <div>
-            <img src={CompleteCNAllComponentsImg} alt="CompleteCNAllComponents" className="" />
+            <img
+              src={CompleteCNAllComponentsImg}
+              alt="CompleteCNAllComponents"
+              className=""
+            />
           </div>
-          <div>
-            <MeetTheTeam />
-          </div>
+          {user && user.userRole === "major" && (
+            <div>
+              <MeetTheTeam />
+            </div>
+          )}
           <div>
             <ContactUs />
           </div>
