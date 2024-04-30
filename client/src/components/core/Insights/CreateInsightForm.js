@@ -94,7 +94,10 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           <h2 className="text-xl font-bold mb-4 dark:text-white">Create an Insight</h2>
           <SlClose
             className="cursor-pointer transition-transform duration-300 transform hover:rotate-90 text-gray-500"
-            onClick={() => setShowModal(false)}
+            onClick={() => {
+              setShowModal(false)
+              document.body.style.overflow = "auto";
+            }}
           />
         </div>
         {message && (
