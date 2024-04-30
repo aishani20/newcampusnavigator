@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import AIAssistantImage from "../../assests/AiAssistant.png";
 import { FaMinus } from "react-icons/fa";
+import { BsChatLeftText } from "react-icons/bs";
 
 const CNAssistant = () => {
   const [userInput, setUserInput] = useState("");
@@ -12,7 +12,7 @@ const CNAssistant = () => {
     if (userInput.trim() === "") return; // Don't send empty messages
 
     // Add user message to chat history
-    setChatHistory((prev)=>[...prev, { text: userInput, sender: "user" }]);
+    setChatHistory((prev) => [...prev, { text: userInput, sender: "user" }]);
     setUserInput(""); // Clear input field
 
     try {
@@ -23,7 +23,10 @@ const CNAssistant = () => {
       );
       const botResponse = response.data.message;
       // Add bot response to chat history
-      setChatHistory((prev)=>[...prev, { text: botResponse, sender: "CNAssistant" }]);
+      setChatHistory((prev) => [
+        ...prev,
+        { text: botResponse, sender: "CNAssistant" },
+      ]);
     } catch (error) {
       console.error("Error sending message to chatbot:", error);
     }
@@ -36,20 +39,19 @@ const CNAssistant = () => {
     <div className="absolute right-0 top-10 z-20">
       {showChat ? (
         <div
-          className="w-20 h-20 fixed bottom-[4rem] right-[10%] rounded-full  cursor-pointer"
+          className=" fixed bottom-[4rem] right-[10%] rounded-full  cursor-pointer border border-white p-5 bg-[#3652DD]"
           onClick={openChatHandler}
         >
-          <img
-            src={AIAssistantImage}
-            alt="chat bot"
-            className="w-full h-full bg-blend-multiply rounded-full"
-          />
+          <BsChatLeftText className="text-white w-7 h-7 inset-0" />
         </div>
       ) : (
         <div className="max-w-sm mx-auto my-8 rounded-lg h-96 shadow-lg bg-white fixed bottom-20 right-[10%] flex flex-col">
           <div className="bg-blue-500 text-white flex justify-between px-3 items-center py-1">
             <span>CNAssistant</span>
-            <span className="cursor-pointer" onClick={()=> setShowChat(!showChat)}>
+            <span
+              className="cursor-pointer"
+              onClick={() => setShowChat(!showChat)}
+            >
               <FaMinus />
             </span>
           </div>
@@ -64,12 +66,12 @@ const CNAssistant = () => {
                 } p-2 mb-2 rounded`}
               >
                 <span>{message.sender}</span>
-                <hr className="borde border-white"/>
+                <hr className="borde border-white" />
                 <span>{message.text}</span>
               </div>
             ))}
           </div>
-          <hr className="border"/>
+          <hr className="border" />
           <div className="input-container flex items-center border-gray-200 px-4 py-2">
             <input
               type="text"
