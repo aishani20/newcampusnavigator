@@ -44,7 +44,7 @@ const Footer = () => {
       </div>
       <div className="flex mt-7 md:flex-row flex-col">
         <div className="flex md:w-3/5 md:border-none border-2 border-dashed">
-          <ul className="md:border-l-2 border-dashed p-2 mx-2">
+          <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
                 href="/#"
@@ -73,7 +73,7 @@ const Footer = () => {
               </a>
             </li>
           </ul>
-          <ul className="md:border-l-2 border-dashed p-2 mx-2">
+          <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
                 href="/#"
