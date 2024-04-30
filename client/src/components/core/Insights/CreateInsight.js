@@ -22,8 +22,8 @@ const CreateInsight = ({setAllInsights,setIsNewInsight}) => {
         <span className="text-blue-500">Create a Insight</span>
       </div>
       {showModal && (
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className="bg-black bg-opacity-50 absolute inset-0" />
+        <div className="absolute inset-0 flex justify-center items-center max-h-screen">
+          <div className="bg-black dark:bg-[#292A2B] dark:bg-opacity-50 bg-opacity-50 absolute inset-0" onClick={() => setShowModal(false)} />
           <div className="absolute z-10">
             <InsightForm setShowModal={setShowModal} setAllInsights={setAllInsights} setIsNewInsight={setIsNewInsight}/>
           </div>

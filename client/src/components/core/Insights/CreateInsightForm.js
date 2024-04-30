@@ -88,10 +88,10 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen">
-      <form className="bg-white p-8 rounded-lg shadow-md" onSubmit={submitHandler}>
+    <div className="flex justify-center items-center h-screen dark:bg-[#1E2023]">
+      <form className="bg-white p-8 rounded-lg shadow-md dark:bg-[#292A2B]" onSubmit={submitHandler}>
         <div className="flex justify-between">
-          <h2 className="text-xl font-bold mb-4">Create an Insight</h2>
+          <h2 className="text-xl font-bold mb-4 dark:text-white">Create an Insight</h2>
           <SlClose
             className="cursor-pointer transition-transform duration-300 transform hover:rotate-90 text-gray-500"
             onClick={() => setShowModal(false)}
@@ -106,7 +106,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </div>
         )}
         <div className="mb-4">
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Applied Role:
             <input
               className="border rounded p-2 w-full"
@@ -118,7 +118,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </label>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Applied Company:
             <input
               className="border rounded p-2 w-full"
@@ -130,7 +130,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </label>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Rounds:
             <input
               className="border rounded p-2 w-full"
@@ -142,7 +142,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </label>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Package:
             <input
               className="border rounded p-2 w-full"
@@ -154,7 +154,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </label>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Interview Questions:
             <input
               className="border rounded p-2 w-full"
@@ -166,7 +166,7 @@ const InsightsForm = ({ setShowModal, setIsNewInsight }) => {
           </label>
         </div>
         <div>
-          <label className="block text-gray-700 text-sm font-bold mb-2">
+          <label className="block text-gray-700 text-sm font-bold mb-2 dark:text-[#CFC7BB]">
             Interview Process:
             <input
               className="border rounded p-2 w-full"
