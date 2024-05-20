@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../../slices/authSlice";
-import { setLoading } from "../../../slices/authSlice";
+import { setLoading, setTokenCreationTime } from "../../../slices/authSlice";
 
 import axios from "axios";
 import { setUser } from "../../../slices/profileSlice";
@@ -63,6 +63,10 @@ const LoginForm = () => {
         dispatch(setToken(data.token)); // Set user token in Redux store
         dispatch(setUser(data.user)); // Set user data in Redux store
       }
+      let tokenCreationTime = new Date();
+      tokenCreationTime = tokenCreationTime.getTime();
+      dispatch(setTokenCreationTime(tokenCreationTime));
+      console.log("Token creation time", tokenCreationTime.getTime());
     } catch (err) {
       console.log(err); // Log any errors
     }

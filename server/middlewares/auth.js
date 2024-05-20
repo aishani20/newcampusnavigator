@@ -50,10 +50,6 @@ exports.auth = async (req, res, next) => {
           message: "Token has expired",
         });
       }
-      return res.status(401).json({
-        success: false,
-        message: "Token is invalid",
-      });
     }
   } catch (e) {
     console.error(e);
