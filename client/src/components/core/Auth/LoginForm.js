@@ -6,6 +6,7 @@ import { setToken } from "../../../slices/authSlice";
 import { setLoading } from "../../../slices/authSlice";
 
 import axios from "axios";
+import { setUser } from "../../../slices/profileSlice";
 
 const LoginForm = () => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
@@ -52,12 +53,15 @@ const LoginForm = () => {
       }
 
       localStorage.setItem("token", JSON.stringify(data.token));
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       // Login successful
       dispatch(setLoading(true)); // Set loading state
       navigate("/"); // Navigate to home page
       if (data.token) {
         toast.success("Login Successful"); // Show success toast
         dispatch(setToken(data.token)); // Set user token in Redux store
+        dispatch(setUser(data.user)); // Set user data in Redux store
       }
     } catch (err) {
       console.log(err); // Log any errors
@@ -66,7 +70,9 @@ const LoginForm = () => {
 
   return (
     <div className="m-20 border w-full mx-auto rounded-lg flex flex-col items-center p-6 bg-white shadow-md px-8 sm:px-6 dark:bg-[#17191A]">
-      <div className="text-3xl text-gray-700 font-semibold mb-6 dark:text-[#DED7CD]">LOGIN</div>
+      <div className="text-3xl text-gray-700 font-semibold mb-6 dark:text-[#DED7CD]">
+        LOGIN
+      </div>
       {message && (
         <div className="text-red-500 border border-red-500 px-1 w-full mb-2 flex rounded-md sm:justify-center justify-start items-center">
           {message}
@@ -74,7 +80,9 @@ const LoginForm = () => {
       )}
       <form className="flex flex-col gap-4 w-full">
         <label className="flex flex-col md:w-80 ">
-          <p className="text-gray-700 mb-1 dark:text-[#F2EEE5]">Email Address</p>
+          <p className="text-gray-700 mb-1 dark:text-[#F2EEE5]">
+            Email Address
+          </p>
           <input
             type="email"
             name="email"

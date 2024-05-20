@@ -13,6 +13,7 @@ const SignupForm = () => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    userRole: "user",
     email: "",
     password: "",
     confirmPassword: "",
@@ -56,7 +57,6 @@ const SignupForm = () => {
         return;
       }
 
-      dispatch(setSignupData(formData));
       event.preventDefault();
       dispatch(setLoading(true));
       const response = await fetch(`${backendUrl}/signup`, {
@@ -77,6 +77,7 @@ const SignupForm = () => {
         setMessage(data.message);
         return;
       }
+      dispatch(setSignupData(formData));
     } catch (err) {
       console.error(err);
       console.log("Error in signup submit handler");

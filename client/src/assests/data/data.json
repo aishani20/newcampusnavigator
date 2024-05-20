@@ -168,27 +168,27 @@
   "teamMembers": [
     {
       "name": "Abhishek Tyagi",
-      "email": "abhishek@example.com",
-      "contact": "+91 1234567890",
-      "role": "Frontend Developer"
+      "email": "abtyagi150702@gmail.com",
+      "contact": "+91 9340204054",
+      "role": "Full Stack Developer"
     },
     {
       "name": "Aishani Mohapatra",
-      "email": "aishani@example.com",
-      "contact": "+91 9876543210",
-      "role": "Backend Developer"
+      "email": "mohapatraaishani20@gmail.com",
+      "contact": "+91 9109595215",
+      "role": "ML & Backend Developer"
     },
     {
       "name": "Bhavika Surywanshi",
-      "email": "bhavika@example.com",
-      "contact": "+91 9876543210",
-      "role": "UI/UX Designer"
+      "email": "bhavika24cs025@satiengg.in",
+      "contact": "+91 7558332537",
+      "role": "Product Manager"
     },
     {
       "name": "Himanshu Koshti",
-      "email": "himanshu@example.com",
-      "contact": "+91 9876543210",
-      "role": "Project Manager"
+      "email": "himanshu24cs040@satiengg.in",
+      "contact": "+91 9755337145",
+      "role": "Full Stack Developer"
     }
   ]
 }

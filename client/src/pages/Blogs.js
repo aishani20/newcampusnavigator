@@ -1,7 +1,7 @@
 import React from "react";
 import PostCardSection from "../components/core/UserHome/PostCardSection";
 
-const Home = () => {
+const Blogs = () => {
   return (
     <div>
       <div>
@@ -11,4 +11,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Blogs;
