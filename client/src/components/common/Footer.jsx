@@ -37,9 +37,27 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-2 dark:text-[#C5C4C2] justify-end mt-2">
-          <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />
-          <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />
-          <FaLinkedin className="w-6 h-6 text-[#0073B1]" />
+          <a
+            href="https://www.instagram.com/ab_tyagi15/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />
+          </a>
+          <a
+            href="https://x.com/abtyagi15"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abtyagi15/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin className="w-6 h-6 text-[#0073B1]" />
+          </a>
         </div>
       </div>
       <div className="flex mt-7 md:flex-row flex-col">
