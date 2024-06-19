@@ -37,8 +37,8 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-2 dark:text-[#C5C4C2] justify-end mt-2">
-          <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />{" "}
-          <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />{" "}
+          <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />
+          <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />
           <FaLinkedin className="w-6 h-6 text-[#0073B1]" />
         </div>
       </div>
@@ -76,8 +76,9 @@ const Footer = () => {
           <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
-                href="/#"
+                href="https://www.satiengg.in/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Institute Website
@@ -85,8 +86,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://www.instagram.com/fluxsati/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Technical Club FLUX
@@ -94,8 +96,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://www.linkedin.com/in/training-and-placement-cell-sati-vidisha/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Training and Placement cell
