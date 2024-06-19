@@ -14,8 +14,8 @@ const LoginForm = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "test@abtyagi15.com",
+    password: "123",
   });
   function changeHandler(event) {
     const { name, value } = event.target;
