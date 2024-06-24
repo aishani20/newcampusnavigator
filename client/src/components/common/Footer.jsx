@@ -65,8 +65,19 @@ const Footer = () => {
           <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1kitzmM8lSb27pezkoipvkCjWI_u9BY7x/view"
                 target="_blank"
+                rel="noopener noreferrer"
+                className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
+              >
+                Project Thesis
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://drive.google.com/file/d/1Xv9BwYmXPT-XIzW61yBRSyn3Zmg0-qwh/view"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Progress Report
@@ -74,8 +85,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1UvdaZFVZCBgKumWOA4y-Y5TAnT65Xm_g/view"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Project Poster
@@ -83,8 +95,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1wTs5cdvlZEUIEbOkjGRLvCec6ll73laq/view"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Project PPT
