@@ -1,5 +1,5 @@
 import React from "react";
-import PostCardSection from "../components/core/UserHome/PostCardSection";
+import PostCardSection from "../components/core/Blogs/PostCardSection";
 
 const Blogs = () => {
   return (
