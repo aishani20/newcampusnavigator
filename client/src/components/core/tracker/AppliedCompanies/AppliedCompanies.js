@@ -1,9 +1,24 @@
 import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import PlusIcon from "../../../../assests/tracker/daily_target_plus.png";
+import axios from "axios";
+import { useSelector } from "react-redux";
 
 const AppliedCompanies = () => {
-  const [dailyTarget,setDailyTarget] = useState(0);
+  const [dailyTarget, setDailyTarget] = useState(0);
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  const { token } = useSelector((state) => state.auth);
+
+  const sendDailyTarget = async () => {
+    console.log("Before sending request to backend");
+    const response = await axios.post(`${backendUrl}/daily-target`, dailyTarget, {
+      headers: {
+        Authorisation: `Bearer ${token}`,
+      },
+    });
+    const data = await response.data;
+    console.log(data);
+  };
   return (
     <div>
       <div className="flex justify-end my-4">
@@ -11,10 +26,15 @@ const AppliedCompanies = () => {
           Daily Target : <span>{dailyTarget}</span>
           <span>/</span>
           <span>40</span>
-          <img src={PlusIcon} alt="Icon to increase target number" className="w-6 h-6 cursor-pointer" 
-                onClick={(prev) => {
-                  dailyTarget < 40 && setDailyTarget(prev => prev + 1);
-                }}
+          <img
+            src={PlusIcon}
+            alt="Icon to increase target number"
+            className="w-6 h-6 cursor-pointer"
+            onClick={(prev) => {
+              dailyTarget < 40 &&
+                setDailyTarget((prev) => prev + 1) && console.log(dailyTarget);
+                sendDailyTarget();
+            }}
           />
         </div>
       </div>
