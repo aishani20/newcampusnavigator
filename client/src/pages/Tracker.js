@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import navigatorsIcon from "../assests/tracker/tracker_note_icon.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Tracker = () => {
   const [showSearch, setShowSearch] = useState(false);
+  const location = useLocation();
   return (
     <div className="flex">
       <div className="border-b flex flex-col items-center my-2 gap-4 p-2 border-r-4 justify-center">
@@ -25,7 +26,11 @@ const Tracker = () => {
         </div>
         <div className="w-full">
           <Link to="/tracker/applied-companies">
-            <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
+            <div
+              className={`hover:bg-[#F5F5F5] rounded-sm py-2 flex items-center gap-2 px-4 cursor-pointer ${
+                location.pathname.match("tracker/applied-companies") && "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
+              }`}
+            >
               <img
                 src={navigatorsIcon}
                 alt="navigatorsIcon"
