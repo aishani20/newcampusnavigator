@@ -108,6 +108,16 @@ const Navbar = () => {
             Insights
           </Link>
           <Link
+            to="/tracker"
+            onClick={() => setShowMenu(false)}
+            className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
+              location.pathname === "/tracker" &&
+              "underline underline-offset-8 decoration-4 decoration-blue-500"
+            }`}
+          >
+            Tracker
+          </Link>
+          <Link
             to="/academics"
             onClick={() => setShowMenu(false)}
             className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
