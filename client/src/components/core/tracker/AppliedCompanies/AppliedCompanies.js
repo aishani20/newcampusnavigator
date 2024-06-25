@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import PlusIcon from "../../../../assests/tracker/daily_target_plus.png";
 import axios from "axios";
@@ -9,16 +9,35 @@ const AppliedCompanies = () => {
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const { token } = useSelector((state) => state.auth);
 
+  //updating the value of daily target in the database
   const sendDailyTarget = async () => {
     console.log("Before sending request to backend");
-    const response = await axios.post(`${backendUrl}/daily-target`, dailyTarget, {
-      headers: {
-        Authorisation: `Bearer ${token}`,
-      },
-    });
+    const response = await axios.post(
+      `${backendUrl}/daily-target`,
+      dailyTarget,
+      {
+        headers: {
+          Authorisation: `Bearer ${token}`,
+        },
+      }
+    );
     const data = await response.data;
     console.log(data);
   };
+
+  useEffect(() => {
+    const fetchDailyTarget = async () => {
+      console.log("Before sending get request to retrieve daily target");
+      const response = await axios.get(`${backendUrl}/applied-companies`, {
+        headers: {
+          Authorisation: `Bearer ${token}`
+        },
+      });
+      const data = await response.data;
+      console.log(data);
+    };
+    fetchDailyTarget();
+  },[]);
   return (
     <div>
       <div className="flex justify-end my-4">
@@ -32,8 +51,9 @@ const AppliedCompanies = () => {
             className="w-6 h-6 cursor-pointer"
             onClick={(prev) => {
               dailyTarget < 40 &&
-                setDailyTarget((prev) => prev + 1) && console.log(dailyTarget);
-                sendDailyTarget();
+                setDailyTarget((prev) => prev + 1) &&
+                console.log(dailyTarget);
+              sendDailyTarget();
             }}
           />
         </div>
