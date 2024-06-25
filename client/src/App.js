@@ -28,6 +28,7 @@ import Profile from "./pages/settings/Profile";
 import ChangePassword from "./pages/settings/ChangePassword";
 import Help from "./pages/settings/Help";
 import AccountDeactivation from "./pages/settings/AccountDeactivation";
+import Tracker from "./pages/Tracker";
 
 function App() {
   useEffect(() => {
@@ -105,6 +106,14 @@ function App() {
             element={
               <PrivateRoute>
                 <UserProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/tracker"
+            element={
+              <PrivateRoute>
+                <Tracker />
               </PrivateRoute>
             }
           />
