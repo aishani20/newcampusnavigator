@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const {dailyTarget} = require('../controllers/Tracker');
-router.post('daily-target',dailyTarget);
+const {auth} = require('../middlewares/auth');
+const {dailyTarget} = require('../controllers/CompaniesApply');
+router.post('/daily-target',auth, dailyTarget);
 
 module.exports = router;
