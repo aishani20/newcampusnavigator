@@ -108,7 +108,7 @@ const Navbar = () => {
             Insights
           </Link>
           <Link
-            to="/tracker"
+            to="/tracker/applied-companies"
             onClick={() => setShowMenu(false)}
             className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
               location.pathname === "/tracker" &&
