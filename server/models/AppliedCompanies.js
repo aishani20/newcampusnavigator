@@ -16,7 +16,7 @@ const appliedCompaniesSchema = new mongoose.Schema({
     },
     appliedDate: {
         type: Date,
-        default: Date.now
+        default: Date.now()
     }
     
 });
