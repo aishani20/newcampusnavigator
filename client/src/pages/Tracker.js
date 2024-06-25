@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch } from "react-icons/fa";
-import navigatorsIcon from "../assests/tracker/tracknote-removebg-preview.png";
+import navigatorsIcon from "../assests/tracker/tracker_note_icon.png";
+import { Link, Outlet } from "react-router-dom";
 
 const Tracker = () => {
   const [showSearch, setShowSearch] = useState(false);
@@ -23,21 +24,37 @@ const Tracker = () => {
           <FaSearch />
         </div>
         <div className="w-full">
+          <Link to="/tracker/applied-companies">
+            <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
+              <img
+                src={navigatorsIcon}
+                alt="navigatorsIcon"
+                className="w-7 h-7"
+              />
+              <span>Applied Companies</span>
+            </div>
+          </Link>
           <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
-            <img src={navigatorsIcon} alt="navigatorsIcon"  className="w-7 h-7" />
-            <span>Applied Companies</span>
-          </div>
-          <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
-            <img src={navigatorsIcon} alt="navigatorsIcon"  className="w-7 h-7" />
+            <img
+              src={navigatorsIcon}
+              alt="navigatorsIcon"
+              className="w-7 h-7"
+            />
             <span>Linkedin Connections</span>
           </div>
           <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
-            <img src={navigatorsIcon} alt="navigatorsIcon"  className="w-7 h-7" />
+            <img
+              src={navigatorsIcon}
+              alt="navigatorsIcon"
+              className="w-7 h-7"
+            />
             <span>Day Tracker</span>
           </div>
         </div>
       </div>
-      <div>This is the right part</div>
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 };

@@ -29,6 +29,7 @@ import ChangePassword from "./pages/settings/ChangePassword";
 import Help from "./pages/settings/Help";
 import AccountDeactivation from "./pages/settings/AccountDeactivation";
 import Tracker from "./pages/Tracker";
+import AppliedCompanies from "./components/core/tracker/AppliedCompanies/AppliedCompanies";
 
 function App() {
   useEffect(() => {
@@ -116,7 +117,10 @@ function App() {
                 <Tracker />
               </PrivateRoute>
             }
-          />
+          >
+            <Route path="applied-companies" element={<AppliedCompanies />} />
+          </Route>
+
           <Route
             path="/academics"
             element={
@@ -176,8 +180,10 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="change-password" element={<ChangePassword />} />
             <Route path="help" element={<Help />} />
-            <Route path="account-deactivation" element={<AccountDeactivation />} />
-
+            <Route
+              path="account-deactivation"
+              element={<AccountDeactivation />}
+            />
           </Route>
         </Routes>
         <CNAssistant />
