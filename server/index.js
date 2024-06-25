@@ -38,6 +38,9 @@ app.use('/api/v1',profileRoute);
 const academicsRoute = require('./routes/Academics');
 app.use('/api/v1',academicsRoute);
 
+const trackerRoute = require('./routes/Tracker');
+app.use('/api/v1',trackerRoute);
+
 app.get('/api/v1', (req, res) => {
     res.json({message: "Welcome to the CampusNavigator!"});
 })
