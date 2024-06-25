@@ -52,7 +52,7 @@ const Tracker = () => {
           </div>
         </div>
       </div>
-      <div>
+      <div className="w-full">
         <Outlet />
       </div>
     </div>
