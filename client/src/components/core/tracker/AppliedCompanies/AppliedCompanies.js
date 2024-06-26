@@ -26,18 +26,30 @@ const AppliedCompanies = () => {
   };
 
   useEffect(() => {
+    const currentDate = new Date();
+    const isoStringCurrentDay = currentDate.toISOString();
+    let specificDate = currentDate;
+    specificDate.setUTCHours(0, 0, 0, 0);
+    const isoStringPastDay = specificDate.toISOString();
+
+    console.log(
+      "Before sending get request to retrieve daily target",
+      isoStringCurrentDay,isoStringPastDay
+    );
     const fetchDailyTarget = async () => {
-      console.log("Before sending get request to retrieve daily target");
       const response = await axios.get(`${backendUrl}/applied-companies`, {
         headers: {
-          Authorisation: `Bearer ${token}`
+          Authorisation: `Bearer ${token}`,
+          isoStringCurrentDay: isoStringCurrentDay,
+          isoStringPastDay: isoStringPastDay
         },
       });
       const data = await response.data;
-      console.log(data);
+      console.log(data.data.length);
+      setDailyTarget(data.data.length);
     };
     fetchDailyTarget();
-  },[]);
+  }, []);
   return (
     <div>
       <div className="flex justify-end my-4">
@@ -59,9 +71,35 @@ const AppliedCompanies = () => {
         </div>
       </div>
       <div className="px-2">
-        <div className="rounded-md bg-[#6A89CC] m-2 py-2 px-4 flex justify-between items-center">
-          <span className="text-white">Today</span>
-          <IoIosArrowDown className="w-8 h-8 fill-white mr-2" />
+        <div>
+          <div className="rounded-md bg-[#6A89CC] m-2 py-2 px-4 flex justify-between items-center">
+            <span className="text-white">Today</span>
+            <IoIosArrowDown className="w-8 h-8 fill-white mr-2" />
+          </div>
+          <div className="px-4">
+            <table className="w-full">
+              <thead className="border">
+                <td>Company Name</td>
+                <td>Applied Role</td>
+                <td>Time</td>
+                <td>Other</td>
+              </thead>
+              <tbody className="border">
+                <tr>
+                  <td>Hexaware</td>
+                  <td>Graduate Engineer Trainee</td>
+                  <td>{Date.now()}</td>
+                  <td>No Remark</td>
+                </tr>
+                <tr>
+                  <td>Talent Serve</td>
+                  <td>Full Stack Developer</td>
+                  <td>{Date.now()}</td>
+                  <td>No Remark</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
         <div className="rounded-md bg-[#6A89CC] m-2 py-2 px-4 flex justify-between items-center">
           <span className="text-white">Yesterday</span>
