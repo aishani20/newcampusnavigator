@@ -8,7 +8,7 @@ exports.dailyTarget = async (req, res) => {
       user: req.user.id,
     });
 
-    res.status(200).json({
+    return res.status(200).json({
       message: "Daily target updated successfully",
     });
   } catch (err) {
@@ -18,15 +18,32 @@ exports.dailyTarget = async (req, res) => {
 
 exports.appliedCompaniesData = async (req, res) => {
   try {
-    const { currentDate } = req.headers;
-    const data = await AppliedCompanies.find({
-      user: req.user.id && appliedDate < currentDate,
-    });
-    console.log("current date", currentDate);
-    console.log("current date calculated in backend", Date.now());
-    console.log("data", data);
+    const isoStringPastDay = req.header("isoStringPastDay");
+    const isoStringCurrentDay = req.header("isoStringCurrentDay");
 
-    res.status(200).json({
+    if (!isoStringPastDay || !isoStringCurrentDay) {
+      return res.status(401).json({
+        success: false,
+        message: "Input dates are missing in the request header",
+      });
+    }
+
+    const data = await AppliedCompanies.find({
+      user: req.user.id,
+      appliedDate: {
+        $gte: isoStringPastDay,
+        $lt: isoStringCurrentDay
+      },
+    });
+    if (!data) {
+      return res.status(404).json({
+        success: false,
+        message: "No data found for the current date",
+      });
+    }
+    console.log("current date calculated in backend", JSON.stringify(data));
+
+    return res.status(200).json({
       message: "Applied companies data fetched successfully",
       data: data,
     });
