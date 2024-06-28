@@ -18,34 +18,40 @@ exports.dailyTarget = async (req, res) => {
 
 exports.appliedCompaniesData = async (req, res) => {
   try {
-    const isoStringPastDay = req.header("isoStringPastDay");
-    const isoStringCurrentDay = req.header("isoStringCurrentDay");
+    const {upperDate, lowerDate} = req.query;
+    const isoStringLowerLimitDate = lowerDate;
+    const isoStringUpperLimitDate = upperDate;
 
-    if (!isoStringPastDay || !isoStringCurrentDay) {
+    if (!isoStringLowerLimitDate || !isoStringUpperLimitDate) {
       return res.status(401).json({
         success: false,
         message: "Input dates are missing in the request header",
       });
     }
 
-    const data = await AppliedCompanies.find({
+    const details = await AppliedCompanies.find({
       user: req.user.id,
       appliedDate: {
-        $gte: isoStringPastDay,
-        $lt: isoStringCurrentDay
+        $gte: isoStringLowerLimitDate,
+        $lt: isoStringUpperLimitDate,
       },
     });
-    if (!data) {
-      return res.status(404).json({
+    if (!details) {
+      return res.status(401).json({
         success: false,
         message: "No data found for the current date",
       });
     }
-    console.log("current date calculated in backend", JSON.stringify(data));
+    console.log(
+      "current date calculated in backend",
+      isoStringLowerLimitDate,
+      isoStringUpperLimitDate
+    );
+    console.log(details);
 
     return res.status(200).json({
       message: "Applied companies data fetched successfully",
-      data: data,
+      companyData: details,
     });
   } catch (err) {
     console.log(err);
