@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 
 const Footer = () => {
   const { darkMode } = useSelector((state) => state.darkMode);
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState("");
   const { user } = useSelector((state) => state.profile);
   const subscribeHandler = () => {
     toast.success("Subscribed Successfully");
