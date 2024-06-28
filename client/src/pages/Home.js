@@ -13,7 +13,6 @@ const Home = () => {
   useEffect(() => {
     dispatch(setLoading(false));
   }, [dispatch]);
-  console.log("Checking loading state in Home.js", loading);
   return (
     <div className="min-h-screen">
       {loading ? (
