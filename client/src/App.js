@@ -35,13 +35,13 @@ function App() {
   useEffect(() => {
     axios
       .get(`${process.env.REACT_APP_BACKEND_URL}`)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => console.log("Response from main backend",res))
+      .catch((err) => console.log("Error in th main backend",err));
 
     axios
       .get(`${process.env.REACT_APP_PREDICTION_MODEL_BACKEND_URL}/home`)
-      .then((res) => console.log("res"))
-      .catch((err) => console.log(err));
+      .then((res) => console.log("Response from the model backend",res))
+      .catch((err) => console.log("Error in the model backend",err));
   }, []);
   return (
     <div className="min-h-screen flex flex-col dark:bg-[#111213]">
