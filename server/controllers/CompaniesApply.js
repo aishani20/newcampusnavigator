@@ -57,3 +57,23 @@ exports.appliedCompaniesData = async (req, res) => {
     console.log(err);
   }
 };
+
+
+exports.extensionData = async (req, res) => {
+  try {
+    const { appliedCompany,appliedRole,location } = req.body;
+    await AppliedCompanies.create({
+      appliedCompany: appliedCompany,
+      appliedRole: appliedRole,
+      location: location,
+      user: req.user.id
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Company data added successfully",
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
