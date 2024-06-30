@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+/*global chrome*/
+
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -8,7 +10,25 @@ import { setLoading, setTokenCreationTime } from "../../../slices/authSlice";
 import axios from "axios";
 import { setUser } from "../../../slices/profileSlice";
 
+//token reset function to reset token in chrome extension
+const resetTokenFromChromeExtension = ({ extensionId, isLogin }) => {
+  chrome.runtime.sendMessage(extensionId, { isLogin }, (response) => {
+    if (!response.success) {
+      console.log("error sending token reset message", response);
+      return response;
+    }
+    console.log("Token reset response :::", response);
+  });
+};
+
 const LoginForm = () => {
+  const isLogin = false;
+  useEffect(() => {
+    resetTokenFromChromeExtension({
+      extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
+      isLogin,
+    });
+  }, [isLogin]);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();

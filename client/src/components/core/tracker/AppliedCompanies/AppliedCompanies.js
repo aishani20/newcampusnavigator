@@ -5,7 +5,7 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import CompanyDetails from "./CompanyDetails";
 import ISOCurrentDateFormatter from "../../../../utils/ISOCurrentDateFormatter";
-
+import DateRangeGenerator from "../../../../utils/DateRangeGenerate";
 const AppliedCompanies = () => {
   const [dailyTarget, setDailyTarget] = useState(0);
   const [companyDetails, setCompanyDetails] = useState([]);
@@ -30,12 +30,7 @@ const AppliedCompanies = () => {
   };
 
   useEffect(() => {
-    let requiredDateLowerLimit = new Date(selectedDate);
-    requiredDateLowerLimit.setUTCHours(0, 0, 0, 0);
-    let requiredDateUpperLimit = new Date(selectedDate);
-    requiredDateUpperLimit.setUTCHours(23, 59, 59, 999);
-    const isoStringLowerLimitDate = requiredDateLowerLimit.toISOString();
-    const isoStringUpperLimitDate = requiredDateUpperLimit.toISOString();
+    const { startDate, endDate } = DateRangeGenerator(selectedDate);
 
     const fetchDailyTarget = async () => {
       const response = await axios.get(`${backendUrl}/applied-companies`, {
@@ -43,8 +38,8 @@ const AppliedCompanies = () => {
           Authorisation: `Bearer ${token}`,
         },
         params: {
-          upperDate: isoStringUpperLimitDate,
-          lowerDate: isoStringLowerLimitDate,
+          startDate: startDate,
+          endDate: endDate,
         },
       });
       const data = await response.data;
