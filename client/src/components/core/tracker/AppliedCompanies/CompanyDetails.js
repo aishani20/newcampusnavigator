@@ -19,15 +19,16 @@ const CompanyDetails = ({ companyDetails }) => {
             <tr>
               <th>Company Name</th>
               <th>Applied Role</th>
+              <th>Location</th>
               <th>Time</th>
-              <th>Other</th>
             </tr>
           </thead>
           <tbody className="border">
             {Object.values(companyDetails).map((detail, key) => (
               <tr key={key}>
                 <td>{detail.companyName}</td>
-                <td>{detail.appliedRole}</td>
+                <td>{detail.jobTitle}</td>
+                <td>{detail.location}</td>
                 <td>{timeExtracterFromUTC(detail.appliedDate)}</td>
               </tr>
             ))}
