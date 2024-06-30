@@ -53,7 +53,7 @@ const AppliedCompanies = () => {
     };
 
     fetchDailyTarget();
-  }, []);
+  }, [selectedDate]);
   return (
     <div>
       <div className="flex justify-between my-4">
