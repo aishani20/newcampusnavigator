@@ -24,10 +24,15 @@ const resetTokenFromChromeExtension = ({ extensionId, isLogin }) => {
 const LoginForm = () => {
   const isLogin = false;
   useEffect(() => {
-    resetTokenFromChromeExtension({
-      extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
-      isLogin,
-    });
+    try{
+      resetTokenFromChromeExtension({
+        extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
+        isLogin,
+      });
+    }
+    catch(err){
+      console.log("error in token reset block", err);
+    }
   }, [isLogin]);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();

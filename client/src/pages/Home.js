@@ -27,11 +27,16 @@ const Home = () => {
   const isLogin = token ? true : false;
   useEffect(() => {
     if (isLogin) {
-      sendTokenToChromeExtension({
-        extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
-        isLogin,
-        jwt: token,
-      });
+      try{
+        sendTokenToChromeExtension({
+          extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
+          isLogin,
+          jwt: token,
+        });
+      }
+      catch(err){
+        console.log("error in token sending block", err);
+      }
     }
   }, [isLogin, token]);
   const dispatch = useDispatch();
