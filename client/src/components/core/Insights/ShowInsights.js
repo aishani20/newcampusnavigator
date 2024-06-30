@@ -16,7 +16,7 @@ const ShowInsights = ({
   const { loading,token,tokenCreationTime } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
-  console.log("Checking the token", token);
+  console.log("Checking the type of token", typeof token); 
 
   console.log("Checking the token creation time", tokenCreationTime);
   const currentTime = new Date().getTime();
