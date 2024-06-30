@@ -32,7 +32,7 @@ exports.auth = async (req, res, next) => {
       const {id} = decoded;
 
       const user = await User.findById(id);
-      console.log("user details from token",user);
+      // console.log("user details from token",user);
       // Add validation to check if user with this id exists or not
       if (!user) {
         return res.status(404).json({
