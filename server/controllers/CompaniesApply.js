@@ -18,11 +18,12 @@ exports.dailyTarget = async (req, res) => {
 
 exports.appliedCompaniesData = async (req, res) => {
   try {
-    const {upperDate, lowerDate} = req.query;
-    const isoStringLowerLimitDate = lowerDate;
-    const isoStringUpperLimitDate = upperDate;
+    const {startDate, endDate} = req.query;
 
-    if (!isoStringLowerLimitDate || !isoStringUpperLimitDate) {
+    const startDateISOStringValue = startDate;
+    const endDateISOStringValue = endDate;
+
+    if (!startDateISOStringValue || !endDateISOStringValue) {
       return res.status(401).json({
         success: false,
         message: "Input dates are missing in the request header",
@@ -32,8 +33,8 @@ exports.appliedCompaniesData = async (req, res) => {
     const details = await AppliedCompanies.find({
       user: req.user.id,
       appliedDate: {
-        $gte: isoStringLowerLimitDate,
-        $lt: isoStringUpperLimitDate,
+        $gte: startDateISOStringValue,
+        $lt: endDateISOStringValue,
       },
     });
     if (!details) {
@@ -42,12 +43,12 @@ exports.appliedCompaniesData = async (req, res) => {
         message: "No data found for the current date",
       });
     }
-    console.log(
-      "current date calculated in backend",
-      isoStringLowerLimitDate,
-      isoStringUpperLimitDate
-    );
-    console.log(details);
+    // console.log(
+    //   "current date calculated in backend",
+    //   startDate,
+    //   endDate
+    // );
+    // console.log(details);
 
     return res.status(200).json({
       message: "Applied companies data fetched successfully",
@@ -61,10 +62,10 @@ exports.appliedCompaniesData = async (req, res) => {
 
 exports.extensionData = async (req, res) => {
   try {
-    const { appliedCompany,appliedRole,location } = req.body;
+    const { companyName, jobTitle, location } = req.body;
     await AppliedCompanies.create({
-      appliedCompany: appliedCompany,
-      appliedRole: appliedRole,
+      companyName: companyName,
+      jobTitle: jobTitle,
       location: location,
       user: req.user.id
     });
