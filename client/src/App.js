@@ -30,6 +30,7 @@ import Help from "./pages/settings/Help";
 import AccountDeactivation from "./pages/settings/AccountDeactivation";
 import Tracker from "./pages/Tracker";
 import AppliedCompanies from "./components/core/tracker/AppliedCompanies/AppliedCompanies";
+import ColdEmailing from "./components/core/tracker/ColdEmailing/ColdEmailing";
 
 function App() {
   useEffect(() => {
@@ -119,6 +120,7 @@ function App() {
             }
           >
             <Route path="applied-companies" element={<AppliedCompanies />} />
+            <Route path="cold-emailing" element={<ColdEmailing />} />
           </Route>
 
           <Route

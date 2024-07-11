@@ -28,7 +28,8 @@ const Tracker = () => {
           <Link to="/tracker/applied-companies">
             <div
               className={`hover:bg-[#F5F5F5] rounded-sm py-2 flex items-center gap-2 px-4 cursor-pointer ${
-                location.pathname.match("tracker/applied-companies") && "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
+                location.pathname.match("tracker/applied-companies") &&
+                "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
               }`}
             >
               <img
@@ -39,14 +40,21 @@ const Tracker = () => {
               <span>Applied Companies</span>
             </div>
           </Link>
-          <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
-            <img
-              src={navigatorsIcon}
-              alt="navigatorsIcon"
-              className="w-7 h-7"
-            />
-            <span>Linkedin Connections</span>
-          </div>
+          <Link to="/tracker/cold-emailing">
+            <div
+              className={`hover:bg-[#F5F5F5] rounded-sm py-2 flex items-center gap-2 px-4 cursor-pointer ${
+                location.pathname.match("tracker/cold-emailing") &&
+                "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
+              }`}
+            >
+              <img
+                src={navigatorsIcon}
+                alt="navigatorsIcon"
+                className="w-7 h-7"
+              />
+              <span>Cold Emailing</span>
+            </div>
+          </Link>
           <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
             <img
               src={navigatorsIcon}
