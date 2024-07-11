@@ -10,8 +10,8 @@ const Tracker = () => {
   const [showSearch, setShowSearch] = useState(false);
   const location = useLocation();
   return (
-    <div className="flex">
-      <div className="flex">
+    <div className="flex relative min-h-80 mt-4">
+      <div className="flex border-r border-black bg-[#f5f5f5] absolute transition-transform">
         <div className="border-b flex flex-col items-center my-2 gap-4 p-2 justify-center">
           <div
             className={`flex items-center border rounded-lg my-2 mb-6 py-1 px-4 ${
@@ -31,9 +31,9 @@ const Tracker = () => {
           <div className="w-full">
             <Link to="/tracker/applied-companies">
               <div
-                className={`hover:bg-[#F5F5F5] rounded-sm py-2 flex items-center gap-2 px-4 cursor-pointer ${
+                className={` rounded-md py-2 flex items-center gap-2 px-4 cursor-pointer ${
                   location.pathname.match("tracker/applied-companies") &&
-                  "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
+                  "bg-[#ffffff]"
                 }`}
               >
                 <img
@@ -46,9 +46,9 @@ const Tracker = () => {
             </Link>
             <Link to="/tracker/cold-emailing">
               <div
-                className={`hover:bg-[#F5F5F5] rounded-sm py-2 flex items-center gap-2 px-4 cursor-pointer ${
+                className={`hover:bg-[#ffffff] rounded-md py-2 flex items-center gap-2 px-4 cursor-pointer ${
                   location.pathname.match("tracker/cold-emailing") &&
-                  "bg-[#F5F5F5] hover:bg-[#9e9e9e26]"
+                  "bg-[#ffffff] hover:bg-[#9e9e9e26]"
                 }`}
               >
                 <img
@@ -59,7 +59,7 @@ const Tracker = () => {
                 {showMenu && <span>Cold Emailing</span>}
               </div>
             </Link>
-            <div className="hover:bg-[#F5F5F5] py-2 flex items-center gap-2 px-4 cursor-pointer">
+            <div className="hover:bg-[#ffffff] rounded-md py-2 flex items-center gap-2 px-4 cursor-pointer">
               <img
                 src={navigatorsIcon}
                 alt="navigatorsIcon"
@@ -75,7 +75,7 @@ const Tracker = () => {
           </div>
         </div>
       </div>
-      <div className="w-full">
+      <div className="w-full ml-20">
         <Outlet />
       </div>
     </div>
