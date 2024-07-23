@@ -10,6 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { setToken } from "../../slices/authSlice";
 import { setUser } from "../../slices/profileSlice";
 import { toast } from "react-hot-toast";
+import SignoutHandler from "../core/SignoutHandler";
 
 const Navbar = () => {
   const { token } = useSelector((state) => state.auth);
@@ -107,10 +108,20 @@ const Navbar = () => {
             Insights
           </Link>
           <Link
+            to="/tracker/applied-companies"
+            onClick={() => setShowMenu(false)}
+            className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
+              location.pathname.match("tracker") &&
+              "underline underline-offset-8 decoration-4 decoration-blue-500"
+            }`}
+          >
+            Tracker
+          </Link>
+          <Link
             to="/academics"
             onClick={() => setShowMenu(false)}
             className={`transition duration-300 ease-in-out transform hover:scale-105 dark:text-[#B2AE9F] hover:text-blue-500 ${
-              location.pathname === "/academics" &&
+              location.pathname.match("academics") &&
               "underline underline-offset-8 decoration-4 decoration-blue-500"
             }`}
           >
@@ -224,7 +235,7 @@ const Navbar = () => {
               <div className="relative sm:top-20 top-60 p-2">
                 <hr className="w-full my-2" />
                 <Link to="/settings" onClick={()=> setShowMenu(false)}>Settings</Link>
-                <div onClick={signoutHandler}>Signout</div>
+                <div onClick={(navigate,dispatch) => SignoutHandler(navigate,dispatch)}>Signout</div>
               </div>
             </div>
           )}

@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import InsightCard from "./InsightCard";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
-import { setLoading } from "../../../slices/authSlice";
+import { setLoading, setToken, setTokenCreationTime } from "../../../slices/authSlice";
+import { setUser } from "../../../slices/profileSlice";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const ShowInsights = ({
   allInsights,
@@ -10,10 +13,26 @@ const ShowInsights = ({
   isNewInsight,
   showLoader,
 }) => {
-  const { loading,token } = useSelector((state) => state.auth);
+  const { loading,token,tokenCreationTime } = useSelector((state) => state.auth);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
-  console.log("Checking the token", token);
+  console.log("Checking the type of token", typeof token); 
+
+  console.log("Checking the token creation time", tokenCreationTime);
+  const currentTime = new Date().getTime();
+  const navigate = useNavigate();
+  if(tokenCreationTime && currentTime - tokenCreationTime > 86400000){
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(setUser(null));
+    dispatch(setToken(null));
+    navigate("/login");
+    toast.error("Session expired, please login again");
+  }
+  else{
+    console.log("Token still valid");
+  }
+
   useEffect(() => {
     const fetchData = async () => {
       dispatch(setLoading(true));

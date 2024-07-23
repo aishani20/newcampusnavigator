@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+/*global chrome*/
+
+import React, { useEffect } from "react";
 import HeroSection from "../components/core/HomePage/HeroSection";
 import FAQHome from "../components/core/HomePage/FAQHome";
 import { useSelector, useDispatch } from "react-redux";
@@ -6,14 +8,41 @@ import { setLoading } from "../slices/authSlice";
 import ContactUs from "../components/core/HomePage/ContactUs";
 import MeetTheTeam from "../components/core/HomePage/MeetTheTeam";
 import CompleteCNAllComponentsImg from "../assests/CompleteCNAllComponents.png";
+
+//token sending funtion to the extension
+const sendTokenToChromeExtension = ({ extensionId, isLogin, jwt }) => {
+  chrome.runtime.sendMessage(extensionId, { isLogin, jwt }, (response) => {
+    if (!response.success) {
+      console.log("error sending token", response);
+      return response;
+    }
+    console.log("Token sent ::: ", response);
+  });
+};
+
 const Home = () => {
   const { loading } = useSelector((state) => state.auth);
   const { user } = useSelector((state) => state.profile);
+  const { token } = useSelector((state) => state.auth);
+  const isLogin = token ? true : false;
+  useEffect(() => {
+    if (isLogin) {
+      try{
+        sendTokenToChromeExtension({
+          extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
+          isLogin,
+          jwt: token,
+        });
+      }
+      catch(err){
+        console.log("error in token sending block", err);
+      }
+    }
+  }, [isLogin, token]);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(setLoading(false));
   }, [dispatch]);
-  console.log("Checking loading state in Home.js", loading);
   return (
     <div className="min-h-screen">
       {loading ? (

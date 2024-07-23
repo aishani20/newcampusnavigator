@@ -15,7 +15,7 @@ app.use(cookieParser());
 const cors = require('cors');
 app.use(
     cors({
-        origin: `${process.env.CORS_ORIGIN}`,
+    origin: [`${process.env.CORS_ORIGIN_FRONTEND}`, `${process.env.CORS_ORIGIN_TAC_EXTENSION}`],
         credentials: true, 
     })
 )
@@ -34,6 +34,12 @@ app.use('/api/v1',cnassistantRoute);
 
 const profileRoute = require('./routes/Profile');
 app.use('/api/v1',profileRoute);
+
+const academicsRoute = require('./routes/Academics');
+app.use('/api/v1',academicsRoute);
+
+const trackerRoute = require('./routes/Tracker');
+app.use('/api/v1',trackerRoute);
 
 app.get('/api/v1', (req, res) => {
     res.json({message: "Welcome to the CampusNavigator!"});

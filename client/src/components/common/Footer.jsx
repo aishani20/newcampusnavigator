@@ -10,7 +10,7 @@ import { toast } from "react-hot-toast";
 
 const Footer = () => {
   const { darkMode } = useSelector((state) => state.darkMode);
-  const [email, setEmail] = useState(null);
+  const [email, setEmail] = useState("");
   const { user } = useSelector((state) => state.profile);
   const subscribeHandler = () => {
     toast.success("Subscribed Successfully");
@@ -37,9 +37,27 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-2 dark:text-[#C5C4C2] justify-end mt-2">
-          <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />{" "}
-          <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />{" "}
-          <FaLinkedin className="w-6 h-6 text-[#0073B1]" />
+          <a
+            href="https://www.instagram.com/ab_tyagi15/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagramSquare className="w-6 h-6 text-[#F71F2B]" />
+          </a>
+          <a
+            href="https://x.com/abtyagi15"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaSquareXTwitter className="w-6 h-6 text-[#000000] dark:text-white" />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/abtyagi15/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaLinkedin className="w-6 h-6 text-[#0073B1]" />
+          </a>
         </div>
       </div>
       <div className="flex mt-7 md:flex-row flex-col">
@@ -47,8 +65,19 @@ const Footer = () => {
           <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1kitzmM8lSb27pezkoipvkCjWI_u9BY7x/view"
                 target="_blank"
+                rel="noopener noreferrer"
+                className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
+              >
+                Project Thesis
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://drive.google.com/file/d/1Xv9BwYmXPT-XIzW61yBRSyn3Zmg0-qwh/view"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Progress Report
@@ -56,8 +85,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1UvdaZFVZCBgKumWOA4y-Y5TAnT65Xm_g/view"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Project Poster
@@ -65,8 +95,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://drive.google.com/file/d/1wTs5cdvlZEUIEbOkjGRLvCec6ll73laq/view"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Project PPT
@@ -76,8 +107,9 @@ const Footer = () => {
           <ul className="md:border-l-2 border-dashed sm:p-2 sm:mx-2 py-2">
             <li>
               <a
-                href="/#"
+                href="https://www.satiengg.in/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Institute Website
@@ -85,8 +117,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://www.instagram.com/fluxsati/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Technical Club FLUX
@@ -94,8 +127,9 @@ const Footer = () => {
             </li>
             <li>
               <a
-                href="/#"
+                href="https://www.linkedin.com/in/training-and-placement-cell-sati-vidisha/"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="dark:text-[#C5C4C2] hover:bg-[#2b2b2b0a] dark:hover:bg-[#5c5b5b] px-2 py-1"
               >
                 Training and Placement cell

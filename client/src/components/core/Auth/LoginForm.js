@@ -1,21 +1,46 @@
-import React, { useState } from "react";
+/*global chrome*/
+
+import React, { useState, useEffect } from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setToken } from "../../../slices/authSlice";
-import { setLoading } from "../../../slices/authSlice";
+import { setLoading, setTokenCreationTime } from "../../../slices/authSlice";
 
 import axios from "axios";
 import { setUser } from "../../../slices/profileSlice";
 
+//token reset function to reset token in chrome extension
+const resetTokenFromChromeExtension = ({ extensionId, isLogin }) => {
+  chrome.runtime.sendMessage(extensionId, { isLogin }, (response) => {
+    if (!response.success) {
+      console.log("error sending token reset message", response);
+      return response;
+    }
+    console.log("Token reset response :::", response);
+  });
+};
+
 const LoginForm = () => {
+  const isLogin = false;
+  useEffect(() => {
+    try{
+      resetTokenFromChromeExtension({
+        extensionId: "joeibnoddmkbggaacjmfnefdmpdgpkmb",
+        isLogin,
+      });
+    }
+    catch(err){
+      console.log("error in token reset block", err);
+    }
+  }, [isLogin]);
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [message, setMessage] = useState(null);
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "test@abtyagi15.com",
+    password: "123",
   });
   function changeHandler(event) {
     const { name, value } = event.target;
@@ -63,6 +88,10 @@ const LoginForm = () => {
         dispatch(setToken(data.token)); // Set user token in Redux store
         dispatch(setUser(data.user)); // Set user data in Redux store
       }
+      let tokenCreationTime = new Date();
+      tokenCreationTime = tokenCreationTime.getTime();
+      dispatch(setTokenCreationTime(tokenCreationTime));
+      console.log("Token creation time", tokenCreationTime.getTime());
     } catch (err) {
       console.log(err); // Log any errors
     }
